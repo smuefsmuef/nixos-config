@@ -33,17 +33,16 @@
         devices = [ "nodev" ];
         efiSupport = true;
         useOSProber = true;                 # Find All Boot Options
-        configurationLimit = 2;
       };
       timeout = 1;
     };
     kernelPackages = pkgs.linuxPackages_latest;
   };
 
-  hardware.sane = {                         # Scanning
-    enable = true;
-    extraBackends = [ pkgs.sane-airscan ];
-  };
+#  hardware.sane = {                         # Scanning
+#    enable = true;
+#    extraBackends = [ pkgs.sane-airscan ];
+#  };
 
   laptop.enable = true;                     # Laptop Modules
   bspwm.enable = true;                      # Window Manager
@@ -55,23 +54,23 @@
     ];
   };
 
-  programs.light.enable = true;             # Monitor Brightness
-
-  services = {
-    printing = {                            # Printing and drivers for TS5300
-      enable = true;
-      drivers = [ pkgs.cnijfilter2 ];
-    };
-  };
-
+#  programs.light.enable = true;             # Monitor Brightness
+#
+#  services = {
+#    printing = {                            # Printing and drivers for TS5300
+#      enable = true;
+#      drivers = [ pkgs.cnijfilter2 ];
+#    };
+#  };
+#
   flatpak = {                               # Flatpak Packages (see module options)
     extraPackages = [
       "com.github.tchx84.Flatseal"
     ];
   };
-
+#
   systemd.tmpfiles.rules = [                # Temporary Bluetooth Fix
     "d /var/lib/bluetooth 700 root root - -"
   ];
-  systemd.targets."bluetooth".after = ["systemd-tmpfiles-setup.service"];
+#  systemd.targets."bluetooth".after = ["systemd-tmpfiles-setup.service"];
 }

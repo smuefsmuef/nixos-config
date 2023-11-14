@@ -9,7 +9,7 @@
 #
 
 {
-  description = "Nix & NixOS System Flake Configuration";
+  description = "Nix, NixOS and Nix Darwin System Flake Configuration";
 
   inputs =                                                                  # References Used by Flake
     {
@@ -59,7 +59,7 @@
         user = "caldetas";
         location = "$HOME/Desktop/nixos-config";
         terminal = "kitty";
-        editor = "nano";
+        editor = "nvim";
       };
     in
     {

@@ -45,7 +45,7 @@
     defaultLocale = "en_US.UTF-8";
     extraLocaleSettings = {
       LC_TIME = "en_US.UTF-8";
-      LC_MONETARY = "en_US.UTF-8";
+#      LC_MONETARY = "en_US.UTF-8";
     };
   };
 
