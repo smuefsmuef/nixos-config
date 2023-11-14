@@ -25,15 +25,13 @@
 { config, lib, pkgs, unstable, inputs, vars, ... }:
 
 {
-  imports = (
-              import ../modules/desktops ++
+  imports = ( import ../modules/desktops ++
               import ../modules/editors ++
               import ../modules/hardware ++
               import ../modules/programs ++
               import ../modules/services ++
               import ../modules/shell ++
-              import ../modules/theming
-              );
+              import ../modules/theming );
 
   users.users.${vars.user} = {              # System User
     isNormalUser = true;
@@ -50,8 +48,8 @@
   };
 
   console = {
-    font = "t";
-    keyMap = "sg";
+    font = "Lat2-Terminus16";
+    keyMap = "us";
   };
 
   security = {
@@ -137,6 +135,7 @@
     openvpn
     qbittorrent
 
+      # Other Packages Found @
       # - ./<host>/default.nix
       # - ../modules
     ] ++
