@@ -38,12 +38,12 @@
     extraGroups = [ "wheel" "video" "audio" "camera" "networkmanager" "lp" "scanner" ];
   };
 
-  time.timeZone = "Europe/Brussels";        # Time zone and Internationalisation
+  time.timeZone = "Europe/Zurich";        # Time zone and Internationalisation
   i18n = {
     defaultLocale = "en_US.UTF-8";
     extraLocaleSettings = {
-      LC_TIME = "nl_BE.UTF-8";
-      LC_MONETARY = "nl_BE.UTF-8";
+      LC_TIME = "en_US.UTF-8";
+#      LC_MONETARY = "nl_BE.UTF-8";
     };
   };
 
@@ -117,6 +117,22 @@
       unrar             # Rar Files
       zip               # Zip
 
+        brave
+        htop
+#        jetbrains.idea-ultimate
+        gnome.gedit
+        yaru-theme
+        jdk17
+        nodejs_16 #double entry
+#        docker-compose
+        telegram-desktop
+#        networkmanager_strongswan
+        openvpn
+        qbittorrent
+        mesa #elden ring
+        directx-headers #elden ring
+        directx-shader-compiler #elden ring
+
       # Other Packages Found @
       # - ./<host>/default.nix
       # - ../modules
@@ -129,7 +145,13 @@
 
   programs = {
     dconf.enable = true;
+    openvpn3.enable = true;
+    java.enable = true;
+    gamemode.enable = true;
   };
+  nixpkgs.config.permittedInsecurePackages = [
+                  "nodejs-16.20.2"
+                ];
 
   services = {
     printing = {                            # CUPS
@@ -162,7 +184,7 @@
     gc = {                                  # Garbage Collection
       automatic = true;
       dates = "weekly";
-      options = "--delete-older-than 2d";
+      options = "--delete-older-than 7d";
     };
     package = pkgs.nixVersions.unstable;    # Enable Flakes
     registry.nixpkgs.flake = inputs.nixpkgs;
@@ -179,12 +201,12 @@
     #  enable = true;
     #  channel = "https://nixos.org/channels/nixos-unstable";
     #};
-    stateVersion = "22.05";
+    stateVersion = "23.05";
   };
 
   home-manager.users.${vars.user} = {       # Home-Manager Settings
     home = {
-      stateVersion = "22.05";
+      stateVersion = "23.05";
     };
 
     programs = {
