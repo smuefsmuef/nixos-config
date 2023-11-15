@@ -178,8 +178,8 @@
     };
   };
 
-#  flatpak.enable = true;  #todo                  # Enable Flatpak (see module options)
-
+flatpak.enable = true;  #todo                  # Enable Flatpak (see module options)
+xdg.portal.enable = true;
   nix = {                                   # Nix Package Manager Settings
     settings ={
       auto-optimise-store = true;
