@@ -122,7 +122,7 @@
         brave
         htop
         git
-#        jetbrains.idea-ultimate
+        jetbrains.idea-ultimate
         gnome.gedit
         yaru-theme
         jdk17
