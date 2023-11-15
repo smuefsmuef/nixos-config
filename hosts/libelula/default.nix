@@ -20,6 +20,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ../../modules/desktops/virtualisation/docker.nix
     ];
 
   # Bootloader.
@@ -66,7 +67,8 @@
   # Enable the GNOME Desktop Environment.
 #  services.xserver.displayManager.gdm.enable = true;
 #  services.xserver.desktopManager.gnome.enable = true;
-  gnome.enable = true;
+#  gnome.enable = true;
+  bspwm.enable = true;
 
   # Configure keymap in X11
   services.xserver = {
