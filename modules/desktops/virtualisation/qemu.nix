@@ -45,7 +45,6 @@
     gvfs.enable = true;
   };
 
-boot.kernelParams = [ "psmouse.synaptics_intertouch=0" ];
   #boot ={
   #  kernelParams = [ "intel_iommu=on" "vfio" "vfio_iommu_type1" "vfio_pci" "vfio_virqfd" ];      # or amd_iommu (cpu)
   #  kernelModules = [ "vendor-reset" "vfio" "vfio_iommu_type1" "vfio_pci" "vfio_virqfd"];
@@ -66,7 +65,7 @@ boot.kernelParams = [ "psmouse.synaptics_intertouch=0" ];
   #    PCI_QUIRKS y
   #    KALLSYMS y
   #    KALLSYMS_ALL y
-  #    ''; 
+  #    '';
   #    }
   #  ];
   #};
@@ -207,7 +206,7 @@ boot.kernelParams = [ "psmouse.synaptics_intertouch=0" ];
 #    '';
 # 5. Run the shell: $ nix-shell
 # 6. As mentioned in the README, run ./fetch-macOS.py
-# 6.1 Can be a specific version 
+# 6.1 Can be a specific version
 # 7. Create base image for the macOs installer
 # 8. $ qemu-img convert BaseSystem.dmg -O raw BaseSystem.img
 # 9. Create disk for macOS

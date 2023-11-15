@@ -1,12 +1,12 @@
 #
 #  These are the different profiles that can be used when building NixOS.
 #
-#  flake.nix 
-#   └─ ./hosts  
+#  flake.nix
+#   └─ ./hosts
 #       ├─ default.nix *
 #       ├─ configuration.nix
 #       └─ ./<host>.nix
-#           └─ default.nix 
+#           └─ default.nix
 #
 
 { lib, inputs, nixpkgs, nixpkgs-unstable, home-manager, nur, doom-emacs, hyprland, plasma-manager, vars, ... }:
@@ -69,26 +69,6 @@ in
       }
     ];
   };
-  libelula = lib.nixosSystem {                                # libelula Profile
-    inherit system;
-    specialArgs = {
-      inherit inputs unstable vars;
-      host = {
-        hostName = "libelula";
-#        mainMonitor = "eDP-1";
-#        secondMonitor = "";
-      };
-    };
-    modules = [
-      ./libelula
-      ./configuration.nix
-
-      home-manager.nixosModules.home-manager {
-        home-manager.useGlobalPkgs = true;
-        home-manager.useUserPackages = true;
-      }
-    ];
-  };
 
   work = lib.nixosSystem {                                  # Work Profile
     inherit system;
@@ -133,7 +113,7 @@ in
     ];
   };
 
-  desktop = lib.nixosSystem {                               # DEPRECATED Desktop Profile 
+  desktop = lib.nixosSystem {                               # DEPRECATED Desktop Profile
     inherit system;
     specialArgs = {
       inherit inputs system unstable hyprland vars;

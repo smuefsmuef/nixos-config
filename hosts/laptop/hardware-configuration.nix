@@ -37,25 +37,25 @@
 
 
   swapDevices = [ ];
-  
+
   networking = with host; {
     useDHCP = false;                        # Deprecated
     hostName = hostName;
     networkmanager.enable = true;
     interfaces = {
-      enp0s25 = {
+      lo = {
         useDHCP = true;                     # For versatility sake, manually edit IP on nm-applet.
         #ipv4.addresses = [ {
         #    address = "192.168.0.51";
         #    prefixLength = 24;
         #} ];
       };
-      wlo1 = {
+      wlp0s20f3 = {
         useDHCP = true;
         #ipv4.addresses = [ {
         #  address = "192.168.0.51";
         #  prefixLength = 24;
-        #} ];  
+        #} ];
       };
     };
 #    defaultGateway = "192.168.0.1";
