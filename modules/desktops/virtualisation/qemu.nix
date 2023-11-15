@@ -45,7 +45,6 @@
     gvfs.enable = true;
   };
 
-boot.kernelParams = [ "psmouse.synaptics_intertouch=0" ];
   #boot ={
   #  kernelParams = [ "intel_iommu=on" "vfio" "vfio_iommu_type1" "vfio_pci" "vfio_virqfd" ];      # or amd_iommu (cpu)
   #  kernelModules = [ "vendor-reset" "vfio" "vfio_iommu_type1" "vfio_pci" "vfio_virqfd"];

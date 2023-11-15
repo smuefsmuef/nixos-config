@@ -69,26 +69,6 @@ in
       }
     ];
   };
-  libelula = lib.nixosSystem {                                # libelula Profile
-    inherit system;
-    specialArgs = {
-      inherit inputs unstable vars;
-      host = {
-        hostName = "libelula";
-#        mainMonitor = "eDP-1";
-#        secondMonitor = "";
-      };
-    };
-    modules = [
-      ./libelula
-      ./configuration.nix
-
-      home-manager.nixosModules.home-manager {
-        home-manager.useGlobalPkgs = true;
-        home-manager.useUserPackages = true;
-      }
-    ];
-  };
 
   work = lib.nixosSystem {                                  # Work Profile
     inherit system;

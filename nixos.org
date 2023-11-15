@@ -133,7 +133,7 @@
     };
     grub = {                          # Using grub means first 2 lines can be removed
       enable = true;
-      device = ["nodev"];            # Generate boot menu but not actually installed
+      #device = ["nodev"];            # Generate boot menu but not actually installed
       devices = ["nodev"];            # Install grub
       efiSupport = true;
       useOSProber = true;             # Or use extraEntries like seen with Legacy
@@ -148,7 +148,7 @@
   {
     boot ={
       kernelPackages = pkgs.linuxPackages_latest;       # Get latest kernel
-      initrd.kernelModules = ["kvm-intel"];                # More on this later on (setting it for xserver)
+      initrd.kernelModules = ["amdgpu"];                # More on this later on (setting it for xserver)
       loader = {
         #efi = {
           #canTouchEfiVariables = true;
