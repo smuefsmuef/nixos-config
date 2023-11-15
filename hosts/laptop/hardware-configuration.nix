@@ -16,25 +16,24 @@
 { config, lib, pkgs, modulesPath, host, ... }:
 
 {
-   imports =
-      [ (modulesPath + "/installer/scan/not-detected.nix")
-      ];
+  imports =
+    [ (modulesPath + "/installer/scan/not-detected.nix")
+    ];
 
-    boot.initrd.availableKernelModules = [ "xhci_pci" "thunderbolt" "vmd" "nvme" "usbhid" "usb_storage" "sd_mod" ];
-    boot.initrd.kernelModules = [ ];
-    boot.kernelModules = [ "kvm-intel" ];
-    boot.extraModulePackages = [ ];
+  boot.initrd.availableKernelModules = [ "xhci_pci" "ehci_pci" "ahci" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
+  boot.initrd.kernelModules = [ ];
+  boot.kernelModules = [ "kvm-intel" ];
+  boot.extraModulePackages = [ ];
 
-    fileSystems."/" =
-      { device = "/dev/disk/by-uuid/40fdcc30-15e1-4f3c-b45c-031e9f7440d6";
-        fsType = "ext4";
-      };
+  fileSystems."/" =
+    { device = "/dev/disk/by-label/nixos";
+      fsType = "ext4";
+    };
 
-    fileSystems."/boot" =
-      { device = "/dev/disk/by-uuid/FD28-26EC";
-        fsType = "vfat";
-      };
-
+  fileSystems."/boot" =
+    { device = "/dev/disk/by-uuid/6E06-6221";
+      fsType = "vfat";
+    };
 
   swapDevices = [ ];
 
@@ -43,14 +42,14 @@
     hostName = hostName;
     networkmanager.enable = true;
     interfaces = {
-      lo = {
+      enp0s25 = {
         useDHCP = true;                     # For versatility sake, manually edit IP on nm-applet.
         #ipv4.addresses = [ {
         #    address = "192.168.0.51";
         #    prefixLength = 24;
         #} ];
       };
-      wlp0s20f3 = {
+      wlo1 = {
         useDHCP = true;
         #ipv4.addresses = [ {
         #  address = "192.168.0.51";
@@ -58,14 +57,14 @@
         #} ];
       };
     };
-#    defaultGateway = "192.168.0.1";
-#    nameservers = [ "192.168.0.4" ];
+    defaultGateway = "192.168.0.1";
+    nameservers = [ "192.168.0.4" ];
     firewall = {
       enable = false;
       #allowedUDPPorts = [ 53 67 ];
       #allowedTCPPorts = [ 53 80 443 9443 ];
     };
   };
-  powerManagement.cpuFreqGovernor = lib.mkDefault "performance";
+
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }
