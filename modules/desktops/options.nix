@@ -25,5 +25,11 @@ with lib;
         default = false;
       };
     };
+    libelula = {                  # Condition if host is a laptop
+      enable = mkOption {
+        type = types.bool;
+        default = false;
+      };
+    };
   };
 }

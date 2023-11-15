@@ -110,7 +110,7 @@ with host;
     home-manager.users.${vars.user} =
     let
       touchpad =
-        if hostName == "laptop" || hostName == "work" then ''
+        if hostName == "libelula" || hostName == "laptop" || hostName == "work" then ''
             touchpad {
               natural_scroll=true
               middle_button_emulation=true
@@ -119,7 +119,7 @@ with host;
           }
           '' else "";
       gestures =
-        if hostName == "laptop" || hostName == "work" then ''
+        if hostName == "libelula" || hostName == "laptop" || hostName == "work" then ''
           gestures {
             workspace_swipe=true
             workspace_swipe_fingers=3
