@@ -135,7 +135,7 @@ in
     ];
   };
 
-  desktop = lib.nixosSystem {                               # DEPRECATED Desktop Profile
+  libelula = lib.nixosSystem {                               #
     inherit system;
     specialArgs = {
       inherit inputs system unstable hyprland vars;
@@ -146,7 +146,7 @@ in
       };
     };
     modules = [
-      nur.nixosModules.nur
+#      nur.nixosModules.nur todo delete
       ./libelula
       ./configuration.nix
 
