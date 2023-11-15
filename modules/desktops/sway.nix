@@ -79,7 +79,7 @@ with host;
               natural_scroll = "enabled";
             };
             "type:keyboard" = {
-              xkb_layout = "us";
+              xkb_layout = "ch";
               xkb_numlock = "enabled";
             };
           };

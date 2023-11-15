@@ -73,7 +73,7 @@ in
       xserver = {
         enable = true;
 
-        layout = "us";
+        layout = "ch";
         xkbOptions = "eurosign:e";
         libinput = {
           enable = true;
