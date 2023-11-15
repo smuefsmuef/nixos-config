@@ -119,7 +119,7 @@ with lib;
         "org/gnome/desktop/privacy" = {
           report-technical-problems = "false";
         };
-        "org/gnome/desktop/calendar" = {
+    /*    "org/gnome/desktop/calendar" = {
           show-weekdate = true;
         };
         "org/gnome/desktop/wm/preferences" = {
@@ -128,7 +128,7 @@ with lib;
           resize-with-right-button = true;
           mouse-button-modifier = "<super>";
           button-layout = ":minimize,close";
-        };
+        };*/
       /*  "org/gnome/desktop/wm/keybindings" = {
           # maximize = ["<super>up"];                   # Floating
           # unmaximize = ["<super>down"];
@@ -154,29 +154,29 @@ with lib;
           toggle-fullscreen = ["<super>f"];
         };*/
 
-        "org/gnome/mutter" = {
+/*        "org/gnome/mutter" = {
           workspaces-only-on-primary = false;
           center-new-windows = true;
           edge-tiling = false;                          # Tiling
-        };
-        "org/gnome/mutter/keybindings" = {
+        };*/
+    /*    "org/gnome/mutter/keybindings" = {
           #toggle-tiled-left = ["<super>left"];         # Floating
           #toggle-tiled-right = ["<super>right"];
           toggle-tiled-left = ["@as []"];               # Tiling
           toggle-tiled-right = ["@as []"];
-        };
+        };*/
 
         "org/gnome/settings-daemon/plugins/power" = {
           sleep-interactive-ac-type = "nothing";
         };
-        "org/gnome/settings-daemon/plugins/media-keys" = {
+    /*    "org/gnome/settings-daemon/plugins/media-keys" = {
           custom-keybindings = [
             "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
             "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/"
             "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/"
           ];
-        };
-        "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
+        };*/
+     /*   "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
           binding = "<super>return";
           command = "alacritty";
           name = "open-terminal";
@@ -204,7 +204,7 @@ with lib;
           animate-appicon-hover = true;
           animate-appicon-hover-animation-travel = "{'simple': 0.14999999999999999, 'ripple': 0.40000000000000002, 'plank': 0.0}";
           isolate-monitors = true;
-        };
+        };*/
         "org/gnome/shell/extensions/just-perfection" = {
           theme = true;
           activities-button = false;
