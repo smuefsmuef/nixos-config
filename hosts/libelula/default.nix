@@ -1,10 +1,10 @@
 #
-#  Specific system configuration settings for laptop
+#  Specific system configuration settings for libelula
 #
 #  flake.nix
 #   ├─ ./hosts
 #   │   ├─ default.nix
-#   │   └─ ./laptop
+#   │   └─ ./libelula
 #   │        ├─ default.nix *
 #   │        └─ hardware-configuration.nix
 #   └─ ./modules
