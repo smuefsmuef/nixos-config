@@ -55,8 +55,8 @@ in
       inherit inputs unstable vars;
       host = {
         hostName = "laptop";
-        mainMonitor = "eDP-1";
-        secondMonitor = "";
+        mainMonitor = "eDP-1-1";
+        secondMonitor = "HDMI-1-1";
       };
     };
     modules = [
@@ -126,6 +126,28 @@ in
     modules = [
       nur.nixosModules.nur
       ./desktop
+      ./configuration.nix
+
+      home-manager.nixosModules.home-manager {
+        home-manager.useGlobalPkgs = true;
+        home-manager.useUserPackages = true;
+      }
+    ];
+  };
+
+  desktop = lib.nixosSystem {                               # DEPRECATED Desktop Profile
+    inherit system;
+    specialArgs = {
+      inherit inputs system unstable hyprland vars;
+      host = {
+        hostName = "libelula";
+        mainMonitor = "eDP-1-1";
+        secondMonitor = "HDMI-1-1";
+      };
+    };
+    modules = [
+      nur.nixosModules.nur
+      ./libelula
       ./configuration.nix
 
       home-manager.nixosModules.home-manager {

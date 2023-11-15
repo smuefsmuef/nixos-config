@@ -25,13 +25,15 @@
 { config, lib, pkgs, unstable, inputs, vars, ... }:
 
 {
-  imports = ( import ../modules/desktops ++
+  imports = (
+              import ../modules/desktops ++
               import ../modules/editors ++
               import ../modules/hardware ++
               import ../modules/programs ++
               import ../modules/services ++
               import ../modules/shell ++
-              import ../modules/theming );
+              import ../modules/theming
+              );
 
   users.users.${vars.user} = {              # System User
     isNormalUser = true;
@@ -119,11 +121,12 @@
 
         brave
         htop
+        git
 #        jetbrains.idea-ultimate
         gnome.gedit
         yaru-theme
         jdk17
-        nodejs_16 #double entry
+#        nodejs_16 #double entry
 #        docker-compose
         telegram-desktop
 #        networkmanager_strongswan
@@ -182,7 +185,7 @@
       auto-optimise-store = true;
     };
     gc = {                                  # Garbage Collection
-      automatic = true;
+      automatic = false;
       dates = "weekly";
       options = "--delete-older-than 7d";
     };
@@ -201,12 +204,12 @@
     #  enable = true;
     #  channel = "https://nixos.org/channels/nixos-unstable";
     #};
-    stateVersion = "23.05";
+    stateVersion = "22.05";
   };
 
   home-manager.users.${vars.user} = {       # Home-Manager Settings
     home = {
-      stateVersion = "23.05";
+      stateVersion = "22.05";
     };
 
     programs = {

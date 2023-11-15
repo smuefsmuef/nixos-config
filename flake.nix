@@ -13,16 +13,11 @@
 
   inputs =                                                                  # References Used by Flake
     {
-      nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";                     # Stable Nix Packages (Default)
+      nixpkgs.url = "github:nixos/nixpkgs/nixos-22.05";                     # Stable Nix Packages (Default)
       nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";         # Unstable Nix Packages
 
       home-manager = {                                                      # User Environment Manager
-        url = "github:nix-community/home-manager/release-23.05";
-        inputs.nixpkgs.follows = "nixpkgs";
-      };
-
-      darwin = {                                                            # MacOS Package Management
-        url = "github:lnl7/nix-darwin/master";
+        url = "github:nix-community/home-manager/release-22.05";
         inputs.nixpkgs.follows = "nixpkgs";
       };
 
@@ -64,7 +59,7 @@
         user = "caldetas";
         location = "$HOME/Desktop/nixos-config";
         terminal = "kitty";
-        editor = "nvim";
+        editor = "nano";
       };
     in
     {
@@ -72,13 +67,6 @@
         import ./hosts {
           inherit (nixpkgs) lib;
           inherit inputs nixpkgs nixpkgs-unstable home-manager nur doom-emacs hyprland plasma-manager vars;   # Inherit inputs
-        }
-      );
-
-      darwinConfigurations = (                                              # Darwin Configurations
-        import ./darwin {
-          inherit (nixpkgs) lib;
-          inherit inputs nixpkgs nixpkgs-unstable home-manager darwin vars;
         }
       );
 
