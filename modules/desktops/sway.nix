@@ -79,7 +79,7 @@ with host;
               natural_scroll = "enabled";
             };
             "type:keyboard" = {
-              xkb_layout = "ch";
+              xkb_layout = "us";
               xkb_numlock = "enabled";
             };
           };
@@ -95,7 +95,7 @@ with host;
               mode = "1920x1080";
               pos = "1920 0";
             };
-          } else if hostName == "libelula" || hostName == "oldie" || hostName == "laptop" then {
+          } else if hostName == "libelula" || hostName == "laptop" then {
             "*".bg = "~/.config/wall fill";
             "*".scale = "1";
             "${mainMonitor}" = {
@@ -111,10 +111,11 @@ with host;
             {output = secondMonitor; workspace = "4";}
             {output = secondMonitor; workspace = "5";}
             {output = secondMonitor; workspace = "6";}
-          ] else [
+          ] else if hostName == "libelula" || hostName == "laptop" then [
             {output = mainMonitor; workspace = "1";}
             {output = mainMonitor; workspace = "2";}
-            {output = mainMonitor; workspace = "3";}];
+            {output = mainMonitor; workspace = "3";}
+          ] else [];
           defaultWorkspace = "workspace number 1";
 
           colors.focused = {

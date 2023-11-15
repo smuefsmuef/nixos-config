@@ -13,9 +13,6 @@ let
       "${pkgs.xorg.xrandr}/bin/xrandr --output ${secondMonitor} --mode 1920x1080 --pos 0x0 --rotate normal --output ${mainMonitor} --primary --mode 1920x1080 --pos 1920x0 --rotate normal"
     else if hostName == "libelula" || hostName == "laptop" || hostName == "vm" then
       "${pkgs.xorg.xrandr}/bin/xrandr --mode 1920x1080 --pos 0x0 --rotate normal"
-    else if hostName == "oldie" then
-      "${pkgs.xorg.xrandr}/bin/xrandr --output ${mainMonitor} --mode 1920x1080 --pos 0x0 --rotate normal"
-#    else "${pkgs.xorg.xrandr}/bin/xrandr --mode 1920x1080 --pos 0x0 --rotate normal";
     else false;
 
   extra = ''
@@ -51,8 +48,8 @@ let
       bspc wm -O ${mainMonitor} ${secondMonitor}
       polybar sec &
     ''
-    else if hostName == "oldie" || hostName == "libelula" || hostName == "laptop" || hostName == "vm" then ''
-      bspc monitor ${mainMonitor} -d 1 2 3 4 5
+    else if hostName == "libelula" || hostName == "laptop" || hostName == "vm" then ''
+      bspc monitor -d 1 2 3 4 5
     ''
     else false)
   ]
@@ -75,7 +72,8 @@ in
     services = {
       xserver = {
         enable = true;
-        layout = "ch";
+
+        layout = "us";
         xkbOptions = "eurosign:e";
         libinput = {
           enable = true;
@@ -91,9 +89,6 @@ in
         wacom.enable = true;
 
         displayManager = {                          # Display Manager
-#                lightdm.enable = true;
-#                defaultSession = "none+bspwm";
-#              };
           lightdm = {
             enable = true;
             background = pkgs.nixos-artwork.wallpapers.nineish-dark-gray.gnomeFilePath;
@@ -112,18 +107,6 @@ in
             };
           };
           defaultSession = "none+bspwm";
-#          sessionCommands = ''
-#                              ${pkgs.bspwm}/bin/bspc wm -r
-#                              source $HOME/.config/bspwm/bspwmrc
-#                              ${monitor}
-#                        '';
-#          session = [
-#            {
-#              manage = "desktop";
-#              name = "default";
-#              start = ''exec bspwmrc'';
-#            }
-#          ];
         };
         windowManager= {
           bspwm = {                                 # Window Manager
@@ -168,7 +151,7 @@ in
             monitors = if hostName == "beelink" then {
               ${mainMonitor} = [ "1" "2" "3" "4" "5" ];
               ${secondMonitor} = [ "6" "7" "8" "9" "0" ];
-            } else {${mainMonitor} = [ "1" "2" "3" "4" "5" ];};
+            } else {};
             rules = {                               # Window Rules (xprop)
               "Emacs" = {
                 desktop = "3";
