@@ -129,7 +129,7 @@ with lib;
           mouse-button-modifier = "<super>";
           button-layout = ":minimize,close";
         };
-        "org/gnome/desktop/wm/keybindings" = {
+      /*  "org/gnome/desktop/wm/keybindings" = {
           # maximize = ["<super>up"];                   # Floating
           # unmaximize = ["<super>down"];
           maximize = ["@as []"];                        # Tiling
@@ -152,7 +152,7 @@ with lib;
           move-to-monitor-right = ["<super><alt>right"];
           close = ["<super>q" "<alt>f4"];
           toggle-fullscreen = ["<super>f"];
-        };
+        };*/
 
         "org/gnome/mutter" = {
           workspaces-only-on-primary = false;
@@ -245,7 +245,7 @@ with lib;
           window-gap-size = 8;
           dnd-center-layout = "stacked";
         };
-        "org/gnome/shell/extensions/forge/keybindings" = { # Set Manually
+/*        "org/gnome/shell/extensions/forge/keybindings" = { # Set Manually
           focus-border-toggle = true;
           float-always-on-top-enabled = true;
           window-focus-up = ["<super>up"];
@@ -258,7 +258,7 @@ with lib;
           window-move-right = ["<shift><super>right"];
           window-swap-last-active = ["@as []"];
           window-toggle-float = ["<shift><super>f"];
-        };
+        };*/
         # "org/gnome/shell/extensions/dash-to-dock" = { # If Dock Preferred
         #   multi-monitor = true;
         #   dock-fixed = true;
