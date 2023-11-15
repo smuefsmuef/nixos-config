@@ -178,7 +178,7 @@
     };
   };
 
-  flatpak.enable = true;                    # Enable Flatpak (see module options)
+#  flatpak.enable = true;  #todo                  # Enable Flatpak (see module options)
 
   nix = {                                   # Nix Package Manager Settings
     settings ={
