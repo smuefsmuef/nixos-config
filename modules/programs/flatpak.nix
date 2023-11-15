@@ -22,12 +22,12 @@ with lib;
     };
   };
 
-  config = mkIf (config.flatpak.enable && !config.gnome.enable) #gnome and kde enable install already the gtk.portal
-  {
-    xdg.portal = {
-      enable = true;
-      extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-    };
+  config = mkIf (config.flatpak.enable)
+#  {
+#    xdg.portal = {
+#      enable = true;
+#      extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+#    };
 
     services.flatpak.enable = true;
 
