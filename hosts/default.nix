@@ -116,7 +116,7 @@ in
   desktop = lib.nixosSystem {                               # DEPRECATED Desktop Profile
     inherit system;
     specialArgs = {
-      inherit inputs vars;
+      inherit inputs system unstable hyprland vars;
       host = {
         hostName = "desktop";
         mainMonitor = "HDMI-A-1";
@@ -135,11 +135,10 @@ in
     ];
   };
 
-  libelula = lib.nixosSystem {                               #
+  desktop = lib.nixosSystem {                               # DEPRECATED Desktop Profile
     inherit system;
     specialArgs = {
       inherit inputs system unstable hyprland vars;
-#      inherit inputs system unstable vars;
       host = {
         hostName = "libelula";
         mainMonitor = "eDP-1-1";
@@ -147,29 +146,10 @@ in
       };
     };
     modules = [
-      nur.nixosModules.nur #todo delete?
+      nur.nixosModules.nur
       ./libelula
       ./configuration.nix
 
-      home-manager.nixosModules.home-manager {
-        home-manager.useGlobalPkgs = true;
-        home-manager.useUserPackages = true;
-      }
-    ];
-  };
-  oldie = lib.nixosSystem {                               #
-    inherit system;
-    specialArgs = {
-      inherit inputs system unstable hyprland vars;
-      host = {
-        hostName = "oldie";
-        mainMonitor = "eDP-1-1";
-        secondMonitor = "";
-      };
-    };
-    modules = [
-      ./oldie
-      ./configuration.nix
       home-manager.nixosModules.home-manager {
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;

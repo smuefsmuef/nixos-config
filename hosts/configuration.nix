@@ -25,13 +25,15 @@
 { config, lib, pkgs, unstable, inputs, vars, ... }:
 
 {
-  imports = ( import ../modules/desktops ++
+  imports = (
+              import ../modules/desktops ++
               import ../modules/editors ++
               import ../modules/hardware ++
               import ../modules/programs ++
               import ../modules/services ++
               import ../modules/shell ++
-              import ../modules/theming );
+              import ../modules/theming
+              );
 
   users.users.${vars.user} = {              # System User
     isNormalUser = true;
@@ -43,7 +45,7 @@
     defaultLocale = "en_US.UTF-8";
     extraLocaleSettings = {
       LC_TIME = "en_US.UTF-8";
-#      LC_MONETARY = "en_US.UTF-8";
+      LC_MONETARY = "en_US.UTF-8";
     };
   };
 
@@ -65,11 +67,9 @@
     jetbrains-mono
     font-awesome                            # Icons
     corefonts                               # MS
-    ubuntu_font_family
     (nerdfonts.override {                   # Nerdfont Icons override
       fonts = [
         "FiraCode"
-        "Ubuntu"
       ];
     })
   ];
@@ -90,11 +90,9 @@
       nix-tree          # Browse Nix Store
       pciutils          # Manage PCI
       ranger            # File Manager
-      screen            # Deatach
       tldr              # Helper
       usbutils          # Manage USB
       wget              # Retriever
-      lshw              # Show graphic driver
 
       # Video/Audio
       alsa-utils        # Audio Control
@@ -104,6 +102,7 @@
       pipewire          # Audio Server/Control
       pulseaudio        # Audio Server/Control
       vlc               # Media Player
+      stremio           # Media Streamer
 
       # Apps
       appimage-run      # Runs AppImages on NixOS
@@ -120,20 +119,22 @@
       unrar             # Rar Files
       zip               # Zip
 
-
-    htop
-    gparted
-    gnome.gedit
-    gnome.gnome-tweaks
-    yaru-theme
-    git
-
-    nodejs_16
-    docker-compose
-    telegram-desktop
-    networkmanager_strongswan
-    openvpn
-    qbittorrent
+        brave
+        htop
+        git
+#        jetbrains.idea-ultimate
+        gnome.gedit
+        yaru-theme
+        jdk17
+#        nodejs_16 #double entry
+#        docker-compose
+        telegram-desktop
+#        networkmanager_strongswan
+        openvpn
+        qbittorrent
+        mesa #elden ring
+        directx-headers #elden ring
+        directx-shader-compiler #elden ring
 
       # Other Packages Found @
       # - ./<host>/default.nix
@@ -141,24 +142,15 @@
     ] ++
     (with unstable; [
       # Apps
-#      firefox           # Browser
-      brave
-      discord
-      stremio
-    (jetbrains.plugins.addPlugins jetbrains.idea-ultimate [ "github-copilot" ])
-    jetbrains.jdk
-    jdk17
-    jre17_minimal
-    steam
-#    megasync
+      firefox           # Browser
     ]);
   };
 
   programs = {
-#    dconf.enable = true;
-#    openvpn3.enable = true;
-#    gamemode.enable = true;
+    dconf.enable = true;
+    openvpn3.enable = true;
     java.enable = true;
+    gamemode.enable = true;
   };
   nixpkgs.config.permittedInsecurePackages = [
                   "nodejs-16.20.2"
@@ -186,6 +178,8 @@
     };
   };
 
+  flatpak.enable = true;                    # Enable Flatpak (see module options)
+
   nix = {                                   # Nix Package Manager Settings
     settings ={
       auto-optimise-store = true;
@@ -210,42 +204,16 @@
     #  enable = true;
     #  channel = "https://nixos.org/channels/nixos-unstable";
     #};
-    stateVersion = "23.05";
+    stateVersion = "22.05";
   };
 
   home-manager.users.${vars.user} = {       # Home-Manager Settings
     home = {
-      stateVersion = "23.05";
+      stateVersion = "22.05";
     };
 
     programs = {
       home-manager.enable = true;
     };
   };
-  services.flatpak.enable = true;
-    flatpak = {                                   # Flatpak Packages (see module options)
-      extraPackages = [
-        "com.github.tchx84.Flatseal"
-        "com.ultimaker.cura"
-        "org.upscayl.Upscayl"
-      ];
-    };
-
-    nixpkgs.overlays = [                          # Overlay pulls latest version of Discord
-      (final: prev: {
-        discord = prev.discord.overrideAttrs (
-          _: { src = builtins.fetchTarball {
-            url = "https://discord.com/api/download?platform=linux&format=tar.gz";
-            sha256 = "0pml1x6pzmdp6h19257by1x5b25smi2y60l1z40mi58aimdp59ss";
-          };}
-        );
-      })
-    ];
-#  #enable scripts with shebang !# /bin/bash
-#  system.activationScripts.binbash = {
-#      deps = [ "binsh" ];
-#      text = ''
-#           ln -s /bin/sh /bin/bash
-#      '';
-#    };
 }
