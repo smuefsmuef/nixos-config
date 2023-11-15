@@ -69,7 +69,7 @@
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
-
+  services.flatpak.enable = true;
     flatpak = {                                   # Flatpak Packages (see module options)
       extraPackages = [
         "com.github.tchx84.Flatseal"
