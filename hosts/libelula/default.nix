@@ -120,7 +120,7 @@
 
   boot.kernelParams = [ "psmouse.synaptics_intertouch=0" ];
   #hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable
-  services.xserver.videoDrivers = [ "nvidia" ];
+#  services.xserver.videoDrivers = [ "nvidia" ];
   #hardware.opengl.driSupport32Bit = true;
 
   # List packages installed in system profile. To search, run:
@@ -191,7 +191,7 @@
 #    style = "adwaita-dark";
 #  };
 
-
+/*
     # Enable OpenGL
     hardware.opengl = {
       enable = true;
@@ -225,7 +225,7 @@
 
       # Optionally, you may need to select the appropriate driver version for your specific GPU.
       package = config.boot.kernelPackages.nvidiaPackages.stable;
-    };
+    };*/
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
