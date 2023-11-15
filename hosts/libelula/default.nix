@@ -43,7 +43,10 @@
       device = "nodev";
       useOSProber = true;
     };
-    efi.canTouchEfiVariables = true;
+    efi = {
+      canTouchEfiVariables = true;
+      efiSysMountPoint = "/boot";
+    };
   };
 
   networking.hostName = "libelula"; # Define your hostname.
