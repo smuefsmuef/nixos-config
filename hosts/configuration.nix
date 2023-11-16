@@ -145,6 +145,8 @@
     jetbrains.jdk
     jdk17
     jre17_minimal
+    steam
+    megasync
     ]);
   };
 
