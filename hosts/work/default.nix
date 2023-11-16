@@ -36,7 +36,7 @@
         efiSupport = true;
         useOSProber = true;                     # Find All boot Options
         configurationLimit = 20;
-#        default=2;
+        default=0;
       };
       timeout = null;
     };

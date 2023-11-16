@@ -42,6 +42,8 @@
       enableCryptodisk = true;
       device = "nodev";
       useOSProber = true;
+      configurationLimit = 20;
+      default=2;
     };
     efi = {
       canTouchEfiVariables = true;
