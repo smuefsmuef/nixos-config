@@ -50,7 +50,7 @@
   };
 
   console = {
-    font = "Ubuntu";
+    font = "Lat2-Terminus16";
     keyMap = "sg";
   };
 
@@ -65,7 +65,6 @@
     vegur                                   # NixOS
     source-code-pro
     jetbrains-mono
-    Ubuntu
     font-awesome                            # Icons
     corefonts                               # MS
     (nerdfonts.override {                   # Nerdfont Icons override
