@@ -156,25 +156,7 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  wget
-  brave
-  htop
-  gparted
-  jetbrains.idea-ultimate
-#  jetbrains.plugins.addplugins
-#  jetbrains.idea-ultimate["github-copilot"]
-  gnome.gedit
-  gnome.gnome-tweaks
-  yaru-theme
-  git
-  jdk17
-  nodejs_16
-  docker-compose
-  telegram-desktop
-  networkmanager_strongswan
-  openvpn
-  stremio
-  qbittorrent
+
   mesa #elden ring
   directx-headers #elden ring
   directx-shader-compiler #elden ring
