@@ -124,7 +124,11 @@
     gparted
 #    jetbrains.idea-ultimate
     #  jetbrains.plugins.addplugins
-    #  jetbrains.idea-ultimate["github-copilot"]
+    jetbrains.idea-ultimate[
+    "github-copilot"
+    "sonarLint" 
+    "key-promoter-x" 
+    ]
     gnome.gedit
     gnome.gnome-tweaks
     yaru-theme
