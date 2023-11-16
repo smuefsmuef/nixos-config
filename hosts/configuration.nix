@@ -50,7 +50,7 @@
   };
 
   console = {
-    font = "Lat2-Terminus16";
+    font = "Ubuntu";
     keyMap = "sg";
   };
 
@@ -65,6 +65,7 @@
     vegur                                   # NixOS
     source-code-pro
     jetbrains-mono
+    Ubuntu
     font-awesome                            # Icons
     corefonts                               # MS
     (nerdfonts.override {                   # Nerdfont Icons override
@@ -119,24 +120,25 @@
       unrar             # Rar Files
       zip               # Zip
 
-        brave
-        htop
-        git
-        jetbrains.idea-ultimate
-        gnome.gedit
-        yaru-theme
-        jdk17
-#        nodejs_16 #double entry
-#        docker-compose
-        telegram-desktop
-#        networkmanager_strongswan
-        openvpn
-        qbittorrent
-        mesa #elden ring
-        directx-headers #elden ring
-        directx-shader-compiler #elden ring
+    brave
+    htop
+    gparted
+#    jetbrains.idea-ultimate
+    #  jetbrains.plugins.addplugins
+    #  jetbrains.idea-ultimate["github-copilot"]
+    gnome.gedit
+    gnome.gnome-tweaks
+    yaru-theme
+    git
+    jdk17
+    nodejs_16
+    docker-compose
+    telegram-desktop
+    networkmanager_strongswan
+    openvpn
+    stremio
+    qbittorrent
 
-      # Other Packages Found @
       # - ./<host>/default.nix
       # - ../modules
     ] ++

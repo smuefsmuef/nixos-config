@@ -22,26 +22,6 @@
     gtk = {                                 # Theming
       enable = true;
       theme = {
-        name = "Dracula";
-#        name = "Yaru-Dark";
-        package = pkgs.dracula-theme;
-#        package = pkgs.catppuccin-gtk.override {
-#          accents = ["blue"];
-#          size = "compact";
-#          variant = "mocha";
-#        };
-      };
-      iconTheme = {
-        name = "Papirus-Dark";
-        package = pkgs.papirus-icon-theme;
-      };
-      font = {
-        name = "Ubuntu Nerd Font Mono Medium";
-      };
-    };/*
-    gtk = {                                 # Theming
-      enable = true;
-      theme = {
         #name = "Dracula";
         name = "Catppuccin-Mocha-Compact-Blue-Dark";
         #package = pkgs.dracula-theme;
@@ -56,8 +36,9 @@
         package = pkgs.papirus-icon-theme;
       };
       font = {
-#        name = "FiraCode Nerd Font Mono Medium";
+        name = "Ubuntu";
+        name = "FiraCode Nerd Font Mono Medium";
       };
-    };*/
+    };
   };
 }
