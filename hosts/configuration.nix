@@ -102,7 +102,6 @@
       pipewire          # Audio Server/Control
       pulseaudio        # Audio Server/Control
       vlc               # Media Player
-      stremio           # Media Streamer
 
       # Apps
       appimage-run      # Runs AppImages on NixOS
@@ -119,16 +118,9 @@
       unrar             # Rar Files
       zip               # Zip
 
-    brave
+
     htop
     gparted
-    jetbrains.idea-ultimate
-    #  jetbrains.plugins.addplugins
-    #( jetbrains.plugins.addPlugins jetbrains.idea-ultimate [ "github-copilot"
-    #  "sonarLint" 
-    #  "key-promoter-x" 
-    #  ] )
-    #(jetbrains.plugins.addPlugins jetbrains.idea-ultimate [ "17718" ])
     gnome.gedit
     gnome.gnome-tweaks
     yaru-theme
@@ -139,7 +131,6 @@
     telegram-desktop
     networkmanager_strongswan
     openvpn
-    stremio
     qbittorrent
 
       # - ./<host>/default.nix
@@ -148,6 +139,9 @@
     (with unstable; [
       # Apps
       firefox           # Browser
+      brave
+      stremio
+    (jetbrains.plugins.addPlugins jetbrains.idea-ultimate [ "github-copilot" ])
     ]);
   };
 
