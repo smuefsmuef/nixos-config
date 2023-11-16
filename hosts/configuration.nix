@@ -221,4 +221,12 @@
       home-manager.enable = true;
     };
   };
+
+  #enable scripts with shebang !# /bin/bash
+  system.activationScripts.binbash = {
+      deps = [ "binsh" ];
+      text = ''
+           ln -s /bin/sh /bin/bash
+      '';
+    };
 }
