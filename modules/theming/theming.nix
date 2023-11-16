@@ -37,7 +37,7 @@
       };
       font = {
         name = "Ubuntu";
-        name = "FiraCode Nerd Font Mono Medium";
+#        name = "FiraCode Nerd Font Mono Medium";
       };
     };
   };
