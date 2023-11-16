@@ -125,7 +125,7 @@
     gnome.gnome-tweaks
     yaru-theme
     git
-    jdk17
+
     nodejs_16
     docker-compose
     telegram-desktop
@@ -142,6 +142,9 @@
       brave
       stremio
     (jetbrains.plugins.addPlugins jetbrains.idea-ultimate [ "github-copilot" ])
+    jetbrains.jdk
+    jdk17
+    jre17_minimal
     ]);
   };
 
