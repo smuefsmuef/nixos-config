@@ -119,7 +119,7 @@ with lib;
         "org/gnome/desktop/privacy" = {
           report-technical-problems = "false";
         };
-    /*    "org/gnome/desktop/calendar" = {
+        "org/gnome/desktop/calendar" = {
           show-weekdate = true;
         };
         "org/gnome/desktop/wm/preferences" = {
@@ -128,21 +128,21 @@ with lib;
           resize-with-right-button = true;
           mouse-button-modifier = "<super>";
           button-layout = ":minimize,close";
-        };*/
-      /*  "org/gnome/desktop/wm/keybindings" = {
-          # maximize = ["<super>up"];                   # Floating
-          # unmaximize = ["<super>down"];
+        };
+        "org/gnome/desktop/wm/keybindings" = {
+           maximize = ["<super>up"];                   # Floating
+           unmaximize = ["<super>down"];
           maximize = ["@as []"];                        # Tiling
           unmaximize = ["@as []"];
-          switch-to-workspace-left = ["<alt>left"];
-          switch-to-workspace-right = ["<alt>right"];
+          switch-to-workspace-left = ["<ctrl><alt>left"];
+          switch-to-workspace-right = ["<ctrl><alt>right"];
           switch-to-workspace-1 = ["<alt>1"];
           switch-to-workspace-2 = ["<alt>2"];
           switch-to-workspace-3 = ["<alt>3"];
           switch-to-workspace-4 = ["<alt>4"];
           switch-to-workspace-5 = ["<alt>5"];
-          move-to-workspace-left = ["<shift><alt>left"];
-          move-to-workspace-right = ["<shift><alt>right"];
+          move-to-workspace-left = ["<ctrl><shift><alt>left"];
+          move-to-workspace-right = ["<ctrl><shift><alt>right"];
           move-to-workspace-1 = ["<shift><alt>1"];
           move-to-workspace-2 = ["<shift><alt>2"];
           move-to-workspace-3 = ["<shift><alt>3"];
@@ -152,31 +152,31 @@ with lib;
           move-to-monitor-right = ["<super><alt>right"];
           close = ["<super>q" "<alt>f4"];
           toggle-fullscreen = ["<super>f"];
-        };*/
+        };
 
-/*        "org/gnome/mutter" = {
+        "org/gnome/mutter" = {
           workspaces-only-on-primary = false;
           center-new-windows = true;
           edge-tiling = false;                          # Tiling
-        };*/
-    /*    "org/gnome/mutter/keybindings" = {
-          #toggle-tiled-left = ["<super>left"];         # Floating
-          #toggle-tiled-right = ["<super>right"];
+        };
+        "org/gnome/mutter/keybindings" = {
+          toggle-tiled-left = ["<super>left"];         # Floating
+          toggle-tiled-right = ["<super>right"];
           toggle-tiled-left = ["@as []"];               # Tiling
           toggle-tiled-right = ["@as []"];
-        };*/
+        };
 
         "org/gnome/settings-daemon/plugins/power" = {
           sleep-interactive-ac-type = "nothing";
         };
-    /*    "org/gnome/settings-daemon/plugins/media-keys" = {
+        "org/gnome/settings-daemon/plugins/media-keys" = {
           custom-keybindings = [
             "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
             "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/"
             "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/"
           ];
-        };*/
-     /*   "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
+        };
+        "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
           binding = "<super>return";
           command = "alacritty";
           name = "open-terminal";
@@ -204,7 +204,7 @@ with lib;
           animate-appicon-hover = true;
           animate-appicon-hover-animation-travel = "{'simple': 0.14999999999999999, 'ripple': 0.40000000000000002, 'plank': 0.0}";
           isolate-monitors = true;
-        };*/
+        };
         "org/gnome/shell/extensions/just-perfection" = {
           theme = true;
           activities-button = false;
@@ -245,20 +245,20 @@ with lib;
           window-gap-size = 8;
           dnd-center-layout = "stacked";
         };
-/*        "org/gnome/shell/extensions/forge/keybindings" = { # Set Manually
+        "org/gnome/shell/extensions/forge/keybindings" = { # Set Manually
           focus-border-toggle = true;
           float-always-on-top-enabled = true;
-          window-focus-up = ["<super>up"];
-          window-focus-down = ["<super>down"];
-          window-focus-left = ["<super>left"];
-          window-focus-right = ["<super>right"];
-          window-move-up = ["<shift><super>up"];
-          window-move-down = ["<shift><super>down"];
-          window-move-left = ["<shift><super>left"];
-          window-move-right = ["<shift><super>right"];
+          window-focus-up = ["<super><shift>up"];
+          window-focus-down = ["<super><shift>down"];
+          window-focus-left = ["<super><shift>left"];
+          window-focus-right = ["<super><shift>right"];
+          window-move-up = ["<ctrl><super>up"];
+          window-move-down = ["<ctrl><super>down"];
+          window-move-left = ["<ctrl><super>left"];
+          window-move-right = ["<ctrl><super>right"];
           window-swap-last-active = ["@as []"];
-          window-toggle-float = ["<shift><super>f"];
-        };*/
+          window-toggle-float = ["<ctrl><super>f"];
+        };
         # "org/gnome/shell/extensions/dash-to-dock" = { # If Dock Preferred
         #   multi-monitor = true;
         #   dock-fixed = true;
