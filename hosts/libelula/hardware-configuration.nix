@@ -35,6 +35,10 @@
         fsType = "vfat";
       };
 
+  fileSystems."/mnt/ubuntu" =
+    { device = "/dev/disk/by-uuid/b2ac4448-e9e5-4201-a84a-dec1ad82bf77";
+      fsType = "ext4";
+    };
 
   swapDevices = [ ];
 

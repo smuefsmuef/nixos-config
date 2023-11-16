@@ -132,8 +132,8 @@ with lib;
         "org/gnome/desktop/wm/keybindings" = {
            maximize = ["<super>up"];                   # Floating
            unmaximize = ["<super>down"];
-          maximize = ["@as []"];                        # Tiling
-          unmaximize = ["@as []"];
+#          maximize = ["@as []"];                        # Tiling
+#          unmaximize = ["@as []"];
           switch-to-workspace-left = ["<ctrl><alt>left"];
           switch-to-workspace-right = ["<ctrl><alt>right"];
           switch-to-workspace-1 = ["<alt>1"];
@@ -143,11 +143,11 @@ with lib;
           switch-to-workspace-5 = ["<alt>5"];
           move-to-workspace-left = ["<ctrl><shift><alt>left"];
           move-to-workspace-right = ["<ctrl><shift><alt>right"];
-          move-to-workspace-1 = ["<shift><alt>1"];
-          move-to-workspace-2 = ["<shift><alt>2"];
-          move-to-workspace-3 = ["<shift><alt>3"];
-          move-to-workspace-4 = ["<shift><alt>4"];
-          move-to-workspace-5 = ["<shift><alt>5"];
+#          move-to-workspace-1 = ["<shift><alt>1"];
+#          move-to-workspace-2 = ["<shift><alt>2"];
+#          move-to-workspace-3 = ["<shift><alt>3"];
+#          move-to-workspace-4 = ["<shift><alt>4"];
+#          move-to-workspace-5 = ["<shift><alt>5"];
           move-to-monitor-left = ["<super><alt>left"];
           move-to-monitor-right = ["<super><alt>right"];
           close = ["<super>q" "<alt>f4"];
@@ -162,8 +162,8 @@ with lib;
         "org/gnome/mutter/keybindings" = {
           toggle-tiled-left = ["<super>left"];         # Floating
           toggle-tiled-right = ["<super>right"];
-          toggle-tiled-left = ["@as []"];               # Tiling
-          toggle-tiled-right = ["@as []"];
+#          toggle-tiled-left = ["@as []"];               # Tiling
+#          toggle-tiled-right = ["@as []"];
         };
 
         "org/gnome/settings-daemon/plugins/power" = {
@@ -177,14 +177,14 @@ with lib;
           ];
         };
         "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
-          binding = "<super>return";
+          binding = "<super>t";
           command = "alacritty";
           name = "open-terminal";
         };
         "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1" = {
-          binding = "<super>t";
-          command = "emacs";
-          name = "open-editor";
+          binding = "<ctrl><alt>t";
+          command = "kgx";
+          name = "default-terminal";
         };
         "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2" = {
           binding = "<super>e";
@@ -247,7 +247,7 @@ with lib;
         };
         "org/gnome/shell/extensions/forge/keybindings" = { # Set Manually
           focus-border-toggle = true;
-          float-always-on-top-enabled = true;
+#          float-always-on-top-enabled = true;
           window-focus-up = ["<super><shift>up"];
           window-focus-down = ["<super><shift>down"];
           window-focus-left = ["<super><shift>left"];
