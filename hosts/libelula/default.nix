@@ -14,7 +14,7 @@
 #               └─ docker.nix
 #
 
-{ pkgs, config, lib, unstable, inputs, vars, ... }:
+{ pkgs, config, lib, unstable, inputs, vars, modulesPath, host, ... }:
 
 {
   imports =
