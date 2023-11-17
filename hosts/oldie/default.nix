@@ -45,6 +45,7 @@
 #  hyprland.enable = true;
   bspwm.enable = true;
 #laptop.enable = true;                     # Laptop Modules
+/*
 
   # Configure keymap in X11
 #  services.xserver = {
@@ -114,6 +115,7 @@
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
+*/
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
