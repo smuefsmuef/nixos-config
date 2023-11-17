@@ -50,7 +50,8 @@
   };
 
   console = {
-    font = "Lat2-Terminus16";
+#    font = "Lat2-Terminus16";
+    font = "Ubuntu";
     keyMap = "sg";
   };
 
@@ -67,6 +68,7 @@
     jetbrains-mono
     font-awesome                            # Icons
     corefonts                               # MS
+    ubuntu_font_family
     (nerdfonts.override {                   # Nerdfont Icons override
       fonts = [
         "FiraCode"
