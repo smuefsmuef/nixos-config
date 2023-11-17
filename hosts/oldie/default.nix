@@ -40,11 +40,11 @@
   boot.loader.grub.useOSProber = true;
 
   # Enable the X11 windowing system. (gnome?)
-#  services.xserver.enable = true;
+  services.xserver.enable = true;
 #  gnome.enable = true;
 #  hyprland.enable = true;
   bspwm.enable = true;
-#laptop.enable = true;                     # Laptop Modules
+laptop.enable = true;                     # Laptop Modules
 /*
 
   # Configure keymap in X11
