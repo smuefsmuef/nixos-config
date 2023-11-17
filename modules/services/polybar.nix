@@ -16,7 +16,7 @@ in
     home-manager.users.${vars.user} = {
       services = {
         polybar = {
-          enable = true;
+#          enable = true;
           script = ''
             #killall -q polybar &
             #while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
