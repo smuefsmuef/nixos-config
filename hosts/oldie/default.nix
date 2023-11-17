@@ -28,29 +28,39 @@
                       import ../../modules/programs ++
                       import ../../modules/services ++
                       import ../../modules/shell ++
-                      import ../../modules/theming
-                      );
+                      import ../../modules/theming );
 
+  # Bootloader.
+  # boot.loader.systemd-boot.enable = true;
+  # boot.loader.efi.canTouchEfiVariables = true;
+  # boot.loader.grub.useOSProber = true;
+
+  boot.loader = {
+    grub = {
+      enable = true;
+      efiSupport = true;
+      enableCryptodisk = true;
+      device = "nodev";
+      useOSProber = true;
+      configurationLimit = 20;
+      default=0;
+    };
+    efi = {
+      canTouchEfiVariables = true;
+      efiSysMountPoint = "/boot";
+    };
+  };
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
-  boot.loader.grub.enable = true;
-  boot.loader.grub.device = "/dev/sda";
-  boot.loader.grub.useOSProber = true;
-
   # Enable the X11 windowing system. (gnome?)
-# services.xserver.enable = true;
-# bspwm.enable = true;
-# wlwm.enable = true;
+  services.xserver.enable = true;
+  gnome.enable = true;
 #  hyprland.enable = true;
-#services.xserver.desktopManager.gnome.enable = true;
-#laptop.enable = true;                     # Laptop Modules, conflicts with tlp.enable = true
-
-gnome.enable = true;
-#x11wm.enable = true;                      # Window Manager
-
+#  bspwm.enable = true;
+#laptop.enable = true;                     # Laptop Modules
 
   # Configure keymap in X11
 #  services.xserver = {
@@ -79,7 +89,7 @@ gnome.enable = true;
     #media-session.enable = true;
   };
 
-/*
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -120,7 +130,6 @@ gnome.enable = true;
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
-*/
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
