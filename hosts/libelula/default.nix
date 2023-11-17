@@ -74,7 +74,7 @@
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
-#  services.xserver.videoDrivers = [ "nvidia" ];
+  services.xserver.videoDrivers = [ "nvidia" ];
 
 /*  services.flatpak.enable = true;
     flatpak = {                                   # Flatpak Packages (see module options)
