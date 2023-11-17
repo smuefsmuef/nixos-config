@@ -105,10 +105,10 @@
 laptop.enable = true;                     # Laptop Modules
 
   # Configure keymap in X11
-  services.xserver = {
-    layout = "ch";
-    xkbVariant = "de_nodeadkeys";
-  };
+#  services.xserver = {
+#    layout = "ch";
+#    xkbVariant = "de_nodeadkeys";
+#  };
 
 
   # Enable CUPS to print documents.
