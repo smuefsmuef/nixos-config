@@ -23,7 +23,7 @@
     loader = {
       grub = {
         enable = true;
-        device = "/dev/sda";
+        device = "/dev/nvme0n1p3";
       };
       timeout = 1;
     };
