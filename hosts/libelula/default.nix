@@ -14,15 +14,17 @@
 #               └─ docker.nix
 #
 
-{ pkgs, ... }:
+{ pkgs, lib, unstable, inputs, vars, ... }:
 
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ../../modules/desktops/virtualisation/docker.nix
+      ../../modules/desktops/hyprland.nix
     ] ++
-    ( import ../../modules/desktops ++
+    (
+#    import ../../modules/desktops ++
                       import ../../modules/editors ++
                       import ../../modules/hardware ++
                       import ../../modules/programs ++
@@ -97,7 +99,7 @@
   # Enable the GNOME Desktop Environment.
 #  services.xserver.displayManager.gdm.enable = true;
 #  services.xserver.desktopManager.gnome.enable = true;
-  gnome.enable = true;
+  hyprland.enable = true;
 #  bspwm.enable = true;
 
   # Configure keymap in X11
