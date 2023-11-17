@@ -72,9 +72,9 @@
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
 
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-  services.xserver.videoDrivers = [ "nvidia" ];
+  # Enable the X11 windowing system. (gnome?)
+#  services.xserver.enable = true;
+
 
 /*  services.flatpak.enable = true;
     flatpak = {                                   # Flatpak Packages (see module options)
@@ -213,7 +213,7 @@
       driSupport = true;
       driSupport32Bit = true;
     };
-
+    services.xserver.videoDrivers = [ "nvidia" ];
     hardware.nvidia = {
 
       # Modesetting is required.
