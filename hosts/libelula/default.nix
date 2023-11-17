@@ -73,7 +73,7 @@
   i18n.defaultLocale = "en_US.UTF-8";
 
   # Enable the X11 windowing system. (gnome?)
-#  services.xserver.enable = true;
+  services.xserver.enable = true;
 
 
 /*  services.flatpak.enable = true;
@@ -207,7 +207,7 @@
 #    style = "adwaita-dark";
 #  };
 
-    # Enable OpenGL
+/*    # Enable OpenGL
     hardware.opengl = {
       enable = true;
       driSupport = true;
@@ -240,7 +240,7 @@
 
       # Optionally, you may need to select the appropriate driver version for your specific GPU.
       package = config.boot.kernelPackages.nvidiaPackages.stable;
-    };
+    };*/
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
