@@ -48,7 +48,7 @@ with lib;
         gnome.adwaita-icon-theme
         gnome.dconf-editor
         gnome.gnome-tweaks
-z  ];
+      ];
       gnome.excludePackages = (with pkgs; [             # Ignored Packages
         gnome-tour
       ]) ++ (with pkgs.gnome; [
