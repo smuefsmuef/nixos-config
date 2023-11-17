@@ -14,7 +14,7 @@
 #               └─ docker.nix
 #
 
-{ pkgs, lib, unstable, inputs, vars, ... }:
+{ pkgs, config, lib, unstable, inputs, vars, ... }:
 
 {
   imports =
@@ -239,7 +239,7 @@
       nvidiaSettings = true;
 
       # Optionally, you may need to select the appropriate driver version for your specific GPU.
-      package = pkgs.config.boot.kernelPackages.nvidiaPackages.stable;
+      package = config.boot.kernelPackages.nvidiaPackages.stable;
     };
 
   # Some programs need SUID wrappers, can be configured further or are
