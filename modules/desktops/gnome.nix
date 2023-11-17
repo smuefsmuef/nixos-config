@@ -111,7 +111,7 @@ z  ];
           color-scheme = "prefer-dark";
           enable-hot-corners = false;
           clock-show-weekday = true;
-           gtk-theme = "yaru-dark";
+#           gtk-theme = "yaru-dark";
         };
         # "org/gnome/desktop/session" = {               # Not Working
         #   idle-delay = "uint32 900";
