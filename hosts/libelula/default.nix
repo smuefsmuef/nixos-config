@@ -43,7 +43,7 @@
       device = "nodev";
       useOSProber = true;
       configurationLimit = 20;
-      default=2;
+      default=0;
     };
     efi = {
       canTouchEfiVariables = true;
@@ -51,7 +51,7 @@
     };
   };
 
-  networking.hostName = "libelula"; # Define your hostname.
+  networking.hostName = hostname; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
 
@@ -132,7 +132,6 @@
   };
 
   # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.caldetas = {
@@ -142,7 +141,6 @@
     packages = with pkgs; [
       firefox
       pciutils
-    #  thunderbird
     ];
   };
 
@@ -154,35 +152,15 @@
 
 
   boot.kernelParams = [ "psmouse.synaptics_intertouch=0" ];
-  #hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable
-#  services.xserver.videoDrivers = [ "nvidia" ];
-  #hardware.opengl.driSupport32Bit = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
 
   mesa #elden ring
   directx-headers #elden ring
   directx-shader-compiler #elden ring
   ];
-
- #copilot
-# (jetbrains.plugins.addPlugins jetbrains.clion [ "github-copilot" ])
-
-#environment.etc = {
-#  "xdg/gtk-2.0/gtkrc".text = "gtk-error-bell=0";
-#  "xdg/gtk-3.0/settings.ini".text = ''
-#    [Settings]
-#    gtk-error-bell=false
-#  '';
-#  "xdg/gtk-4.0/settings.ini".text = ''
-#    [Settings]
-#    gtk-error-bell=false
-#  '';
-#};
-
 
   #Steam
   programs.steam.enable = true;
