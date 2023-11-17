@@ -41,11 +41,14 @@
 
   # Enable the X11 windowing system. (gnome?)
  services.xserver.enable = true;
-#  bpwsm.enable = true;
+ bpwsm.enable = true;
+ wlm.enable = true;
 #  hyprland.enable = true;
 #services.xserver.desktopManager.gnome.enable = true;
-gnome.enable = true;
 #laptop.enable = true;                     # Laptop Modules, conflicts with tlp.enable = true
+
+#gnome.enable = true;
+#x11wm.enable = true;                      # Window Manager
 
 
   # Configure keymap in X11
