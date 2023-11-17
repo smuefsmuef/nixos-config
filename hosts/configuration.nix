@@ -152,10 +152,10 @@
   };
 
   programs = {
-    dconf.enable = true;
-    openvpn3.enable = true;
+#    dconf.enable = true;
+#    openvpn3.enable = true;
+#    gamemode.enable = true;
     java.enable = true;
-    gamemode.enable = true;
   };
   nixpkgs.config.permittedInsecurePackages = [
                   "nodejs-16.20.2"
