@@ -43,7 +43,7 @@
 #  services.xserver.enable = true;
 #  gnome.enable = true;
 #  hyprland.enable = true;
-desktopManager.xfce.enable = true;
+services.xserver.desktopManager.xfce.enable = true;
 bspwm.enable = true;
 laptop.enable = true;                     # Laptop Modules
 /*
