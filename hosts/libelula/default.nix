@@ -239,7 +239,7 @@
       nvidiaSettings = true;
 
       # Optionally, you may need to select the appropriate driver version for your specific GPU.
-      package = config.boot.kernelPackages.nvidiaPackages.stable;
+      package = pkgs.config.boot.kernelPackages.nvidiaPackages.stable;
     };
 
   # Some programs need SUID wrappers, can be configured further or are
