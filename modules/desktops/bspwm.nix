@@ -73,7 +73,6 @@ in
     services = {
       xserver = {
         enable = true;
-
         layout = "ch";
         xkbOptions = "eurosign:e";
         libinput = {
