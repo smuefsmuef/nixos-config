@@ -76,7 +76,9 @@
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
-  services.flatpak.enable = true;
+  services.xserver.videoDrivers = [ "nvidia" ];
+
+/*  services.flatpak.enable = true;
     flatpak = {                                   # Flatpak Packages (see module options)
       extraPackages = [
         "com.github.tchx84.Flatseal"
@@ -94,7 +96,7 @@
           };}
         );
       })
-    ];
+    ];*/
 
   # Enable the GNOME Desktop Environment.
 #  services.xserver.displayManager.gdm.enable = true;
@@ -238,7 +240,7 @@
       nvidiaSettings = true;
 
       # Optionally, you may need to select the appropriate driver version for your specific GPU.
-      package = config.boot.kernelPackages.nvidiaPackages.unstable;
+      package = config.boot.kernelPackages.nvidiaPackages.stable;
     };
 
   # Some programs need SUID wrappers, can be configured further or are
