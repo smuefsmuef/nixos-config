@@ -138,8 +138,8 @@ in
   libelula = lib.nixosSystem {                               #
     inherit system;
     specialArgs = {
-#      inherit inputs system unstable hyprland vars;
-      inherit inputs system unstable vars;
+      inherit inputs system unstable hyprland vars;
+#      inherit inputs system unstable vars;
       host = {
         hostName = "libelula";
         mainMonitor = "eDP-1-1";
@@ -147,7 +147,7 @@ in
       };
     };
     modules = [
-#      nur.nixosModules.nur #todo delete?
+      nur.nixosModules.nur #todo delete?
       ./libelula
       ./configuration.nix
 
