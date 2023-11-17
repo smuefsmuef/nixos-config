@@ -206,7 +206,6 @@
 #    style = "adwaita-dark";
 #  };
 
-/*
     # Enable OpenGL
     hardware.opengl = {
       enable = true;
@@ -239,8 +238,8 @@
       nvidiaSettings = true;
 
       # Optionally, you may need to select the appropriate driver version for your specific GPU.
-      package = config.boot.kernelPackages.nvidiaPackages.stable;
-    };*/
+      package = config.boot.kernelPackages.nvidiaPackages.unstable;
+    };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

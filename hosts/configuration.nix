@@ -146,7 +146,7 @@
     jdk17
     jre17_minimal
     steam
-    megasync
+#    megasync
     ]);
   };
 
@@ -182,7 +182,7 @@
     };
   };
 
-  flatpak.enable = true;  #todo                  # Enable Flatpak (see module options)
+#  flatpak.enable = true;  #todo                  # Enable Flatpak (see module options)
   #xdg.portal.enable = true; # todo redundant?
 
   nix = {                                   # Nix Package Manager Settings
