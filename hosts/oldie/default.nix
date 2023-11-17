@@ -43,7 +43,7 @@
   # Enable the X11 windowing system. (gnome?)
 # services.xserver.enable = true;
  bspwm.enable = true;
- wlm.enable = true;
+ wlwm.enable = true;
 #  hyprland.enable = true;
 #services.xserver.desktopManager.gnome.enable = true;
 #laptop.enable = true;                     # Laptop Modules, conflicts with tlp.enable = true
