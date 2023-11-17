@@ -23,7 +23,7 @@
     loader = {
       grub = {
         enable = true;
-        device = "/dev/disk/by-uuid/8ebc37ae-f64a-47d1-9df4-2a1f2ee6f65f";
+        device = "/dev/nvme0n1p3";
       };
       timeout = 1;
     };
