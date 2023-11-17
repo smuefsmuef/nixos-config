@@ -30,26 +30,6 @@
                       import ../../modules/shell ++
                       import ../../modules/theming );
 
-  # Bootloader.
-  # boot.loader.systemd-boot.enable = true;
-  # boot.loader.efi.canTouchEfiVariables = true;
-  # boot.loader.grub.useOSProber = true;
-
-  boot.loader = {
-    grub = {
-      enable = true;
-      efiSupport = true;
-      enableCryptodisk = true;
-      device = "nodev";
-      useOSProber = true;
-      configurationLimit = 20;
-      default=0;
-    };
-    efi = {
-      canTouchEfiVariables = true;
-      efiSysMountPoint = "/boot";
-    };
-  };
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
