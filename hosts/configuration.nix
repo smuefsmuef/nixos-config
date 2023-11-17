@@ -50,8 +50,7 @@
   };
 
   console = {
-#    font = "Lat2-Terminus16";
-    font = "Ubuntu";
+    font = "Lat2-Terminus16";
     keyMap = "sg";
   };
 
