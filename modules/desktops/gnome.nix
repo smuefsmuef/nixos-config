@@ -48,7 +48,7 @@ with lib;
         gnome.adwaita-icon-theme
         gnome.dconf-editor
         gnome.gnome-tweaks
-      ];
+z  ];
       gnome.excludePackages = (with pkgs; [             # Ignored Packages
         gnome-tour
       ]) ++ (with pkgs.gnome; [
@@ -111,7 +111,7 @@ with lib;
           color-scheme = "prefer-dark";
           enable-hot-corners = false;
           clock-show-weekday = true;
-          # gtk-theme = "adwaita-dark";
+           gtk-theme = "yaru-dark";
         };
         # "org/gnome/desktop/session" = {               # Not Working
         #   idle-delay = "uint32 900";
