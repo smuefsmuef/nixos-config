@@ -145,6 +145,8 @@
     jetbrains.jdk
     jdk17
     jre17_minimal
+    steam
+    megasync
     ]);
   };
 
@@ -219,4 +221,12 @@
       home-manager.enable = true;
     };
   };
+
+  #enable scripts with shebang !# /bin/bash
+  system.activationScripts.binbash = {
+      deps = [ "binsh" ];
+      text = ''
+           ln -s /bin/sh /bin/bash
+      '';
+    };
 }
