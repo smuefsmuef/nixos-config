@@ -44,7 +44,7 @@
 #  gnome.enable = true;
 #  hyprland.enable = true;
 #services.xserver.desktopManager.gnome.enable = true;
-bspwm.enable = true;
+hyprland.enable = true;
 laptop.enable = true;                     # Laptop Modules
 #services.tlp.enable = false;
 
