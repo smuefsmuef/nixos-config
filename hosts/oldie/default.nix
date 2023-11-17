@@ -46,6 +46,7 @@
 services.xserver.desktopManager.gnome.enable = true;
 bspwm.enable = true;
 laptop.enable = true;                     # Laptop Modules
+services.tlp.enable = false;
 
 
   # Configure keymap in X11
