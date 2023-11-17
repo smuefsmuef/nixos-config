@@ -45,7 +45,7 @@
 #  hyprland.enable = true;
 #services.xserver.desktopManager.gnome.enable = true;
 gnome.enable = true;
-laptop.enable = true;                     # Laptop Modules
+#laptop.enable = true;                     # Laptop Modules, conflicts with tlp.enable = true
 
 
   # Configure keymap in X11
