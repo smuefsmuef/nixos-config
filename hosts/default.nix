@@ -163,7 +163,7 @@ in
       inherit inputs system unstable hyprland vars;
       host = {
         hostName = "oldie";
-#        mainMonitor = "eDP-1-1";
+        mainMonitor = "eDP-1-1";
 #        secondMonitor = "HDMI-1-1";
       };
     };
