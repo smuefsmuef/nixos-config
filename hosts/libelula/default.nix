@@ -102,7 +102,7 @@
   gnome.enable = true;
 #  hyprland.enable = true;
 #  bspwm.enable = true;
-laptop.enable = true;                     # Laptop Modules
+#laptop.enable = true;                     # Laptop Modules
 
   # Configure keymap in X11
 #  services.xserver = {
