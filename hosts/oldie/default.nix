@@ -46,7 +46,7 @@
 services.xserver.desktopManager.gnome.enable = true;
 bspwm.enable = true;
 laptop.enable = true;                     # Laptop Modules
-/*
+
 
   # Configure keymap in X11
 #  services.xserver = {
@@ -75,7 +75,7 @@ laptop.enable = true;                     # Laptop Modules
     #media-session.enable = true;
   };
 
-
+/*
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
