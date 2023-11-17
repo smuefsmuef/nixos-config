@@ -40,7 +40,7 @@
   boot.loader.grub.useOSProber = true;
 
   # Enable the X11 windowing system. (gnome?)
-#  services.xserver.enable = true;
+ services.xserver.enable = true;
 #  bpwsm.enable = true;
 #  hyprland.enable = true;
 #services.xserver.desktopManager.gnome.enable = true;
