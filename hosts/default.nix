@@ -164,7 +164,7 @@ in
       host = {
         hostName = "oldie";
         mainMonitor = "eDP-1-1";
-#        secondMonitor = "HDMI-1-1";
+        secondMonitor = "";
       };
     };
     modules = [
