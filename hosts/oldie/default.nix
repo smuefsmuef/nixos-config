@@ -35,6 +35,10 @@
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
+  boot.loader.grub.enable = true;
+  boot.loader.grub.device = "/dev/sda";
+  boot.loader.grub.useOSProber = true;
+
   # Enable the X11 windowing system. (gnome?)
   services.xserver.enable = true;
   gnome.enable = true;
