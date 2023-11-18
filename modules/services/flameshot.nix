@@ -11,7 +11,7 @@
         enable = true;
         settings = {
           General = {
-            savePath = "/home/${vars.user}/";
+            savePath = "/home/${vars.user}/Desktop";
             saveAsFileExtension = ".png";
             uiColor = "#2d0096";
             showHelp = "false";
