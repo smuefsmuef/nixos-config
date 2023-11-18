@@ -151,7 +151,7 @@ in
             monitors = if hostName == "beelink" then {
               ${mainMonitor} = [ "1" "2" "3" "4" "5" ];
               ${secondMonitor} = [ "6" "7" "8" "9" "0" ];
-            } else {};
+            } else {${mainMonitor} = [ "1" "2" "3" "4" "5" ];};
             rules = {                               # Window Rules (xprop)
               "Emacs" = {
                 desktop = "3";
