@@ -43,7 +43,7 @@
   # Enable the X11 windowing system. (gnome?)
 # services.xserver.enable = true;
  bspwm.enable = true;
- xfce.enable = true;
+# xfce.enable = true;
 # wlwm.enable = true;
 #  hyprland.enable = true;
 #services.xserver.desktopManager.gnome.enable = true;
