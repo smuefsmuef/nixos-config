@@ -35,6 +35,7 @@
   # boot.loader.efi.canTouchEfiVariables = true;
   # boot.loader.grub.useOSProber = true;
 
+#  boot.kernelParams = [ "psmouse.synaptics_intertouch=0" ];
   boot.loader = {
     grub = {
       enable = true;
@@ -76,25 +77,7 @@
   services.xserver.enable = true;
 
 
-/*  services.flatpak.enable = true;
-    flatpak = {                                   # Flatpak Packages (see module options)
-      extraPackages = [
-        "com.github.tchx84.Flatseal"
-        "com.ultimaker.cura"
-        "org.upscayl.Upscayl"
-      ];
-    };
 
-    nixpkgs.overlays = [                          # Overlay pulls latest version of Discord
-      (final: prev: {
-        discord = prev.discord.overrideAttrs (
-          _: { src = builtins.fetchTarball {
-            url = "https://discord.com/api/download?platform=linux&format=tar.gz";
-            sha256 = "0pml1x6pzmdp6h19257by1x5b25smi2y60l1z40mi58aimdp59ss";
-          };}
-        );
-      })
-    ];*/
 
   # Enable the GNOME Desktop Environment.
 #  services.xserver.displayManager.gdm.enable = true;
@@ -133,7 +116,7 @@
 
   # Enable touchpad support (enabled default in most desktopManager).
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
+/*  # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.caldetas = {
     isNormalUser = true;
     description = "caldetas";
@@ -142,7 +125,7 @@
       firefox
       pciutils
     ];
-  };
+  };*/
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -151,7 +134,7 @@
 
 
 
-  boot.kernelParams = [ "psmouse.synaptics_intertouch=0" ];
+
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
