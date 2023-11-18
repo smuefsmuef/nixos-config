@@ -33,8 +33,8 @@ with lib;
         xkbVariant = "de_nodeadkeys";
         xkbOptions = "eurosign:e";
         libinput.enable = true;
-#        modules = [ pkgs.xf86_input_wacom ];
-#        wacom.enable = true;
+        modules = [ pkgs.xf86_input_wacom ];
+        wacom.enable = true;
 
         displayManager.gdm.enable = true;               # Display Manager
         desktopManager.gnome.enable = true;             # Desktop Environment
