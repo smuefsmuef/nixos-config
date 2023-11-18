@@ -89,25 +89,28 @@ in
         wacom.enable = true;
 
         displayManager = {                          # Display Manager
-          lightdm = {
-            enable = true;
-            background = pkgs.nixos-artwork.wallpapers.nineish-dark-gray.gnomeFilePath;
-            greeters = {
-              gtk = {
-                theme = {
-                  name = "Dracula";
-                  package = pkgs.dracula-theme;
-                };
-                cursorTheme = {
-                  name = "Dracula-cursors";
-                  package = pkgs.dracula-theme;
-                  size = 16;
-                };
+                lightdm.enable = true;
+                defaultSession = "none+bspwm";
               };
-            };
-          };
-          defaultSession = "none+bspwm";
-        };
+#          lightdm = {
+#            enable = true;
+#            background = pkgs.nixos-artwork.wallpapers.nineish-dark-gray.gnomeFilePath;
+#            greeters = {
+#              gtk = {
+#                theme = {
+#                  name = "Dracula";
+#                  package = pkgs.dracula-theme;
+#                };
+#                cursorTheme = {
+#                  name = "Dracula-cursors";
+#                  package = pkgs.dracula-theme;
+#                  size = 16;
+#                };
+#              };
+#            };
+#          };
+#          defaultSession = "none+bspwm";
+#        };
         windowManager= {
           bspwm = {                                 # Window Manager
             enable = true;
