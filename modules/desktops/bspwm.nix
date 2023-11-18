@@ -113,6 +113,7 @@ in
           sessionCommands = ''
                               ${pkgs.bspwm}/bin/bspc wm -r
                               source $HOME/.config/bspwm/bspwmrc
+                              ${monitor}/bin/bspc wm -r
                             '';
         };
         windowManager= {
@@ -121,7 +122,7 @@ in
           };
         };
 
-        displayManager.sessionCommands = monitor;
+#        displayManager.sessionCommands = monitor;
 
         serverFlagsSection = ''
           Option "BlankTime" "0"
