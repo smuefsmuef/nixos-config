@@ -110,6 +110,10 @@ in
             };
           };
           defaultSession = "none+bspwm";
+          sessionCommands = ''
+                              ${pkgs.bspwm}/bin/bspc wm -r
+                              source $HOME/.config/bspwm/bspwmrc
+                            '';
         };
         windowManager= {
           bspwm = {                                 # Window Manager
