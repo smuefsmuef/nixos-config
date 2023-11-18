@@ -122,9 +122,9 @@
 
     htop
     gparted
-#    gnome.gedit
-#    gnome.gnome-tweaks
-#    yaru-theme
+    gnome.gedit
+    gnome.gnome-tweaks
+    yaru-theme
     git
 
     nodejs_16
@@ -142,12 +142,12 @@
 #      firefox           # Browser
       brave
       discord
-#      stremio
-#    (jetbrains.plugins.addPlugins jetbrains.idea-ultimate [ "github-copilot" ])
-#    jetbrains.jdk
-#    jdk17
-#    jre17_minimal
-#    steam
+      stremio
+    (jetbrains.plugins.addPlugins jetbrains.idea-ultimate [ "github-copilot" ])
+    jetbrains.jdk
+    jdk17
+    jre17_minimal
+    steam
 #    megasync
     ]);
   };

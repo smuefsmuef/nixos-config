@@ -46,7 +46,7 @@
 # wlwm.enable = true;
 #  hyprland.enable = true;
 #services.xserver.desktopManager.gnome.enable = true;
-laptop.enable = true;                     # Laptop Modules, conflicts with tlp.enable = true
+#laptop.enable = true;                     # Laptop Modules, conflicts with tlp.enable = true
 
 gnome.enable = true;
 #x11wm.enable = true;                      # Window Manager
