@@ -11,10 +11,12 @@ let
   monitor =
     if hostName == "beelink" then
       "${pkgs.xorg.xrandr}/bin/xrandr --output ${secondMonitor} --mode 1920x1080 --pos 0x0 --rotate normal --output ${mainMonitor} --primary --mode 1920x1080 --pos 1920x0 --rotate normal"
-    else if hostName == "oldie" || hostName == "libelula" || hostName == "laptop" || hostName == "vm" then
+    else if hostName == "libelula" || hostName == "laptop" || hostName == "vm" then
       "${pkgs.xorg.xrandr}/bin/xrandr --mode 1920x1080 --pos 0x0 --rotate normal"
-    else "${pkgs.xorg.xrandr}/bin/xrandr --mode 1920x1080 --pos 0x0 --rotate normal";
-#    else false;
+    else if hostName == "oldie" then
+      "${pkgs.xorg.xrandr}/bin/xrandr --output ${mainMonitor} --mode 1920x1080 --pos 0x0 --rotate normal"
+#    else "${pkgs.xorg.xrandr}/bin/xrandr --mode 1920x1080 --pos 0x0 --rotate normal";
+    else false;
 
   extra = ''
     killall -q polybar &                            # Kill polybar
@@ -129,7 +131,7 @@ in
           };
         };
 
-#        displayManager.sessionCommands = monitor;
+        displayManager.sessionCommands = monitor;
 
         serverFlagsSection = ''
           Option "BlankTime" "0"
@@ -163,8 +165,6 @@ in
         windowManager = {
           bspwm = {
             enable = true;
-#            configFile = "$HOME/Desktop/config/bspwm/bspwmrc";
-#            sxhdk.configFile = "$HOME/Desktop/config/sxhkd/sxhkdrc";
             monitors = if hostName == "beelink" then {
               ${mainMonitor} = [ "1" "2" "3" "4" "5" ];
               ${secondMonitor} = [ "6" "7" "8" "9" "0" ];
