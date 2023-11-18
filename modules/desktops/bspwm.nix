@@ -89,28 +89,28 @@ in
         wacom.enable = true;
 
         displayManager = {                          # Display Manager
-                lightdm.enable = true;
-                defaultSession = "none+bspwm";
-              };
-#          lightdm = {
-#            enable = true;
-#            background = pkgs.nixos-artwork.wallpapers.nineish-dark-gray.gnomeFilePath;
-#            greeters = {
-#              gtk = {
-#                theme = {
-#                  name = "Dracula";
-#                  package = pkgs.dracula-theme;
-#                };
-#                cursorTheme = {
-#                  name = "Dracula-cursors";
-#                  package = pkgs.dracula-theme;
-#                  size = 16;
-#                };
+#                lightdm.enable = true;
+#                defaultSession = "none+bspwm";
 #              };
-#            };
-#          };
-#          defaultSession = "none+bspwm";
-#        };
+          lightdm = {
+            enable = true;
+            background = pkgs.nixos-artwork.wallpapers.nineish-dark-gray.gnomeFilePath;
+            greeters = {
+              gtk = {
+                theme = {
+                  name = "Dracula";
+                  package = pkgs.dracula-theme;
+                };
+                cursorTheme = {
+                  name = "Dracula-cursors";
+                  package = pkgs.dracula-theme;
+                  size = 16;
+                };
+              };
+            };
+          };
+          defaultSession = "none+bspwm";
+        };
         windowManager= {
           bspwm = {                                 # Window Manager
             enable = true;
@@ -151,6 +151,8 @@ in
         windowManager = {
           bspwm = {
             enable = true;
+            configFile = "$HOME/Desktop/config/bspwm/bspwmrc";
+            configFile = "$HOME/Desktop/config/sxhkd/sxhkdrc";
             monitors = if hostName == "beelink" then {
               ${mainMonitor} = [ "1" "2" "3" "4" "5" ];
               ${secondMonitor} = [ "6" "7" "8" "9" "0" ];
