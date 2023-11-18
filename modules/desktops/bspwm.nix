@@ -50,7 +50,7 @@ let
       polybar sec &
     ''
     else if hostName == "oldie" || hostName == "libelula" || hostName == "laptop" || hostName == "vm" then ''
-      bspc monitor -d 1 2 3 4 5
+      bspc monitor ${mainMonitor} -d 1 2 3 4 5
     ''
     else false)
   ]
