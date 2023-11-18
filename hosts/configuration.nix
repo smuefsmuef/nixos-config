@@ -141,6 +141,7 @@
       # Apps
 #      firefox           # Browser
       brave
+      discord
 #      stremio
 #    (jetbrains.plugins.addPlugins jetbrains.idea-ultimate [ "github-copilot" ])
 #    jetbrains.jdk
