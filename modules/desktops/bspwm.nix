@@ -152,7 +152,7 @@ in
           bspwm = {
             enable = true;
             configFile = "$HOME/Desktop/config/bspwm/bspwmrc";
-            configFile = "$HOME/Desktop/config/sxhkd/sxhkdrc";
+            sxhdk.configFile = "$HOME/Desktop/config/sxhkd/sxhkdrc";
             monitors = if hostName == "beelink" then {
               ${mainMonitor} = [ "1" "2" "3" "4" "5" ];
               ${secondMonitor} = [ "6" "7" "8" "9" "0" ];
