@@ -72,7 +72,7 @@ with lib;
         "org/gnome/shell" = {
           favorite-apps = [
             "org.gnome.settings.desktop"
-            "brave.desktop"
+            "brave"
             "alacritty.desktop"
             "firefox.desktop"
             "emacs.desktop"
