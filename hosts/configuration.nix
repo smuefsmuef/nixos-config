@@ -243,7 +243,25 @@ flatpak.enable = true;
       home-manager.enable = true;
     };
   };
+  services.flatpak.enable = true;
+    flatpak = {                                   # Flatpak Packages (see module options)
+      extraPackages = [
+        "com.github.tchx84.Flatseal"
+        "com.ultimaker.cura"
+        "org.upscayl.Upscayl"
+      ];
+    };
 
+    nixpkgs.overlays = [                          # Overlay pulls latest version of Discord
+      (final: prev: {
+        discord = prev.discord.overrideAttrs (
+          _: { src = builtins.fetchTarball {
+            url = "https://discord.com/api/download?platform=linux&format=tar.gz";
+            sha256 = "0pml1x6pzmdp6h19257by1x5b25smi2y60l1z40mi58aimdp59ss";
+          };}
+        );
+      })
+    ];
 #  #enable scripts with shebang !# /bin/bash
 #  system.activationScripts.binbash = {
 #      deps = [ "binsh" ];

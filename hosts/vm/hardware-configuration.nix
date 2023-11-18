@@ -33,10 +33,21 @@
   networking = with host; {
     useDHCP = false;                        # Deprecated
     hostName = hostName;
-    interfaces = {
-      enp0s3.useDHCP = true;
+      lo = {
+        useDHCP = true;                     # For versatility sake, manually edit IP on nm-applet.
+        #ipv4.addresses = [ {
+        #    address = "192.168.0.51";
+        #    prefixLength = 24;
+        #} ];
+      };
+      wlp0s20f3 = {
+        useDHCP = true;
+        #ipv4.addresses = [ {
+        #  address = "192.168.0.51";
+        #  prefixLength = 24;
+        #} ];
+      };
     };
-  };
 
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
   #virtualisation.virtualbox.guest.enable = true;     #currently disabled because package is broken
