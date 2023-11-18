@@ -110,18 +110,18 @@ in
             };
           };
           defaultSession = "none+bspwm";
-          sessionCommands = ''
-                              ${pkgs.bspwm}/bin/bspc wm -r
-                              source $HOME/.config/bspwm/bspwmrc
-                              ${monitor}
-                        '';
-          session = [
-            {
-              manage = "desktop";
-              name = "default";
-              start = ''exec bspwmrc'';
-            }
-          ];
+#          sessionCommands = ''
+#                              ${pkgs.bspwm}/bin/bspc wm -r
+#                              source $HOME/.config/bspwm/bspwmrc
+#                              ${monitor}
+#                        '';
+#          session = [
+#            {
+#              manage = "desktop";
+#              name = "default";
+#              start = ''exec bspwmrc'';
+#            }
+#          ];
         };
         windowManager= {
           bspwm = {                                 # Window Manager
