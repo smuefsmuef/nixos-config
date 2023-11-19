@@ -50,7 +50,7 @@
   };
 
   console = {
-    font = "Lat2-Terminus16";
+    font = "t";
     keyMap = "sg";
   };
 
