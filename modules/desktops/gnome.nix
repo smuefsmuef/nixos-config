@@ -96,7 +96,7 @@ with lib;
             "trayiconsreloaded@selfmade.pl"
             "blur-my-shell@aunetx"
             "drive-menu@gnome-shell-extensions.gcampax.github.com"
-            "dash-to-panel@jderose9.github.com"
+#            "dash-to-panel@jderose9.github.com"
             "just-perfection-desktop@just-perfection"
             "caffeine@patapon.info"
             "clipboard-indicator@tudmotu.com"
@@ -106,7 +106,7 @@ with lib;
             "gsconnect@andyholmes.github.io"
             "pip-on-top@rafostar.github.com"
             "forge@jmmaranan.com"
-            # "dash-to-dock@micxgx.gmail.com"           # Alternative Dash-to-Panel
+             "dash-to-dock@micxgx.gmail.com"           # Alternative Dash-to-Panel
             # "fullscreen-avoider@noobsai.github.com"   # Dash-to-Panel Incompatable
           ];
         };
