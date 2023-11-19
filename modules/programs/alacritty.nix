@@ -11,8 +11,8 @@
         enable = true;
         settings = {
           font = {
-            normal.family = "FiraCode Nerd Font";
-            bold = { style = "Bold"; };
+            normal.family = "Ubuntu Nerd Font";
+            bold = { style = "Regular"; };
             size = 11;
           };
           offset = {

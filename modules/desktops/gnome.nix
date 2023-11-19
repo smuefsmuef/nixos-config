@@ -73,7 +73,9 @@ with lib;
           favorite-apps = [
 #            "org.gnome.settings.desktop"
             "brave.desktop"
-#            "alacritty.desktop"
+            "telegram-desktop.desktop"
+            "alacritty.desktop"
+            "idea-ultimate.desktop"
 #            "firefox.desktop"
 #            "emacs.desktop"
 #            "org.gnome.nautilus.desktop"
@@ -249,7 +251,7 @@ with lib;
         };
         "org/gnome/shell/extensions/forge/keybindings" = { # Set Manually
           focus-border-toggle = true;
-#          float-always-on-top-enabled = true;
+          float-always-on-top-enabled = true;
           window-focus-up = ["<super><shift>up"];
           window-focus-down = ["<super><shift>down"];
           window-focus-left = ["<super><shift>left"];
@@ -261,19 +263,19 @@ with lib;
           window-swap-last-active = ["@as []"];
           window-toggle-float = ["<ctrl><super>f"];
         };
-        # "org/gnome/shell/extensions/dash-to-dock" = { # If Dock Preferred
-        #   multi-monitor = true;
-        #   dock-fixed = true;
-        #   dash-max-icon-size = 16;
-        #   custom-theme-shrink = true;
-        #   transparency-mode = "fixed";
-        #   background-opacity = 0.0;
-        #   show-apps-at-top = true;
-        #   show-trash = true;
-        #   hot-keys = false;
-        #   click-action = "previews";
-        #   scroll-action = "cycle-windows";
-        # };
+         "org/gnome/shell/extensions/dash-to-dock" = { # If Dock Preferred
+           multi-monitor = true;
+           dock-fixed = true;
+           dash-max-icon-size = 16;
+           custom-theme-shrink = true;
+           transparency-mode = "fixed";
+           background-opacity = 0.0;
+           show-apps-at-top = true;
+           show-trash = true;
+           hot-keys = false;
+           click-action = "previews";
+           scroll-action = "cycle-windows";
+         };
       };
 
       home.packages = with pkgs; [
@@ -281,6 +283,7 @@ with lib;
         gnomeExtensions.blur-my-shell
         gnomeExtensions.removable-drive-menu
         gnomeExtensions.dash-to-panel
+        gnomeExtensions.dash-to-dock
         gnomeExtensions.battery-indicator-upower
         gnomeExtensions.just-perfection
         gnomeExtensions.caffeine

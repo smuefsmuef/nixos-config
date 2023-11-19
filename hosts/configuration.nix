@@ -71,6 +71,7 @@
     (nerdfonts.override {                   # Nerdfont Icons override
       fonts = [
         "FiraCode"
+        "Ubuntu"
       ];
     })
   ];
@@ -95,6 +96,7 @@
       tldr              # Helper
       usbutils          # Manage USB
       wget              # Retriever
+      lshw              # Show graphic driver
 
       # Video/Audio
       alsa-utils        # Audio Control

@@ -36,7 +36,7 @@
         package = pkgs.papirus-icon-theme;
       };
       font = {
-        name = "FiraCode Nerd Font Mono Medium";
+        name = "Ubuntu Nerd Font Mono Medium";
       };
     };/*
     gtk = {                                 # Theming

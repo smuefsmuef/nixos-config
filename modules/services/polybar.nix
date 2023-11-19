@@ -40,7 +40,7 @@ in
               font-1 = "FontAwesome6Free:style=Solid:size=8";
               font-2 = "FontAwesome6Free:style=Regular:size=8";
               font-3 = "FontAwesome6Brands:style=Regular:size=8";
-              font-4 = "FiraCodeNerdFont:size=10";
+              font-4 = "UbuntuNerdFont:size=10";
               modules-left = "logo bspwm";
               modules-right = "backlight pad memory cpu pad sink volume pad battery date";
 
@@ -65,7 +65,7 @@ in
               font-1 = "FontAwesome6Free:style=Solid:size=8";
               font-2 = "FontAwesome6Free:style=Regular:size=8";
               font-3 = "FontAwesome6Brands:style=Regular:size=8";
-              font-4 = "FiraCodeNerdFont:size=10";
+              font-4 = "UbuntuNerdFont:size=10";
               modules-left = "logo bspwm";
               modules-right = "sink volume pad date";
 
