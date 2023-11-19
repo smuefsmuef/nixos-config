@@ -91,6 +91,7 @@
       nix-tree          # Browse Nix Store
       pciutils          # Manage PCI
       ranger            # File Manager
+      screen            # Deatach
       tldr              # Helper
       usbutils          # Manage USB
       wget              # Retriever
