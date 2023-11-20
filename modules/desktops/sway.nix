@@ -168,7 +168,7 @@ with host;
             "Control+Left" = "resize shrink width 20px";
             "Control+Right" = "resize grow width 20px";
 
-            "Print" = "exec ${pkgs.flameshot}/bin/flameshot gui"; # Screenshots
+#            "Print" = "exec ${pkgs.flameshot}/bin/flameshot gui"; # Screenshots
 
             "XF86AudioLowerVolume" = "exec ${pkgs.pamixer}/bin/pamixer -d 10";   # Volume
             "XF86AudioRaiseVolume" = "exec ${pkgs.pamixer}/bin/pamixer -i 10";

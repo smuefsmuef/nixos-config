@@ -51,8 +51,8 @@ let
       bspc wm -O ${mainMonitor} ${secondMonitor}
       polybar sec &
     ''
-    else if hostName == "oldie" || hostName == "libelula" || hostName == "laptop" || hostName == "vm" then ''
-      bspc monitor ${mainMonitor} -d 1 2 3 4 5
+    else if hostName == "oldie" || hostName == "libelula" || hostName == "laptop" || hostName == "vm" || hostName == "caldetas" then ''
+      bspc monitor -d 1 2 3 4 5
     ''
     else false)
   ]
@@ -87,16 +87,9 @@ in
             disableWhileTyping = true;
           };
         };
-        modules = [ pkgs.xf86_input_wacom ];
-        wacom.enable = true;
-
         displayManager = {                          # Display Manager
-#                lightdm.enable = true;
-#                defaultSession = "none+bspwm";
-#              };
           lightdm = {
             enable = true;
-            logind-check-graphical=true;
             background = pkgs.nixos-artwork.wallpapers.nineish-dark-gray.gnomeFilePath;
             greeters = {
               gtk = {
@@ -113,18 +106,6 @@ in
             };
           };
           defaultSession = "none+bspwm";
-#          sessionCommands = ''
-#                              ${pkgs.bspwm}/bin/bspc wm -r
-#                              source $HOME/.config/bspwm/bspwmrc
-#                              ${monitor}
-#                        '';
-#          session = [
-#            {
-#              manage = "desktop";
-#              name = "default";
-#              start = ''exec bspwmrc'';
-#            }
-#          ];
         };
         windowManager= {
           bspwm = {                                 # Window Manager
@@ -169,7 +150,7 @@ in
             monitors = if hostName == "beelink" then {
               ${mainMonitor} = [ "1" "2" "3" "4" "5" ];
               ${secondMonitor} = [ "6" "7" "8" "9" "0" ];
-            } else {${mainMonitor} = [ "1" "2" "3" "4" "5" ];};
+            } else { ${mainMonitor} = [ "1" "2" "3" "4" "5" ];};
             rules = {                               # Window Rules (xprop)
               "Emacs" = {
                 desktop = "3";

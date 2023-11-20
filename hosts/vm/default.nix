@@ -39,7 +39,6 @@
 
   bspwm.enable = true;                          # Window Manager
 
-
  /* gnome.enable = true;                          # Window Manager
 #  laptop.enable = true;                          # Window Manager
 
@@ -69,7 +68,8 @@
   };
 
   services = {
-    xserver = {                                 
+    xserver = {
+      enable = true;
       resolutions = [
         { x = 1920; y = 1080; }
 #        { x = 1600; y = 900; }
