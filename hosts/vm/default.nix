@@ -37,10 +37,10 @@
     kernelPackages = pkgs.linuxPackages_latest;
   };
 
-#  bspwm.enable = true;                          # Window Manager
+  bspwm.enable = true;                          # Window Manager
 
 
-  gnome.enable = true;                          # Window Manager
+ /* gnome.enable = true;                          # Window Manager
 #  laptop.enable = true;                          # Window Manager
 
     # Enable sound with pipewire. (needed for gnome.enabled)
@@ -52,7 +52,7 @@
       alsa.enable = true;
       alsa.support32Bit = true;
       pulse.enable = true;
-    };
+    };*/
 
         virtualisation.vmVariant = {
           # following configuration is added only when building VM with build-vm
