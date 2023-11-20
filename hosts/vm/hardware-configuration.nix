@@ -24,7 +24,7 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/8ebc37ae-f64a-47d1-9df4-2a1f2ee6f65f";
+    { device = "/dev/vda";
       fsType = "ext4";
     };
 
@@ -33,21 +33,10 @@
   networking = with host; {
     useDHCP = false;                        # Deprecated
     hostName = hostName;
-      lo = {
-        useDHCP = true;                     # For versatility sake, manually edit IP on nm-applet.
-        #ipv4.addresses = [ {
-        #    address = "192.168.0.51";
-        #    prefixLength = 24;
-        #} ];
-      };
-      wlp0s20f3 = {
-        useDHCP = true;
-        #ipv4.addresses = [ {
-        #  address = "192.168.0.51";
-        #  prefixLength = 24;
-        #} ];
-      };
+    interfaces = {
+      enp0s3.useDHCP = true;
     };
+  };
 
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
   #virtualisation.virtualbox.guest.enable = true;     #currently disabled because package is broken

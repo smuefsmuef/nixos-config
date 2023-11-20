@@ -73,15 +73,15 @@ with lib;
           favorite-apps = [
 #            "org.gnome.settings.desktop"
             "brave.desktop"
-#            "alacritty.desktop"
+            "kitty.desktop"
 #            "firefox.desktop"
 #            "emacs.desktop"
-#            "org.gnome.nautilus.desktop"
+            "org.gnome.nautilus.desktop"
 #            "com.obsproject.studio.desktop"
 #            "plexmediaplayer.desktop"
 #            "smartcode-stremio.desktop"
 #            "discord.desktop"
-#            "steam.desktop"
+            "steam.desktop"
 #            "retroarch.desktop"
 #            "com.parsecgaming.parsec.desktop"
 #            "org.remmina.remmina.desktop"
@@ -94,7 +94,7 @@ with lib;
             "trayiconsreloaded@selfmade.pl"
             "blur-my-shell@aunetx"
             "drive-menu@gnome-shell-extensions.gcampax.github.com"
-            "dash-to-panel@jderose9.github.com"
+#            "dash-to-panel@jderose9.github.com"
             "just-perfection-desktop@just-perfection"
             "caffeine@patapon.info"
             "clipboard-indicator@tudmotu.com"
@@ -104,7 +104,7 @@ with lib;
             "gsconnect@andyholmes.github.io"
             "pip-on-top@rafostar.github.com"
             "forge@jmmaranan.com"
-            # "dash-to-dock@micxgx.gmail.com"           # Alternative Dash-to-Panel
+             "dash-to-dock@micxgx.gmail.com"           # Alternative Dash-to-Panel
             # "fullscreen-avoider@noobsai.github.com"   # Dash-to-Panel Incompatable
           ];
         };
@@ -180,7 +180,7 @@ with lib;
         };
         "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
           binding = "<super>t";
-          command = "alacritty";
+          command = "kitty";
           name = "open-terminal";
         };
         "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1" = {
@@ -261,19 +261,19 @@ with lib;
           window-swap-last-active = ["@as []"];
           window-toggle-float = ["<ctrl><super>f"];
         };
-        # "org/gnome/shell/extensions/dash-to-dock" = { # If Dock Preferred
-        #   multi-monitor = true;
-        #   dock-fixed = true;
-        #   dash-max-icon-size = 16;
-        #   custom-theme-shrink = true;
-        #   transparency-mode = "fixed";
-        #   background-opacity = 0.0;
-        #   show-apps-at-top = true;
-        #   show-trash = true;
-        #   hot-keys = false;
-        #   click-action = "previews";
-        #   scroll-action = "cycle-windows";
-        # };
+         "org/gnome/shell/extensions/dash-to-dock" = { # If Dock Preferred
+           multi-monitor = true;
+           dock-fixed = true;
+           dash-max-icon-size = 16;
+           custom-theme-shrink = true;
+           transparency-mode = "fixed";
+           background-opacity = 0.0;
+           show-apps-at-top = true;
+           show-trash = true;
+           hot-keys = false;
+           click-action = "previews";
+           scroll-action = "cycle-windows";
+         };
       };
 
       home.packages = with pkgs; [
@@ -292,7 +292,7 @@ with lib;
         gnomeExtensions.pop-shell
         gnomeExtensions.forge
         # gnomeExtensions.fullscreen-avoider
-        # gnomeExtensions.dash-to-dock
+         gnomeExtensions.dash-to-dock
       ];
     };
   };

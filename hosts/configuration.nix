@@ -148,7 +148,7 @@
     jetbrains.jdk
     jdk17
     jre17_minimal
-    steam
+#    steam
 #    megasync
     ]);
   };
@@ -221,7 +221,7 @@
       home-manager.enable = true;
     };
   };
-  services.flatpak.enable = true;
+  flatpak.enable = true;
     flatpak = {                                   # Flatpak Packages (see module options)
       extraPackages = [
         "com.github.tchx84.Flatseal"
