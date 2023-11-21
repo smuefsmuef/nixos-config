@@ -12,12 +12,22 @@
 #           └─ bspwm.nix
 #
 
-{ config, pkgs, vars, ... }:
+{ pkgs, config, lib, unstable, inputs, vars, modulesPath, host, ... }:
 
 {
-  imports =  [
-    ./hardware-configuration.nix
-  ];
+  imports =
+    [ # Include the results of the hardware scan.
+      ./hardware-configuration.nix
+      ../../modules/desktops/virtualisation/docker.nix
+    ] ++
+    ( import ../../modules/desktops ++
+                      import ../../modules/editors ++
+                      import ../../modules/hardware ++
+                      import ../../modules/programs ++
+                      import ../../modules/services ++
+                      import ../../modules/shell ++
+                      import ../../modules/theming
+                      );
 
   users.users.${vars.user} = {              # System User
     initialPassword = "test";
@@ -38,20 +48,20 @@
   };
 
   bspwm.enable = true;                          # Window Manager
-
+  security.rtkit.enable = true;
  /* gnome.enable = true;                          # Window Manager
 #  laptop.enable = true;                          # Window Manager
 
     # Enable sound with pipewire. (needed for gnome.enabled)
     sound.enable = true;
     hardware.pulseaudio.enable = false;
-    security.rtkit.enable = true;
+    */
     services.pipewire = {
       enable = true;
       alsa.enable = true;
       alsa.support32Bit = true;
       pulse.enable = true;
-    };*/
+    };
 
         virtualisation.vmVariant = {
           # following configuration is added only when building VM with build-vm
