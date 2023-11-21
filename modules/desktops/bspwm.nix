@@ -93,6 +93,7 @@ in
             background = pkgs.nixos-artwork.wallpapers.nineish-dark-gray.gnomeFilePath;
             greeters = {
               gtk = {
+                enable = true;
                 theme = {
                   name = "Dracula";
                   package = pkgs.dracula-theme;
