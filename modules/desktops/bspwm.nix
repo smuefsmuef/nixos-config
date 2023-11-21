@@ -90,7 +90,6 @@ in
         displayManager = {                          # Display Manager
           lightdm = {
             enable = true;
-            logind-check-graphical=true;
             background = pkgs.nixos-artwork.wallpapers.nineish-dark-gray.gnomeFilePath;
             greeters = {
               gtk = {
@@ -194,7 +193,9 @@ in
                 desktop = "5";
               };
             };
-            extraConfig = extraConf;
+            extraConfig =  ''
+                          		logind-check-graphical=true
+                          	'';
           };
         };
       };
