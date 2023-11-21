@@ -84,7 +84,7 @@
 #  services.xserver.desktopManager.gnome.enable = true;
   gnome.enable = true;
 #  hyprland.enable = true;
-#  bspwm.enable = true;
+  bspwm.enable = true;
 #laptop.enable = true;                     # Laptop Modules
 
 
@@ -94,14 +94,14 @@
 
   # Enable sound with pipewire. (needed for gnome.enabled)
   sound.enable = true;
-  hardware.pulseaudio.enable = false;
+#  hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-  };
+#  services.pipewire = {
+#    enable = true;
+#    alsa.enable = true;
+#    alsa.support32Bit = true;
+#    pulse.enable = true;
+#  };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
