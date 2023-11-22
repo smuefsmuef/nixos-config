@@ -143,11 +143,11 @@ in
       host = {
         hostName = "libelula";
         mainMonitor = "eDP-1-1";
-        secondMonitor = "HDMI-1-1";
+#        secondMonitor = "HDMI-1-1";
       };
     };
     modules = [
-      nur.nixosModules.nur #todo delete?
+#      nur.nixosModules.nur #todo delete?
       ./libelula
       ./configuration.nix
 
