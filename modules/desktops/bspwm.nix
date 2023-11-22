@@ -89,7 +89,7 @@ in
         };
         displayManager = {                          # Display Manager
         displayManager.gdm = {enable = true;};
-          lightdm = {/*
+         /* lightdm = {
             enable = true;
             background = pkgs.nixos-artwork.wallpapers.nineish-dark-gray.gnomeFilePath;
             greeters = {
