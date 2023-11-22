@@ -77,7 +77,7 @@
   i18n.defaultLocale = "en_US.UTF-8";
 
   # Enable the X11 windowing system. (gnome?)
-#  services.xserver.enable = true;
+  services.xserver.enable = true;
 
 
 
@@ -96,37 +96,37 @@
   services.printing.enable = true;
 
   # Enable sound with pipewire. (needed for gnome.enabled)
-  sound.enable = true;
-  hardware.pulseaudio.enable = false;
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-  };
-
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages = with pkgs; [
-
-  mesa #elden ring
-  directx-headers #elden ring
-  directx-shader-compiler #elden ring
-  ];
-
-  #java
-  programs.java.enable = true;
-  nixpkgs.config.permittedInsecurePackages = [
-                "nodejs-16.20.2"
-              ];
-  virtualisation.docker.enable = true;
-
-  #Shortcuts
-  programs.openvpn3.enable = true;
+#  sound.enable = true;
+#  hardware.pulseaudio.enable = false;
+#  security.rtkit.enable = true;
+#  services.pipewire = {
+#    enable = true;
+#    alsa.enable = true;
+#    alsa.support32Bit = true;
+#    pulse.enable = true;
+#  };
+#
+#  # Allow unfree packages
+#  nixpkgs.config.allowUnfree = true;
+#
+#  # List packages installed in system profile. To search, run:
+#  # $ nix search wget
+#  environment.systemPackages = with pkgs; [
+#
+#  mesa #elden ring
+#  directx-headers #elden ring
+#  directx-shader-compiler #elden ring
+#  ];
+#
+#  #java
+#  programs.java.enable = true;
+#  nixpkgs.config.permittedInsecurePackages = [
+#                "nodejs-16.20.2"
+#              ];
+#  virtualisation.docker.enable = true;
+#
+#  #Shortcuts
+#  programs.openvpn3.enable = true;
 
   programs.dconf = {
   enable = true;
