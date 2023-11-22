@@ -88,13 +88,12 @@ in
           };
         };
         displayManager = {                          # Display Manager
-        gdm = {enable = true;};
-         /* lightdm = {
+#        gdm = {enable = true;};
+          lightdm = {
             enable = true;
             background = pkgs.nixos-artwork.wallpapers.nineish-dark-gray.gnomeFilePath;
             greeters = {
               gtk = {
-                enable = true;
                 theme = {
                   name = "Dracula";
                   package = pkgs.dracula-theme;
@@ -106,7 +105,7 @@ in
                 };
               };
             };
-          };*/
+          };
           defaultSession = "none+bspwm";
         };
         windowManager= {
