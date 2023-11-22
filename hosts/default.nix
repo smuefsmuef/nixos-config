@@ -143,7 +143,7 @@ in
       host = {
         hostName = "libelula";
         mainMonitor = "eDP-1-1";
-#        secondMonitor = "HDMI-1-1";
+        secondMonitor = "";#"HDMI-1-1";
       };
     };
     modules = [
