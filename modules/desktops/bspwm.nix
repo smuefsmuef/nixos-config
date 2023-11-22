@@ -88,7 +88,7 @@ in
           };
         };
         displayManager = {                          # Display Manager
-        displayManager.gdm = {enable = true;};
+        gdm = {enable = true;};
          /* lightdm = {
             enable = true;
             background = pkgs.nixos-artwork.wallpapers.nineish-dark-gray.gnomeFilePath;
