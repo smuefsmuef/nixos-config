@@ -11,9 +11,9 @@ let
   monitor =
     if hostName == "beelink" then
       "${pkgs.xorg.xrandr}/bin/xrandr --output ${secondMonitor} --mode 1920x1080 --pos 0x0 --rotate normal --output ${mainMonitor} --primary --mode 1920x1080 --pos 1920x0 --rotate normal"
-    else if hostName == "libelula" || hostName == "laptop" || hostName == "vm" then
+    else if hostName == "laptop" || hostName == "vm" then
       "${pkgs.xorg.xrandr}/bin/xrandr --mode 1920x1080 --pos 0x0 --rotate normal"
-    else if hostName == "oldie" then
+    else if hostName == "libelula" || hostName == "oldie" then
       "${pkgs.xorg.xrandr}/bin/xrandr --output ${mainMonitor} --mode 1920x1080 --pos 0x0 --rotate normal"
 #    else "${pkgs.xorg.xrandr}/bin/xrandr --mode 1920x1080 --pos 0x0 --rotate normal";
     else false;
@@ -52,7 +52,7 @@ let
       polybar sec &
     ''
     else if hostName == "oldie" || hostName == "libelula" || hostName == "laptop" || hostName == "vm" || hostName == "caldetas" then ''
-      bspc monitor -d 1 2 3 4 5
+      bspc monitor ${toString mainMonitor} -d 1 2 3 4 5
     ''
     else false)
   ]
@@ -88,7 +88,8 @@ in
           };
         };
         displayManager = {                          # Display Manager
-          lightdm = {
+        displayManager.gdm = {enable = true;};
+          lightdm = {/*
             enable = true;
             background = pkgs.nixos-artwork.wallpapers.nineish-dark-gray.gnomeFilePath;
             greeters = {
@@ -105,7 +106,7 @@ in
                 };
               };
             };
-          };
+          };*/
           defaultSession = "none+bspwm";
         };
         windowManager= {

@@ -80,59 +80,24 @@
   services.xserver.enable = true;
 
 
+  hyprland.enable = true;                       # Window Manager
 
-
-  # Enable the GNOME Desktop Environment.
-#  services.xserver.displayManager.gdm.enable = true;
-#  services.xserver.desktopManager.gnome.enable = true;
-#  gnome.enable = true;
-#  hyprland.enable = true;
-  bspwm.enable = true;
-#laptop.enable = true;                     # Laptop Modules
-
-
-
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
-
-  # Enable sound with pipewire. (needed for gnome.enabled)
-#  sound.enable = true;
-#  hardware.pulseaudio.enable = false;
-#  security.rtkit.enable = true;
-#  services.pipewire = {
-#    enable = true;
-#    alsa.enable = true;
-#    alsa.support32Bit = true;
-#    pulse.enable = true;
-#  };
-#
-#  # Allow unfree packages
-#  nixpkgs.config.allowUnfree = true;
-#
-#  # List packages installed in system profile. To search, run:
-#  # $ nix search wget
-#  environment.systemPackages = with pkgs; [
-#
-#  mesa #elden ring
-#  directx-headers #elden ring
-#  directx-shader-compiler #elden ring
-#  ];
-#
-#  #java
-#  programs.java.enable = true;
-#  nixpkgs.config.permittedInsecurePackages = [
-#                "nodejs-16.20.2"
-#              ];
-#  virtualisation.docker.enable = true;
-#
-#  #Shortcuts
-#  programs.openvpn3.enable = true;
-
-  programs.dconf = {
-  enable = true;
+  environment = {
+    systemPackages = with pkgs; [               # System-Wide Packages
+      ansible           # Automation
+      gmtp              # Used for mounting gopro
+      hugo              # Static Website Builder
+      plex-media-player # Media Player
+      simple-scan       # Scanning
+      sshpass           # Ansible Dependency
+    ];
   };
 
-  system.stateVersion = "23.05"; # Did you read the comment?
+  flatpak = {                                   # Flatpak Packages (see module options)
+    extraPackages = [
+      "com.github.tchx84.Flatseal"
+    ];
+  };
 
 }
 
