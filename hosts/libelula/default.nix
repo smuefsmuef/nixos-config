@@ -60,7 +60,6 @@
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
 
-  services.strongswan.enable = true;
 
 
 
@@ -86,9 +85,9 @@
   # Enable the GNOME Desktop Environment.
 #  services.xserver.displayManager.gdm.enable = true;
 #  services.xserver.desktopManager.gnome.enable = true;
-  gnome.enable = true;
+#  gnome.enable = true;
 #  hyprland.enable = true;
-#  bspwm.enable = true;
+  bspwm.enable = true;
 #laptop.enable = true;                     # Laptop Modules
 
 
