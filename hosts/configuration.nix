@@ -190,7 +190,7 @@
       auto-optimise-store = true;
     };
     gc = {                                  # Garbage Collection
-      automatic = false;
+      automatic = true;
       dates = "weekly";
       options = "--delete-older-than 7d";
     };
@@ -247,4 +247,38 @@
 #           ln -s /bin/sh /bin/bash
 #      '';
 #    };
+
+#VPN setup https://www.reddit.com/r/NixOS/comments/olou0x/using_vpn_on_nixos/
+networking.wg-quick.interfaces = {
+ch-surf = {
+  address = [ "10.14.0.2/16" ];
+  dns = [ "162.252.172.57" "149.154.159.92" ]; # mullvad public dns
+  privateKeyFile = "~/Downloads/ch-zur.conf";
+  peers = [
+    {
+      publicKey = "qFuwaE8IyDbNBTNar3xAXRGaBdkTtmLh1uIGMJxTxUs=";
+      allowedIPs = [ "0.0.0.0/0" ]; # Only send communication through mullvad if it is in the range of the given ips, allows for split tunneling
+      endpoint = "ch-zur.prod.surfshark.com:51820"; # my selected mullvad enpoint
+    }
+  ];
+};
+};
+  services.openvpn.servers = {
+    suiza = {
+      autoStart = false;
+      # TODO put vpn files somewhere better or move config here.
+      config = "config ~/Downloads/ch-zur.prod.surfshark.comsurfshark_openvpn_udp.ovpn";
+    };
+  };
+  environment.etc = {
+    "xdg/gtk-2.0/gtkrc".text = "gtk-error-bell=0";
+    "xdg/gtk-3.0/settings.ini".text = ''
+      gtk-prefer-dark-theme=true
+      gtk-error-bell=false
+    '';
+    "xdg/gtk-4.0/settings.ini".text = ''
+      gtk-prefer-dark-theme=true
+      gtk-error-bell=false
+    '';
+  };
 }
