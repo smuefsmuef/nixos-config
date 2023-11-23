@@ -253,7 +253,7 @@ networking.wg-quick.interfaces = {
 ch-surf = {
   address = [ "10.14.0.2/16" ];
   dns = [ "162.252.172.57" "149.154.159.92" ]; # mullvad public dns
-  privateKeyFile = "~/Downloads/ch-zur.conf";
+  privateKeyFile = "/home/caldetas/Downloads/ch-zur.conf";
   peers = [
     {
       publicKey = "qFuwaE8IyDbNBTNar3xAXRGaBdkTtmLh1uIGMJxTxUs=";
