@@ -253,13 +253,14 @@ networking.wg-quick.interfaces = {
 ch-surf = {
 #  autoStart = false;
   address = [ "89.37.173.41" ];
-  dns = [ "ch-zur.prod.surfshark.com" ]; # mullvad public dns
+  listenPort = 51820;
   privateKeyFile = "/home/caldetas/Downloads/ch-zur.conf";
   peers = [
     {
       publicKey = "qFuwaE8IyDbNBTNar3xAXRGaBdkTtmLh1uIGMJxTxUs=";
       allowedIPs = [ "0.0.0.0/0" ]; # Only send communication through mullvad if it is in the range of the given ips, allows for split tunneling
-      endpoint = "ch-zur.prod.surfshark.com:51820"; # my selected mullvad enpoint
+#      endpoint = "51820"; # my selected mullvad enpoint
+       persistentKeepalive = 25; # make sure nat tables are always fresh
     }
   ];
 };
