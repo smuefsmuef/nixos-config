@@ -249,22 +249,22 @@
 #    };
 
 #VPN setup https://www.reddit.com/r/NixOS/comments/olou0x/using_vpn_on_nixos/
-networking.wg-quick.interfaces = {
-ch-surf = {
-#  autoStart = false;
-  address = [ "89.37.173.41" ];
-  listenPort = 51820;
-  privateKeyFile = "/home/caldetas/Downloads/ch-zur.conf";
-  peers = [
-    {
-      publicKey = "qFuwaE8IyDbNBTNar3xAXRGaBdkTtmLh1uIGMJxTxUs=";
-      allowedIPs = [ "0.0.0.0/0" ]; # Only send communication through mullvad if it is in the range of the given ips, allows for split tunneling
-#      endpoint = "51820"; # my selected mullvad enpoint
-       persistentKeepalive = 25; # make sure nat tables are always fresh
-    }
-  ];
-};
-};
+#networking.wg-quick.interfaces = {
+#ch-surf = {
+##  autoStart = false;
+#  address = [ "89.37.173.41" ];
+#  listenPort = 51820;
+#  privateKeyFile = "/home/caldetas/Downloads/ch-zur.conf";
+#  peers = [
+#    {
+#      publicKey = "qFuwaE8IyDbNBTNar3xAXRGaBdkTtmLh1uIGMJxTxUs=";
+#      allowedIPs = [ "0.0.0.0/0" ]; # Only send communication through mullvad if it is in the range of the given ips, allows for split tunneling
+##      endpoint = "51820"; # my selected mullvad enpoint
+#       persistentKeepalive = 25; # make sure nat tables are always fresh
+#    }
+#  ];
+#};
+#};
   services.openvpn.servers = {
     suiza = {
       autoStart = false;
