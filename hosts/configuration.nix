@@ -251,7 +251,7 @@
 #VPN setup https://www.reddit.com/r/NixOS/comments/olou0x/using_vpn_on_nixos/
 networking.wg-quick.interfaces = {
 ch-surf = {
-  autoStart = false;
+#  autoStart = false;
   address = [ "ch-zur.prod.surfshark.com" ];
   dns = [ "89.37.173.41" ]; # mullvad public dns
   privateKeyFile = "/home/caldetas/Downloads/ch-zur.conf";
