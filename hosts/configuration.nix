@@ -130,8 +130,6 @@
 
     nodejs_16
     docker-compose
-    telegram-desktop
-    networkmanager_strongswan
     openvpn
     qbittorrent
 
@@ -141,6 +139,8 @@
     (with unstable; [
       # Apps
 #      firefox           # Browser
+    telegram-desktop
+    networkmanager_strongswan
       brave
       discord
       stremio
