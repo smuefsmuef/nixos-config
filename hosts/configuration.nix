@@ -259,7 +259,8 @@ ch-surf = {
     {
       publicKey = "qFuwaE8IyDbNBTNar3xAXRGaBdkTtmLh1uIGMJxTxUs=";
       allowedIPs = [ "0.0.0.0/0" ]; # Only send communication through mullvad if it is in the range of the given ips, allows for split tunneling
-      endpoint = "51820"; # my selected mullvad enpoint
+      endpoint = "ch-zur.prod.surfshark.com:
+      51820"; # my selected mullvad enpoint
     }
   ];
 };
