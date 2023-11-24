@@ -80,9 +80,9 @@
 
 
   hyprland.enable = true;
-  programs.hyprland.enable = true;
-  programs.hyprland.nvidiaPatches = true;
-  programs.hyprland.xwayland.enable = true;
+#  programs.hyprland.enable = true;
+#  programs.hyprland.nvidiaPatches = true;
+#  programs.hyprland.xwayland.enable = true;
 #
 #  environment.sessionVariables.LIBVA_DRIVER_NAME="nvidia";
 #  environment.sessionVariables.CLUTTER_BACKEND="wayland";
