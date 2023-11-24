@@ -20,7 +20,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ../libelula/nvidia.nix
+      ./nvidia.nix
       ../../modules/desktops/virtualisation/docker.nix
     ] ++
     ( import ../../modules/desktops ++
@@ -58,7 +58,7 @@
   networking.useDHCP = lib.mkDefault true;
   # networking.interfaces.wlp0s20f3.useDHCP = lib.mkDefault true;
 #  bspwm.enable = true;
-#  gnome.enable = true;
+  gnome.enable = true;
    # Enable sound with pipewire.
     sound.enable = true;
     hardware.pulseaudio.enable = false;
@@ -79,10 +79,9 @@
 
 
 
-  programs.hyprland.enable = true;
+/*  programs.hyprland.enable = true;
   programs.hyprland.nvidiaPatches = true;
-
-  programs.hyprland.xwayland.enable = true;
+  programs.hyprland.xwayland.enable = true;*/
 #
 #  environment.sessionVariables.LIBVA_DRIVER_NAME="nvidia";
 #  environment.sessionVariables.CLUTTER_BACKEND="wayland";
