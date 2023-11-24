@@ -127,6 +127,7 @@
     gnome.gnome-tweaks
     yaru-theme
     git
+    lshw
 
     nodejs_16
     docker-compose
