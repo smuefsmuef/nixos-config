@@ -8,7 +8,6 @@
 with lib;
 with host;
 {
-/*
   options = {
     hyprland = {
       enable = mkOption {
@@ -386,5 +385,5 @@ with host;
         };
       };
     };
-  };*/
+  };
 }
