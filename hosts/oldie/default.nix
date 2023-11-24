@@ -50,12 +50,6 @@
     };
 
       swapDevices = [ ];
-    extraPackages = with pkgs; [
-#      nvidia-open-dkms
-#      qt5-wayland
-      libsForQt5.qt5ct
-      libva
-    ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
@@ -90,6 +84,10 @@
     enable = true;
     driSupport = true;
     extraPackages = with pkgs; [
+    #      nvidia-open-dkms
+    #      qt5-wayland
+          libsForQt5.qt5ct
+          libva
       intel-compute-runtime
       intel-media-driver # LIBVA_DRIVER_NAME=iHD
       vaapiIntel         # LIBVA_DRIVER_NAME=i965 (older but works better for Firefox/Chromium)
