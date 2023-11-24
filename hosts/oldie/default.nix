@@ -52,8 +52,8 @@
       swapDevices = [ ];
     extraPackages = with pkgs; [
 #      nvidia-open-dkms
-      qt5-wayland
-      qt5ct
+#      qt5-wayland
+      libsForQt5.qt5ct
       libva
     ];
 
@@ -64,7 +64,7 @@
   networking.useDHCP = lib.mkDefault true;
   # networking.interfaces.wlp0s20f3.useDHCP = lib.mkDefault true;
   hyprland.enable = true;
-  hyprland.nvidiaPatches = true;
+  hyprland.enableNvidiaPatches = true;
   hyprland.xwayland.enable = true;
 
   environment.sessionVariables.LIBVA_DRIVER_NAME="nvidia";
