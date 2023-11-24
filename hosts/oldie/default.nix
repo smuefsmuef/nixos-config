@@ -58,7 +58,7 @@
   networking.useDHCP = lib.mkDefault true;
   # networking.interfaces.wlp0s20f3.useDHCP = lib.mkDefault true;
 #  bspwm.enable = true;
-  gnome.enable = true;
+#  gnome.enable = true;
    # Enable sound with pipewire.
     sound.enable = true;
     hardware.pulseaudio.enable = false;
@@ -79,9 +79,9 @@
 
 
 
-#  programs.hyprland.enable = true;
-##  programs.hyprland.enableNvidiaPatches = true; #not working
-#  programs.hyprland.xwayland.enable = true;
+  programs.hyprland.enable = true;
+  programs.hyprland.enableNvidiaPatches = true; #not working
+  programs.hyprland.xwayland.enable = true;
 #
 #  environment.sessionVariables.LIBVA_DRIVER_NAME="nvidia";
 #  environment.sessionVariables.CLUTTER_BACKEND="wayland";
