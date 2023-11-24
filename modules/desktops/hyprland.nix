@@ -5,7 +5,7 @@
 
 { config, lib, system, pkgs, unstable, hyprland, vars, host, ... }:
 
-with lib;
+/*with lib;
 with host;
 {
   options = {
@@ -385,5 +385,5 @@ with host;
         };
       };
     };
-  };
+  };*/
 }
