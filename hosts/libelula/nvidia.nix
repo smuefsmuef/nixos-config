@@ -23,7 +23,7 @@
 
     # Modesetting is required.
     modesetting.enable = true;
-
+    prime.offload.enable = true;
     # Nvidia power management. Experimental, and can cause sleep/suspend to fail.
     powerManagement.enable = false;
     # Fine-grained power management. Turns off GPU when not in use.
@@ -37,7 +37,7 @@
     # https://github.com/NVIDIA/open-gpu-kernel-modules#compatible-gpus
     # Only available from driver 515.43.04+
     # Currently alpha-quality/buggy, so false is currently the recommended setting.
-    open = false;
+    open = true;
 
     # Enable the Nvidia settings menu,
 	# accessible via `nvidia-settings`.
