@@ -157,7 +157,16 @@ with host;
           workspace=${toString thirdMonitor},7
 
           bindl=,switch:Lid Switch,exec,$HOME/.config/hypr/script/clamshell.sh
-        '' else "";
+        '' else ''
+                          workspace=${toString mainMonitor},1
+                          workspace=${toString mainMonitor},2
+                          workspace=${toString mainMonitor},3
+                          workspace=${toString mainMonitor},4
+                          workspace=${toString mainMonitor},5
+                          workspace=${toString mainMonitor},6
+                          workspace=${toString mainMonitor},7
+                          workspace=${toString mainMonitor},8
+                        '';
       execute =
         if hostName == "desktop" || hostName == "beelink" then ''
           exec-once=${pkgs.swayidle}/bin/swayidle -w timeout 600 '${pkgs.swaylock}/bin/swaylock -f' timeout 1200 '${pkgs.systemd}/bin/systemctl suspend' after-resume '${config.programs.hyprland.package}/bin/hyprctl dispatch dpms on' before-sleep '${pkgs.swaylock}/bin/swaylock -f && ${config.programs.hyprland.package}/bin/hyprctl dispatch dpms off'
