@@ -129,6 +129,7 @@
     git
     lshw
     glxinfo
+    hwinfo
 
     nodejs_16
     docker-compose
