@@ -95,7 +95,7 @@ in
   vm = lib.nixosSystem {                                    # VM Profile
     inherit system;
     specialArgs = {
-      inherit inputs unstable vars;
+      inherit inputs system unstable hyprland vars;
       host = {
         hostName = "vm";
         mainMonitor = "Virtual-1";

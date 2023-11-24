@@ -12,7 +12,7 @@ let
     if hostName == "beelink" then
       "${pkgs.xorg.xrandr}/bin/xrandr --output ${secondMonitor} --mode 1920x1080 --pos 0x0 --rotate normal --output ${mainMonitor} --primary --mode 1920x1080 --pos 1920x0 --rotate normal"
     else if hostName == "laptop" || hostName == "vm" then
-      "${pkgs.xorg.xrandr}/bin/xrandr --mode 1920x1080 --pos 0x0 --rotate normal"
+      "${pkgs.xorg.xrandr}/bin/xrandr --output ${mainMonitor} --mode 1920x1080 --pos 0x0 --rotate normal"
     else if hostName == "libelula" || hostName == "oldie" then
       "${pkgs.xorg.xrandr}/bin/xrandr --output ${mainMonitor} --mode 1920x1080 --pos 0x0 --rotate normal"
 #    else "${pkgs.xorg.xrandr}/bin/xrandr --mode 1920x1080 --pos 0x0 --rotate normal";
@@ -125,8 +125,8 @@ in
 
         resolutions = [
           { x = 1920; y = 1080; }
-          { x = 1600; y = 900; }
-          { x = 3840; y = 2160; }
+#          { x = 1600; y = 900; }
+#          { x = 3840; y = 2160; }
         ];
       };
     };

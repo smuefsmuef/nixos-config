@@ -29,12 +29,14 @@
                       import ../../modules/theming
                       );
 
-  users.users.${vars.user} = {              # System User
-    initialPassword = "test";
-    group = "test";
-    extraGroups = [ "wheel" "video" "audio" "camera" "networkmanager" "lp" "scanner" ];
-  };
-  users.groups.test = {};
+#  users.users.${vars.user} = {              # System User
+#    extraGroups = [ "wheel" "video" "audio" "camera" "networkmanager" "lp" "scanner" ];
+#  };
+  users.users.nixosvmtest.isSystemUser = true ;
+  users.users.nixosvmtest.initialPassword = "test";
+  users.users.${vars.user}.initialPassword = "test";
+  users.users.nixosvmtest.group = "nixosvmtest";
+  users.groups.nixosvmtest = {};
 
   boot = {                                      # Boot Options
     loader = {
@@ -46,22 +48,29 @@
     };
     kernelPackages = pkgs.linuxPackages_latest;
   };
-
-  bspwm.enable = true;                          # Window Manager
-  security.rtkit.enable = true;
- /* gnome.enable = true;                          # Window Manager
+hyprland.enable = true;
+#  bspwm.enable = true;                          # Window Manager
+#  security.rtkit.enable = true;
+# gnome.enable = true;                          # Window Manager
 #  laptop.enable = true;                          # Window Manager
 
-    # Enable sound with pipewire. (needed for gnome.enabled)
-    sound.enable = true;
-    hardware.pulseaudio.enable = false;
-    */
-    services.pipewire = {
-      enable = true;
-      alsa.enable = true;
-      alsa.support32Bit = true;
-      pulse.enable = true;
-    };
+  # Enable sound with pipewire.
+  sound.enable = true;
+  hardware.pulseaudio.enable = false;
+  security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+    wireplumber.enable = true;
+    # If you want to use JACK applications, uncomment this
+    # jack.enable = true;
+
+    # use the example session manager (no others are packaged yet so this is enabled by default,
+    # no need to redefine it in your config for now)
+    # media-session.enable = true;
+  };
 
         virtualisation.vmVariant = {
           # following configuration is added only when building VM with build-vm
