@@ -128,6 +128,7 @@
     yaru-theme
     git
     lshw
+    glxinfo
 
     nodejs_16
     docker-compose
