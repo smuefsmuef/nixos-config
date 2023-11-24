@@ -58,7 +58,7 @@
   networking.useDHCP = lib.mkDefault true;
   # networking.interfaces.wlp0s20f3.useDHCP = lib.mkDefault true;
   programs.hyprland.enable = true;
-  programs.hyprland.enableNvidiaPatches = true;
+#  programs.hyprland.enableNvidiaPatches = true; #not working
   programs.hyprland.xwayland.enable = true;
 
   environment.sessionVariables.LIBVA_DRIVER_NAME="nvidia";
