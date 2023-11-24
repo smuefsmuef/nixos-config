@@ -209,12 +209,12 @@
     #  enable = true;
     #  channel = "https://nixos.org/channels/nixos-unstable";
     #};
-    stateVersion = "23.05";
+    stateVersion = "23.11";
   };
 
   home-manager.users.${vars.user} = {       # Home-Manager Settings
     home = {
-      stateVersion = "23.05";
+      stateVersion = "23.11";
     };
 
     programs = {
