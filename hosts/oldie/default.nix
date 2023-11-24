@@ -18,8 +18,9 @@
 
 {
   imports =
-    [ (modulesPath + "/installer/scan/not-detected.nix")
+    [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ../lebelula/nvidia.nix
       ../../modules/desktops/virtualisation/docker.nix
     ] ++
     ( import ../../modules/desktops ++
