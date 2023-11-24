@@ -57,23 +57,25 @@
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
   # networking.interfaces.wlp0s20f3.useDHCP = lib.mkDefault true;
-  programs.hyprland.enable = true;
-#  programs.hyprland.enableNvidiaPatches = true; #not working
-  programs.hyprland.xwayland.enable = true;
+  gnome.enable = true;
 
-  environment.sessionVariables.LIBVA_DRIVER_NAME="nvidia";
-  environment.sessionVariables.CLUTTER_BACKEND="wayland";
-  environment.sessionVariables.XDG_SESSION_TYPE="wayland";
-  environment.sessionVariables.QT_WAYLAND_DISABLE_WINDOWDECORATION="1";
-  environment.sessionVariables.MOZ_ENABLE_WAYLAND="1";
-  environment.sessionVariables.GBM_BACKEND="nvidia-drm";
-  environment.sessionVariables.__GLX_VENDOR_LIBRARY_NAME="nvidia";
-  environment.sessionVariables.WLR_NO_HARDWARE_CURSORS="1";
-  environment.sessionVariables.WLR_BACKEND="vulkan";
-  environment.sessionVariables.QT_QPA_PLATFORM="wayland";
-  environment.sessionVariables.GDK_BACKEND="wayland";
-  environment.sessionVariables.LIBSEAT_BACKEND="logind";
-  environment.sessionVariables.WLR_RENDERER_ALLOW_SOFTWARE="1";
+#  programs.hyprland.enable = true;
+##  programs.hyprland.enableNvidiaPatches = true; #not working
+#  programs.hyprland.xwayland.enable = true;
+#
+#  environment.sessionVariables.LIBVA_DRIVER_NAME="nvidia";
+#  environment.sessionVariables.CLUTTER_BACKEND="wayland";
+#  environment.sessionVariables.XDG_SESSION_TYPE="wayland";
+#  environment.sessionVariables.QT_WAYLAND_DISABLE_WINDOWDECORATION="1";
+#  environment.sessionVariables.MOZ_ENABLE_WAYLAND="1";
+#  environment.sessionVariables.GBM_BACKEND="nvidia-drm";
+#  environment.sessionVariables.__GLX_VENDOR_LIBRARY_NAME="nvidia";
+#  environment.sessionVariables.WLR_NO_HARDWARE_CURSORS="1";
+#  environment.sessionVariables.WLR_BACKEND="vulkan";
+#  environment.sessionVariables.QT_QPA_PLATFORM="wayland";
+#  environment.sessionVariables.GDK_BACKEND="wayland";
+#  environment.sessionVariables.LIBSEAT_BACKEND="logind";
+#  environment.sessionVariables.WLR_RENDERER_ALLOW_SOFTWARE="1";
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
