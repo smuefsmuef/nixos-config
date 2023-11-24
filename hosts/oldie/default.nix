@@ -80,7 +80,8 @@
 
 
   programs.hyprland.enable = true;
-  programs.hyprland.enableNvidiaPatches = true; #not working
+  programs.hyprland.nvidiaPatches = true;
+
   programs.hyprland.xwayland.enable = true;
 #
 #  environment.sessionVariables.LIBVA_DRIVER_NAME="nvidia";
