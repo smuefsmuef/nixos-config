@@ -51,7 +51,7 @@
 
       swapDevices = [ ];
     extraPackages = with pkgs; [
-      nvidia-open-dkms
+#      nvidia-open-dkms
       qt5-wayland
       qt5ct
       libva
