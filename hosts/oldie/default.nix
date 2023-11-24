@@ -98,9 +98,9 @@
 #  environment.sessionVariables.LIBSEAT_BACKEND="logind";
 #  environment.sessionVariables.WLR_RENDERER_ALLOW_SOFTWARE="1";
 
-#  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-#  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-#  powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
+  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
 #
 #  nixpkgs.config.packageOverrides = pkgs: {
 #    vaapiIntel = pkgs.vaapiIntel.override { enableHybridCodec = true; };
