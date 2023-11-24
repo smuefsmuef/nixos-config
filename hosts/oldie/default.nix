@@ -72,7 +72,6 @@
   environment.sessionVariables.WLR_BACKEND="vulkan";
   environment.sessionVariables.QT_QPA_PLATFORM="wayland";
   environment.sessionVariables.GDK_BACKEND="wayland";
-  environment.sessionVariables.GDK_BACKEND="wayland";
   environment.sessionVariables.LIBSEAT_BACKEND="logind";
   environment.sessionVariables.WLR_RENDERER_ALLOW_SOFTWARE="1";
 
