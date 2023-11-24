@@ -31,12 +31,12 @@
                       import ../../modules/theming
                       );
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
-  boot.initrd.kernelModules = [ ];
-  boot.blacklistedKernelModules = [ "nouveau" "nvidia" ];
-  boot.kernelParams = [ "i915.enable_guc=2" ];
-  boot.kernelModules = [ "kvm-intel" ];
-  boot.extraModulePackages = [ ];
+#  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
+#  boot.initrd.kernelModules = [ ];
+#  boot.blacklistedKernelModules = [ "nouveau" "nvidia" ];
+#  boot.kernelParams = [ "i915.enable_guc=2" ];
+#  boot.kernelModules = [ "kvm-intel" ];
+#  boot.extraModulePackages = [ ];
 
     boot.loader.grub.enable = true;
     boot.loader.grub.device = "/dev/sda";
