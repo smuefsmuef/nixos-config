@@ -57,9 +57,9 @@
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
   # networking.interfaces.wlp0s20f3.useDHCP = lib.mkDefault true;
-  hyprland.enable = true;
-  hyprland.enableNvidiaPatches = true;
-  hyprland.xwayland.enable = true;
+  programs.hyprland.enable = true;
+  programs.hyprland.enableNvidiaPatches = true;
+  programs.hyprland.xwayland.enable = true;
 
   environment.sessionVariables.LIBVA_DRIVER_NAME="nvidia";
   environment.sessionVariables.CLUTTER_BACKEND="wayland";
