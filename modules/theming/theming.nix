@@ -24,7 +24,7 @@
       theme = {
 #        name = "Dracula";
 #        name = "Yaru-Dark";
-        name = "Cat-Gtk-Mocha-Mauve-Dark";
+        name = "Catppuccin-Mocha-Compact-Mauve-Dark";
 #        package = pkgs.dracula-theme;
         package = pkgs.catppuccin-gtk.override {
           accents = ["mauve"];
@@ -36,7 +36,7 @@
       iconTheme = {
 #        name = "Papirus-Dark";
 #        package = pkgs.papirus-icon-theme;
-        name = "Cat-Papirus-Mocha-Mauve-Dark";
+        name = "Cat-Mocha-Mauve";
        package = pkgs.catppuccin-papirus-folders.override {
            flavor = "mocha";
            accent = "mauve";

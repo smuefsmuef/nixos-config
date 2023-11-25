@@ -151,6 +151,8 @@
     jetbrains.jdk
     jdk17
     jre17_minimal
+    catppuccin-papirus-folders-unstable
+    catppuccin-gtk
 #    steam
 #    megasync
     ]);
