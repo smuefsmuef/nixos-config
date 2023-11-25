@@ -224,7 +224,7 @@ with host;
         }
 
         input {
-          kb_layout=us
+          kb_layout=ch
           #kb_options=caps:ctrl_modifier
           follow_mouse=2
           repeat_delay=250
