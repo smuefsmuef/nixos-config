@@ -104,7 +104,7 @@ with lib;
             "gsconnect@andyholmes.github.io"
             "pip-on-top@rafostar.github.com"
             "forge@jmmaranan.com"
-             "dash-to-dock@micxgx.gmail.com"           # Alternative Dash-to-Panel
+#             "dash-to-dock@micxgx.gmail.com"           # Alternative Dash-to-Panel
             # "fullscreen-avoider@noobsai.github.com"   # Dash-to-Panel Incompatable
           ];
         };
