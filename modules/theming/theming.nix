@@ -34,13 +34,13 @@
         };
       };
       iconTheme = {
-#        name = "Papirus-Dark";
-#        package = pkgs.papirus-icon-theme;
-        name = "cat-mocha-mauve";
-       package = pkgs.catppuccin-papirus-folders.override {
-           flavor = "mocha";
-           accent = "mauve";
-         };
+        name = "Papirus-Dark";
+        package = pkgs.papirus-icon-theme;
+#        name = "cat-mocha-mauve";
+#       package = pkgs.catppuccin-papirus-folders.override {
+#           flavor = "mocha";
+#           accent = "mauve";
+#         };
       };
       font = {
         name = "Ubuntu";
