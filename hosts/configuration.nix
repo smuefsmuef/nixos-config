@@ -132,7 +132,7 @@
     glxinfo
     hwinfo
 
-    nodejs_16
+#    nodejs_16
     docker-compose
     openvpn
     qbittorrent
@@ -148,12 +148,14 @@
       brave
       discord
       stremio
+
+      jetbrains.jdk
+      jdk17
+      jre17_minimal
+      catppuccin-papirus-folders
+      catppuccin-gtk
     (jetbrains.plugins.addPlugins jetbrains.idea-ultimate [ "github-copilot" ])
-    jetbrains.jdk
-    jdk17
-    jre17_minimal
-    catppuccin-papirus-folders
-    catppuccin-gtk
+
 #    steam
 #    megasync
     ]);
@@ -165,10 +167,9 @@
 #    gamemode.enable = true;
     java.enable = true;
   };
-  nixpkgs.config.permittedInsecurePackages = [
-                  "nodejs-16.20.2"
-                ];
-
+#  nixpkgs.config.permittedInsecurePackages = [
+#                  "nodejs-16.20.2"
+#                ];
   hardware.pulseaudio.enable = false;
   services = {
     printing.enable = true;
@@ -240,7 +241,7 @@
         discord = prev.discord.overrideAttrs (
           _: { src = builtins.fetchTarball {
             url = "https://discord.com/api/download?platform=linux&format=tar.gz";
-            sha256 = "0pml1x6pzmdp6h19257by1x5b25smi2y60l1z40mi58aimdp59ss";
+            sha256 = "1xjk77g9lj5b78c1w3fj42by9b483pkbfb41yzxrg4p36mnd2hkn";
           };}
         );
       })
