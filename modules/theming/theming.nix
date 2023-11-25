@@ -22,7 +22,7 @@
     gtk = {                                 # Theming
       enable = true;
       theme = {
-        name = "Dracula";
+#        name = "Dracula";
 #        name = "Yaru-Dark";
         name = "Cat-Gtk-Mocha-Mauve-Dark";
 #        package = pkgs.dracula-theme;
