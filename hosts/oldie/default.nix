@@ -55,7 +55,7 @@
   # (the default) this is the recommended approach. When using systemd-networkd it's
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
-  networking.useDHCP = lib.mkDefault true;
+#  networking.useDHCP = lib.mkDefault true;
   # networking.interfaces.wlp0s20f3.useDHCP = lib.mkDefault true;
 #  bspwm.enable = true;
 #  gnome.enable = true;
@@ -118,5 +118,35 @@
       libvdpau-va-gl
     ];
   };
+
+  networking = with host; {
+      useDHCP = false;                        # Deprecated
+      hostName = hostName;
+      networkmanager.enable = true;
+      interfaces = {
+        enp4s0f1 = {
+          useDHCP = true;                     # For versatility sake, manually edit IP on nm-applet.
+          #ipv4.addresses = [ {
+          #    address = "192.168.0.51";
+          #    prefixLength = 24;
+          #} ];
+        };
+        wlp3s0 = {
+          useDHCP = true;
+          #ipv4.addresses = [ {
+          #  address = "192.168.0.51";
+          #  prefixLength = 24;
+          #} ];
+        };
+      };
+  #    defaultGateway = "192.168.0.1";
+  #    nameservers = [ "192.168.0.4" ];
+      firewall = {
+        enable = false;
+        #allowedUDPPorts = [ 53 67 ];
+        #allowedTCPPorts = [ 53 80 443 9443 ];
+      };
+    };
+
   }
 
