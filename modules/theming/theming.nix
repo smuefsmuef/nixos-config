@@ -36,7 +36,7 @@
       iconTheme = {
 #        name = "Papirus-Dark";
 #        package = pkgs.papirus-icon-theme;
-        name = "catppuccin-papirus-folders";
+        name = "cat-mocha-mauve";
        package = pkgs.catppuccin-papirus-folders.override {
            flavor = "mocha";
            accent = "mauve";
