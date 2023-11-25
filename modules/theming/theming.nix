@@ -31,7 +31,7 @@
           tweaks = [ "rimless" "black" "float" ];
           size = "compact";
           variant = "mocha";
-#        };
+        };
       };
       iconTheme = {
 #        name = "Papirus-Dark";
@@ -41,7 +41,6 @@
            flavor = "mocha";
            accent = "mauve";
          };
-      };
       };
       font = {
         name = "Ubuntu";
