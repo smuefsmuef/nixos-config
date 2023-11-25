@@ -2,8 +2,6 @@
 #  flake.nix *             
 #   ├─ ./hosts
 #   │   └─ default.nix
-#   ├─ ./darwin
-#   │   └─ default.nix
 #   └─ ./nix
 #       └─ default.nix
 #
@@ -58,7 +56,7 @@
       };
     };
 
-  outputs = inputs @ { self, nixpkgs, nixpkgs-stable, home-manager, darwin, nur, nixgl, nixvim, doom-emacs, hyprland, plasma-manager, ... }:   # Function telling flake which inputs to use
+  outputs = inputs @ { self, nixpkgs, nixpkgs-stable, home-manager, nur, nixgl, nixvim, doom-emacs, hyprland, plasma-manager, ... }:   # Function telling flake which inputs to use
     let
       vars = {                                                              # Variables Used In Flake
         user = "caldetas";
