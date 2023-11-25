@@ -154,6 +154,7 @@
       jre17_minimal
       catppuccin-papirus-folders
       catppuccin-gtk
+      steam
     (jetbrains.plugins.addPlugins jetbrains.idea-ultimate [ "github-copilot" ])
 
 #    steam
@@ -164,7 +165,7 @@
   programs = {
 #    dconf.enable = true;
 #    openvpn3.enable = true;
-#    gamemode.enable = true;
+    gamemode.enable = true;
     java.enable = true;
   };
 #  nixpkgs.config.permittedInsecurePackages = [
