@@ -15,7 +15,7 @@
             "super + Return" = "${vars.terminal}";                # Terminal
             "super + space" = "rofi -show drun -show-icons";      # Application Menu
             "super + e" = "pcmanfm";                              # File Browser
-            "Print" = "flameshot gui";                            # Screenshots
+#            "Print" = "flameshot gui";                            # Screenshots
 
             # Bspwm
             "super + {q,k}" = "bspc node -{c,k}";                 # Close or Kill

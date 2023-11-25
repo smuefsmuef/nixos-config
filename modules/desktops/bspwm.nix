@@ -12,7 +12,10 @@ let
     if hostName == "beelink" then
       "${pkgs.xorg.xrandr}/bin/xrandr --output ${secondMonitor} --mode 1920x1080 --pos 0x0 --rotate normal --output ${mainMonitor} --primary --mode 1920x1080 --pos 1920x0 --rotate normal"
     else if hostName == "laptop" || hostName == "vm" then
-      "${pkgs.xorg.xrandr}/bin/xrandr --mode 1920x1080 --pos 0x0 --rotate normal"
+      "${pkgs.xorg.xrandr}/bin/xrandr --output ${mainMonitor} --mode 1920x1080 --pos 0x0 --rotate normal"
+    else if hostName == "libelula" || hostName == "oldie" then
+      "${pkgs.xorg.xrandr}/bin/xrandr --output ${mainMonitor} --mode 1920x1080 --pos 0x0 --rotate normal"
+#    else "${pkgs.xorg.xrandr}/bin/xrandr --mode 1920x1080 --pos 0x0 --rotate normal";
     else false;
 
   extra = ''
@@ -48,8 +51,8 @@ let
       bspc wm -O ${mainMonitor} ${secondMonitor}
       polybar sec &
     ''
-    else if hostName == "laptop" || hostName == "vm" then ''
-      bspc monitor -d 1 2 3 4 5
+    else if hostName == "oldie" || hostName == "libelula" || hostName == "laptop" || hostName == "vm" || hostName == "caldetas" then ''
+      bspc monitor ${toString mainMonitor} -d 1 2 3 4 5
     ''
     else false)
   ]
@@ -72,8 +75,7 @@ in
     services = {
       xserver = {
         enable = true;
-
-        layout = "us";
+        layout = "ch";
         xkbOptions = "eurosign:e";
         libinput = {
           enable = true;
@@ -85,10 +87,8 @@ in
             disableWhileTyping = true;
           };
         };
-        modules = [ pkgs.xf86_input_wacom ];
-        wacom.enable = true;
-
         displayManager = {                          # Display Manager
+#        gdm = {enable = true;};
           lightdm = {
             enable = true;
             background = pkgs.nixos-artwork.wallpapers.nineish-dark-gray.gnomeFilePath;
@@ -125,8 +125,8 @@ in
 
         resolutions = [
           { x = 1920; y = 1080; }
-          { x = 1600; y = 900; }
-          { x = 3840; y = 2160; }
+#          { x = 1600; y = 900; }
+#          { x = 3840; y = 2160; }
         ];
       };
     };
@@ -151,7 +151,7 @@ in
             monitors = if hostName == "beelink" then {
               ${mainMonitor} = [ "1" "2" "3" "4" "5" ];
               ${secondMonitor} = [ "6" "7" "8" "9" "0" ];
-            } else {};
+            } else { ${mainMonitor} = [ "1" "2" "3" "4" "5" ];};
             rules = {                               # Window Rules (xprop)
               "Emacs" = {
                 desktop = "3";
@@ -194,7 +194,9 @@ in
                 desktop = "5";
               };
             };
-            extraConfig = extraConf;
+            extraConfig =  ''
+                          		logind-check-graphical=true
+                          	'';
           };
         };
       };

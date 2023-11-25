@@ -98,7 +98,7 @@ in
   vm = lib.nixosSystem {                                    # VM Profile
     inherit system;
     specialArgs = {
-      inherit inputs stable vars;
+      inherit inputs system stable hyprland vars;
       host = {
         hostName = "vm";
         mainMonitor = "Virtual-1";
@@ -117,7 +117,7 @@ in
     ];
   };
 
-  desktop = lib.nixosSystem {                               # DEPRECATED Desktop Profile 
+  desktop = lib.nixosSystem {                               # DEPRECATED Desktop Profile
     inherit system;
     specialArgs = {
       inherit inputs system stable hyprland vars;
@@ -133,6 +133,54 @@ in
       ./desktop
       ./configuration.nix
 
+      home-manager.nixosModules.home-manager {
+        home-manager.useGlobalPkgs = true;
+        home-manager.useUserPackages = true;
+        home-manager.users.${vars.user}.imports = [
+          nixvim.homeManagerModules.nixvim
+        ];
+      }
+    ];
+  };
+
+  libelula = lib.nixosSystem {                               #
+    inherit system;
+    specialArgs = {
+      inherit inputs system stable hyprland vars;
+#      inherit inputs system unstable vars;
+      host = {
+        hostName = "libelula";
+        mainMonitor = "eDP-1-1";
+        secondMonitor = "";#"HDMI-1-1";
+      };
+    };
+    modules = [
+      nur.nixosModules.nur #todo delete?
+      ./libelula
+      ./configuration.nix
+
+      home-manager.nixosModules.home-manager {
+        home-manager.useGlobalPkgs = true;
+        home-manager.useUserPackages = true;
+        home-manager.users.${vars.user}.imports = [
+          nixvim.homeManagerModules.nixvim
+        ];
+      }
+    ];
+  };
+  oldie = lib.nixosSystem {                               #
+    inherit system;
+    specialArgs = {
+      inherit inputs system stable hyprland vars;
+      host = {
+        hostName = "oldie";
+        mainMonitor = "eDP-1-1";
+        secondMonitor = "";
+      };
+    };
+    modules = [
+      ./oldie
+      ./configuration.nix
       home-manager.nixosModules.home-manager {
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;

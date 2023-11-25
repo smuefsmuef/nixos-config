@@ -29,11 +29,12 @@ with lib;
       xserver = {
         enable = true;
 
-        layout = "us";
+        layout = "ch";
+        xkbVariant = "de_nodeadkeys";
         xkbOptions = "eurosign:e";
         libinput.enable = true;
-        modules = [ pkgs.xf86_input_wacom ];
-        wacom.enable = true;
+#        modules = [ pkgs.xf86_input_wacom ];
+#        wacom.enable = true;
 
         displayManager.gdm.enable = true;               # Display Manager
         desktopManager.gnome.enable = true;             # Desktop Environment
@@ -70,20 +71,21 @@ with lib;
       dconf.settings = {
         "org/gnome/shell" = {
           favorite-apps = [
-            "org.gnome.settings.desktop"
-            "alacritty.desktop"
-            "firefox.desktop"
-            "emacs.desktop"
+#            "org.gnome.settings.desktop"
+            "brave.desktop"
+            "kitty.desktop"
+#            "firefox.desktop"
+#            "emacs.desktop"
             "org.gnome.nautilus.desktop"
-            "com.obsproject.studio.desktop"
-            "plexmediaplayer.desktop"
-            "smartcode-stremio.desktop"
-            "discord.desktop"
+#            "com.obsproject.studio.desktop"
+#            "plexmediaplayer.desktop"
+#            "smartcode-stremio.desktop"
+#            "discord.desktop"
             "steam.desktop"
-            "retroarch.desktop"
-            "com.parsecgaming.parsec.desktop"
-            "org.remmina.remmina.desktop"
-            "virt-manager.desktop"
+#            "retroarch.desktop"
+#            "com.parsecgaming.parsec.desktop"
+#            "org.remmina.remmina.desktop"
+#            "virt-manager.desktop"
             # "blueman-manager.desktop"
             # "pavucontrol.desktop"
           ];
@@ -92,7 +94,7 @@ with lib;
             "trayiconsreloaded@selfmade.pl"
             "blur-my-shell@aunetx"
             "drive-menu@gnome-shell-extensions.gcampax.github.com"
-            "dash-to-panel@jderose9.github.com"
+#            "dash-to-panel@jderose9.github.com"
             "just-perfection-desktop@just-perfection"
             "caffeine@patapon.info"
             "clipboard-indicator@tudmotu.com"
@@ -102,7 +104,7 @@ with lib;
             "gsconnect@andyholmes.github.io"
             "pip-on-top@rafostar.github.com"
             "forge@jmmaranan.com"
-            # "dash-to-dock@micxgx.gmail.com"           # Alternative Dash-to-Panel
+#             "dash-to-dock@micxgx.gmail.com"           # Alternative Dash-to-Panel
             # "fullscreen-avoider@noobsai.github.com"   # Dash-to-Panel Incompatable
           ];
         };
@@ -111,7 +113,7 @@ with lib;
           color-scheme = "prefer-dark";
           enable-hot-corners = false;
           clock-show-weekday = true;
-          # gtk-theme = "adwaita-dark";
+#           gtk-theme = "yaru-dark";
         };
         # "org/gnome/desktop/session" = {               # Not Working
         #   idle-delay = "uint32 900";
@@ -130,24 +132,24 @@ with lib;
           button-layout = ":minimize,close";
         };
         "org/gnome/desktop/wm/keybindings" = {
-          # maximize = ["<super>up"];                   # Floating
-          # unmaximize = ["<super>down"];
-          maximize = ["@as []"];                        # Tiling
-          unmaximize = ["@as []"];
-          switch-to-workspace-left = ["<alt>left"];
-          switch-to-workspace-right = ["<alt>right"];
-          switch-to-workspace-1 = ["<alt>1"];
-          switch-to-workspace-2 = ["<alt>2"];
-          switch-to-workspace-3 = ["<alt>3"];
-          switch-to-workspace-4 = ["<alt>4"];
-          switch-to-workspace-5 = ["<alt>5"];
-          move-to-workspace-left = ["<shift><alt>left"];
-          move-to-workspace-right = ["<shift><alt>right"];
-          move-to-workspace-1 = ["<shift><alt>1"];
-          move-to-workspace-2 = ["<shift><alt>2"];
-          move-to-workspace-3 = ["<shift><alt>3"];
-          move-to-workspace-4 = ["<shift><alt>4"];
-          move-to-workspace-5 = ["<shift><alt>5"];
+           maximize = ["<super>up"];                   # Floating
+           unmaximize = ["<super>down"];
+#          maximize = ["@as []"];                        # Tiling
+#          unmaximize = ["@as []"];
+          switch-to-workspace-left = ["<ctrl><alt>left"];
+          switch-to-workspace-right = ["<ctrl><alt>right"];
+#          switch-to-workspace-1 = ["<alt>1"];
+#          switch-to-workspace-2 = ["<alt>2"];
+#          switch-to-workspace-3 = ["<alt>3"];
+#          switch-to-workspace-4 = ["<alt>4"];
+#          switch-to-workspace-5 = ["<alt>5"];
+          move-to-workspace-left = ["<ctrl><shift><alt>left"];
+          move-to-workspace-right = ["<ctrl><shift><alt>right"];
+#          move-to-workspace-1 = ["<shift><alt>1"];
+#          move-to-workspace-2 = ["<shift><alt>2"];
+#          move-to-workspace-3 = ["<shift><alt>3"];
+#          move-to-workspace-4 = ["<shift><alt>4"];
+#          move-to-workspace-5 = ["<shift><alt>5"];
           move-to-monitor-left = ["<super><alt>left"];
           move-to-monitor-right = ["<super><alt>right"];
           close = ["<super>q" "<alt>f4"];
@@ -160,10 +162,10 @@ with lib;
           edge-tiling = false;                          # Tiling
         };
         "org/gnome/mutter/keybindings" = {
-          #toggle-tiled-left = ["<super>left"];         # Floating
-          #toggle-tiled-right = ["<super>right"];
-          toggle-tiled-left = ["@as []"];               # Tiling
-          toggle-tiled-right = ["@as []"];
+          toggle-tiled-left = ["<super>left"];         # Floating
+          toggle-tiled-right = ["<super>right"];
+#          toggle-tiled-left = ["@as []"];               # Tiling
+#          toggle-tiled-right = ["@as []"];
         };
 
         "org/gnome/settings-daemon/plugins/power" = {
@@ -177,14 +179,14 @@ with lib;
           ];
         };
         "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
-          binding = "<super>return";
-          command = "alacritty";
+          binding = "<super>t";
+          command = "kitty";
           name = "open-terminal";
         };
         "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1" = {
-          binding = "<super>t";
-          command = "emacs";
-          name = "open-editor";
+          binding = "<ctrl><alt>t";
+          command = "kgx";
+          name = "default-terminal";
         };
         "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2" = {
           binding = "<super>e";
@@ -247,31 +249,31 @@ with lib;
         };
         "org/gnome/shell/extensions/forge/keybindings" = { # Set Manually
           focus-border-toggle = true;
-          float-always-on-top-enabled = true;
-          window-focus-up = ["<super>up"];
-          window-focus-down = ["<super>down"];
-          window-focus-left = ["<super>left"];
-          window-focus-right = ["<super>right"];
-          window-move-up = ["<shift><super>up"];
-          window-move-down = ["<shift><super>down"];
-          window-move-left = ["<shift><super>left"];
-          window-move-right = ["<shift><super>right"];
+#          float-always-on-top-enabled = true;
+          window-focus-up = ["<super><shift>up"];
+          window-focus-down = ["<super><shift>down"];
+          window-focus-left = ["<super><shift>left"];
+          window-focus-right = ["<super><shift>right"];
+          window-move-up = ["<ctrl><super>up"];
+          window-move-down = ["<ctrl><super>down"];
+          window-move-left = ["<ctrl><super>left"];
+          window-move-right = ["<ctrl><super>right"];
           window-swap-last-active = ["@as []"];
-          window-toggle-float = ["<shift><super>f"];
+          window-toggle-float = ["<ctrl><super>f"];
         };
-        # "org/gnome/shell/extensions/dash-to-dock" = { # If Dock Preferred
-        #   multi-monitor = true;
-        #   dock-fixed = true;
-        #   dash-max-icon-size = 16;
-        #   custom-theme-shrink = true;
-        #   transparency-mode = "fixed";
-        #   background-opacity = 0.0;
-        #   show-apps-at-top = true;
-        #   show-trash = true;
-        #   hot-keys = false;
-        #   click-action = "previews";
-        #   scroll-action = "cycle-windows";
-        # };
+         "org/gnome/shell/extensions/dash-to-dock" = { # If Dock Preferred
+           multi-monitor = true;
+           dock-fixed = true;
+           dash-max-icon-size = 16;
+           custom-theme-shrink = true;
+           transparency-mode = "fixed";
+           background-opacity = 0.0;
+           show-apps-at-top = true;
+           show-trash = true;
+           hot-keys = false;
+           click-action = "previews";
+           scroll-action = "cycle-windows";
+         };
       };
 
       home.packages = with pkgs.gnomeExtensions; [

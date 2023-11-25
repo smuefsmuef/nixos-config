@@ -9,7 +9,7 @@
 #
 
 {
-  description = "Nix, NixOS and Nix Darwin System Flake Configuration";
+  description = "Nix & NixOS System Flake Configuration";
 
   inputs =                                                                  # References Used by Flake
     {
@@ -18,11 +18,6 @@
 
       home-manager = {                                                      # User Environment Manager
         url = "github:nix-community/home-manager";
-        inputs.nixpkgs.follows = "nixpkgs";
-      };
-
-      darwin = {                                                            # MacOS Package Management
-        url = "github:lnl7/nix-darwin/master";
         inputs.nixpkgs.follows = "nixpkgs";
       };
 
@@ -66,10 +61,10 @@
   outputs = inputs @ { self, nixpkgs, nixpkgs-stable, home-manager, darwin, nur, nixgl, nixvim, doom-emacs, hyprland, plasma-manager, ... }:   # Function telling flake which inputs to use
     let
       vars = {                                                              # Variables Used In Flake
-        user = "matthias";
-        location = "$HOME/.setup";
+        user = "caldetas";
+        location = "$HOME/Desktop/nixos-config";
         terminal = "kitty";
-        editor = "nvim";
+        editor = "nano";
       };
     in
     {
@@ -77,13 +72,6 @@
         import ./hosts {
           inherit (nixpkgs) lib;
           inherit inputs nixpkgs nixpkgs-stable home-manager nur nixvim doom-emacs hyprland plasma-manager vars;   # Inherit inputs
-        }
-      );
-
-      darwinConfigurations = (                                              # Darwin Configurations
-        import ./darwin {
-          inherit (nixpkgs) lib;
-          inherit inputs nixpkgs nixpkgs-stable home-manager darwin vars;
         }
       );
 

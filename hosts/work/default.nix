@@ -35,8 +35,8 @@
         devices = [ "nodev" ];
         efiSupport = true;
         useOSProber = true;                     # Find All boot Options
-        configurationLimit = 2;
-        default=2;
+        configurationLimit = 20;
+        default=0;
       };
       timeout = null;
     };

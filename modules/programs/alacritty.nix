@@ -11,14 +11,14 @@
         enable = true;
         settings = {
           font = {
-            normal.family = "FiraCode Nerd Font";
-            bold = { style = "Bold"; };
+            normal.family = "UbuntuMono";
+            bold = { style = "Regular"; };
             size = 11;
           };
-          offset = {
-            x = -1;
-            y = 0;
-          };
+#          offset = {
+#            x = -1;
+#            y = 0;
+#          };
         };
       };
     };

@@ -91,7 +91,7 @@ with host;
       hyprland = {                            # Window Manager
         enable = true;
         package = hyprland.packages.${pkgs.system}.hyprland;
-        #nvidiaPatches = if hostName == "work" then true else false;
+        nvidiaPatches = if hostName == "work" || hostName == "oldie" then true else false;
       };
     };
 
@@ -110,7 +110,7 @@ with host;
     home-manager.users.${vars.user} =
     let
       touchpad =
-        if hostName == "laptop" || hostName == "work" then ''
+        if hostName == "libelula" || hostName == "oldie" || hostName == "laptop" || hostName == "work" then ''
             touchpad {
               natural_scroll=true
               middle_button_emulation=true
@@ -119,7 +119,7 @@ with host;
           }
           '' else "";
       gestures =
-        if hostName == "laptop" || hostName == "work" then ''
+        if hostName == "libelula" || hostName == "oldie" || hostName == "laptop" || hostName == "work" then ''
           gestures {
             workspace_swipe=true
             workspace_swipe_fingers=3
@@ -157,7 +157,16 @@ with host;
           workspace=${toString thirdMonitor},7
 
           bindl=,switch:Lid Switch,exec,$HOME/.config/hypr/script/clamshell.sh
-        '' else "";
+        '' else ''
+                          workspace=${toString mainMonitor},1
+                          workspace=${toString mainMonitor},2
+                          workspace=${toString mainMonitor},3
+                          workspace=${toString mainMonitor},4
+                          workspace=${toString mainMonitor},5
+                          workspace=${toString mainMonitor},6
+                          workspace=${toString mainMonitor},7
+                          workspace=${toString mainMonitor},8
+                        '';
       execute =
         if hostName == "desktop" || hostName == "beelink" then ''
           exec-once=${pkgs.swayidle}/bin/swayidle -w timeout 600 '${pkgs.swaylock}/bin/swaylock -f' timeout 1200 '${pkgs.systemd}/bin/systemctl suspend' after-resume '${config.programs.hyprland.package}/bin/hyprctl dispatch dpms on' before-sleep '${pkgs.swaylock}/bin/swaylock -f && ${config.programs.hyprland.package}/bin/hyprctl dispatch dpms off'
@@ -166,7 +175,9 @@ with host;
           #exec-once=${pkgs.google-drive-ocamlfuse}/bin/google-drive-ocamlfuse /GDrive
           exec-once=${pkgs.rclone}/bin/rclone mount --daemon gdrive: /GDrive
           exec-once=${pkgs.swayidle}/bin/swayidle -w timeout 60 '${pkgs.swaylock}/bin/swaylock -f' timeout 600 '${pkgs.systemd}/bin/systemctl suspend' after-resume '${config.programs.hyprland.package}/bin/hyprctl dispatch dpms on' before-sleep '${pkgs.swaylock}/bin/swaylock -f && ${config.programs.hyprland.package}/bin/hyprctl dispatch dpms off'
-        '' else "";
+        '' else ''
+          exec-once=${pkgs.swayidle}/bin/swayidle -w timeout 600 '${pkgs.swaylock}/bin/swaylock -f' timeout 1200 '${pkgs.systemd}/bin/systemctl suspend' after-resume '${config.programs.hyprland.package}/bin/hyprctl dispatch dpms on' before-sleep '${pkgs.swaylock}/bin/swaylock -f && ${config.programs.hyprland.package}/bin/hyprctl dispatch dpms off'
+           '';
     in
     let
       hyprlandConf = ''

@@ -8,6 +8,7 @@
 with lib;
 with host;
 {
+
   options = {
     river = {
       enable = mkOption {

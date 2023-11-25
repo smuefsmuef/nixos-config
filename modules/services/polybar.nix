@@ -40,7 +40,7 @@ in
               font-1 = "FontAwesome6Free:style=Solid:size=8";
               font-2 = "FontAwesome6Free:style=Regular:size=8";
               font-3 = "FontAwesome6Brands:style=Regular:size=8";
-              font-4 = "FiraCodeNerdFont:size=10";
+              font-4 = "UbuntuNerdFont:size=10";
               modules-left = "logo bspwm";
               modules-right = "backlight pad memory cpu pad sink volume pad battery date";
 
@@ -65,7 +65,7 @@ in
               font-1 = "FontAwesome6Free:style=Solid:size=8";
               font-2 = "FontAwesome6Free:style=Regular:size=8";
               font-3 = "FontAwesome6Brands:style=Regular:size=8";
-              font-4 = "FiraCodeNerdFont:size=10";
+              font-4 = "UbuntuNerdFont:size=10";
               modules-left = "logo bspwm";
               modules-right = "sink volume pad date";
 
@@ -280,15 +280,15 @@ in
               menu-2-0 = "";
               menu-2-0-exec = "${vars.terminal} &";
               menu-2-1 = "";
-              menu-2-1-exec = "firefox &";
+              menu-2-1-exec = "brave &";
               menu-2-2 = "";
-              menu-2-2-exec = "emacs &";
+              menu-2-2-exec = "idea-ultimate &";
               menu-2-3 = "";
               menu-2-3-exec = "plexmediaplayer &";
               menu-2-4 = "";
-              menu-2-4-exec = "flatpak run com.obsproject.Studio &";
+              menu-2-4-exec = "vlc &";
               menu-2-5 = "";
-              menu-2-5-exec = "lutris &";
+              menu-2-5-exec = "telegram-desktop &";
               menu-2-6 = "";
               menu-2-6-exec = "steam &";
             };
