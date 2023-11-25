@@ -42,10 +42,10 @@
            accent = "mauve";
          };
       };
+      };
       font = {
         name = "Ubuntu";
       };
     };
-  };
   };
 }
