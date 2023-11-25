@@ -167,9 +167,8 @@
                 ];
 
   services = {
-    printing = {                            # CUPS
-      enable = true;
-    };
+    printing.enable = true;
+    strongswan.enable = true;
     pipewire = {                            # Sound
       enable = true;
       alsa = {
