@@ -21,7 +21,7 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./nvidia.nix
-      ../../modules/desktops/virtualisation/docker.nix
+#      ../../modules/desktops/virtualisation/docker.nix
     ] ++
     ( import ../../modules/desktops ++
                       import ../../modules/editors ++
