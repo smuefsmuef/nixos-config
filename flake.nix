@@ -13,6 +13,7 @@
     {
       nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";                  # Unstable Nix Packages (Default)
       nixpkgs-stable.url = "github:nixos/nixpkgs/release-23.05";            # Stable Nix Packages
+      rust-overlay.url = "github:oxalica/rust-overlay";
 
       home-manager = {                                                      # User Environment Manager
         url = "github:nix-community/home-manager";

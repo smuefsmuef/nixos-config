@@ -190,4 +190,26 @@ in
       }
     ];
   };
+  hypr-oldie = lib.nixosSystem {                               #
+    inherit system;
+    specialArgs = {
+      inherit inputs system stable hyprland vars;
+      host = {
+        hostName = "hypr-oldie";
+        mainMonitor = "eDP-1-1";
+        secondMonitor = "";
+      };
+    };
+    modules = [
+      ./hypr-oldie
+      ./configuration.nix
+      home-manager.nixosModules.home-manager {
+        home-manager.useGlobalPkgs = true;
+        home-manager.useUserPackages = true;
+        home-manager.users.${vars.user}.imports = [
+          nixvim.homeManagerModules.nixvim
+        ];
+      }
+    ];
+  };
 }
