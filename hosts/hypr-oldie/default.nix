@@ -371,7 +371,7 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.${vars.user} = {
     extraGroups = [ "networkmanager" "input" "wheel" "video" "audio" "tss" ];
-    shell = pkgs.fish;
+#    shell = pkgs.fish;
     packages = with pkgs; [
       spotify
       youtube-music
