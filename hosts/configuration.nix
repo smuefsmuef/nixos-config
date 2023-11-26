@@ -148,6 +148,7 @@
       brave
       discord
       stremio
+      gimp
 
       jetbrains.jdk
       jdk17
