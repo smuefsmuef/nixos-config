@@ -59,7 +59,7 @@ bindsym XF86MonBrightnessDown exec /nix/store/8aw7ag6x4qfi4qr19pvj08pi22csswan-l
 bindsym XF86MonBrightnessUp exec /nix/store/8aw7ag6x4qfi4qr19pvj08pi22csswan-light-1.2.2/bin/light -A 5
 
 input "type:keyboard" {
-xkb_layout us
+xkb_layout ch
 xkb_numlock enabled
 }
 

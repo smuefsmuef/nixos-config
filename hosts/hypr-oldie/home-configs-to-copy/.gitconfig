@@ -1,0 +1,9 @@
+[user]
+	email = misterhannes@hotmail.com
+	name = caldetas
+[credential "https://github.com"]
+	helper = 
+	helper = !/run/current-system/sw/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/run/current-system/sw/bin/gh auth git-credential
