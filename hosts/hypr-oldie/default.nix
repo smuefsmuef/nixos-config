@@ -174,14 +174,14 @@
   # services.openssh.enable = true;
 
   # Open ports in the firewall.
-#  networking.firewall.enable = true;
+  networking.firewall.enable = true;
   # networking.firewall.allowedTCPPorts = [ 3000 ];
   # networking.firewall.allowedUDPPorts = [ 3000 ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
   # Enable Encrypted Proxy DNS
-  /*networking = {
+  networking = {
     nameservers = [ "127.0.0.1" "::1"];
     dhcpcd.extraConfig = "nohook resolv.conf";
   };
@@ -207,7 +207,7 @@
 
   systemd.services.dnscrypt-proxy2.serviceConfig = {
     StateDirectory = "dnscrypt-proxy";
-  };*/
+  };
 
   # Enable MAC Randomize
   # systemd.services.macchanger = {
@@ -343,7 +343,7 @@
       enable = true;
 
       # Create a `docker` alias for podman, to use it as a drop-in replacement
-#      dockerCompat = true;
+      dockerCompat = true;
 
       # Required for containers under podman-compose to be able to talk to each other.
       defaultNetwork.settings.dns_enabled = true;

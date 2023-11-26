@@ -59,11 +59,11 @@
       };
   #    defaultGateway = "192.168.0.1";
   #    nameservers = [ "192.168.0.4" ];
-      firewall = {
-        enable = false;
-        #allowedUDPPorts = [ 53 67 ];
-        #allowedTCPPorts = [ 53 80 443 9443 ];
-      };
+#      firewall = {
+#        enable = false;
+#        #allowedUDPPorts = [ 53 67 ];
+#        #allowedTCPPorts = [ 53 80 443 9443 ];
+#      };
     };
 
   # networking.interfaces.enp4s0f1.useDHCP = lib.mkDefault true;
