@@ -24,13 +24,13 @@
       theme = {
 #        name = "Dracula";
 #        name = "Yaru-Dark";
-        name = "Catppuccin-Macchiato-Compact-Mauve-Dark";
+        name = "Catppuccin-Macchiato-Compact-Blue-Dark";
 #        package = pkgs.dracula-theme;
         package = pkgs.catppuccin-gtk.override {
-          accents = ["mauve"];
+          accents = ["blue"];
           tweaks = [ "rimless" "black" ];
           size = "compact";
-          variant = "macchiato";
+          variant = "mocha";
         };
       };
       iconTheme = {
