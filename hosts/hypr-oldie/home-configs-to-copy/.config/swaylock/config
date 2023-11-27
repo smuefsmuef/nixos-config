@@ -7,8 +7,8 @@ screenshots
 effect-blur=11x11
 #effect-compose=1100,10;/home/caldetas/.config/swaylock/rebecca.png
 #effect-compose=20,0;40%x100%;/home/caldetas/.config/swaylock/lucy.png
-effect-compose=1100,10;/home/caldetas/.config/swaylock/rani.png
-effect-compose=20,0;/home/caldetas/.config/swaylock/warrior.png
+effect-compose=1100,10;80%x80%;/home/caldetas/.config/swaylock/rani.png
+effect-compose=120,-100;/home/caldetas/.config/swaylock/warrior.png
 font=JetBrains Mono
 indicator-radius=80
 indicator-thickness=8
