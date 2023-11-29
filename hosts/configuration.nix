@@ -132,7 +132,6 @@
     glxinfo
     hwinfo
 
-#    nodejs_16
     docker-compose
     openvpn
     qbittorrent
@@ -153,6 +152,7 @@
       jetbrains.jdk
       jdk17
       jre17_minimal
+      nodejs_16
       catppuccin-papirus-folders
       catppuccin-gtk
       steam
@@ -169,9 +169,9 @@
     gamemode.enable = true;
     java.enable = true;
   };
-#  nixpkgs.config.permittedInsecurePackages = [
-#                  "nodejs-16.20.2"
-#                ];
+  nixpkgs.config.permittedInsecurePackages = [
+                  "nodejs-16.20.2"
+                ];
   hardware.pulseaudio.enable = false;
   services = {
     printing.enable = true;

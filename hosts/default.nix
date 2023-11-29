@@ -212,4 +212,50 @@ in
       }
     ];
   };
+  onsite-gnome = lib.nixosSystem {                               #
+    inherit system;
+    specialArgs = {
+      inherit inputs system stable hyprland vars;
+      host = {
+        hostName = "onsite-gnome";
+        mainMonitor = "eDP-1-1";
+        secondMonitor = "DP-1-2-1-8";
+        thirdMonitor = "DP-1-2-1-1-8";
+      };
+    };
+    modules = [
+      ./onsite-gnome
+      ./configuration.nix
+      home-manager.nixosModules.home-manager {
+        home-manager.useGlobalPkgs = true;
+        home-manager.useUserPackages = true;
+        home-manager.users.${vars.user}.imports = [
+          nixvim.homeManagerModules.nixvim
+        ];
+      }
+    ];
+  };
+  onsite-hypr = lib.nixosSystem {                               #
+    inherit system;
+    specialArgs = {
+      inherit inputs system stable hyprland vars;
+      host = {
+        hostName = "onsite-hypr";
+        mainMonitor = "eDP-1-1";
+        secondMonitor = "DP-1-2-1-8";
+        thirdMonitor = "DP-1-2-1-1-8";
+      };
+    };
+    modules = [
+      ./onsite-hypr
+      ./configuration.nix
+      home-manager.nixosModules.home-manager {
+        home-manager.useGlobalPkgs = true;
+        home-manager.useUserPackages = true;
+        home-manager.users.${vars.user}.imports = [
+          nixvim.homeManagerModules.nixvim
+        ];
+      }
+    ];
+  };
 }
