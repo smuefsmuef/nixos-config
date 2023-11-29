@@ -160,8 +160,8 @@
       stremio
       gimp
 
-#      jetbrains.jdk
-      jdk17
+      jetbrains.jdk
+#      jdk17
       jre17_minimal
 #      nodejs-16_x
       catppuccin-papirus-folders
