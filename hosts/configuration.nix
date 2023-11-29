@@ -152,7 +152,7 @@
       jetbrains.jdk
       jdk17
       jre17_minimal
-      nodejs_16
+      stable.nodejs_16
       catppuccin-papirus-folders
       catppuccin-gtk
       steam
