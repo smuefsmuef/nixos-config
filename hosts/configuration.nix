@@ -23,6 +23,17 @@
 #
 
 { config, lib, pkgs, stable, inputs, vars, ... }:
+#let
+#     pkgsM = import (builtins.fetchGit {
+#         # Descriptive name to make the store path easier to identify
+#         name = "my-old-nodeJs";
+#         url = "https://github.com/NixOS/nixpkgs/";
+#         ref = "refs/heads/nixpkgs-unstable";
+#         rev = "9957cd48326fe8dbd52fdc50dd2502307f188b0d";
+#     }) {};
+#
+#     nodeV16 = pkgsM.nodejs_16;
+#in
 
 {
   imports = (
@@ -149,10 +160,10 @@
       stremio
       gimp
 
-      jetbrains.jdk
+#      jetbrains.jdk
       jdk17
       jre17_minimal
-      stable.nodejs_16
+#      nodejs-16_x
       catppuccin-papirus-folders
       catppuccin-gtk
       steam
@@ -160,6 +171,9 @@
 
 #    steam
 #    megasync
+#    ])++
+#    (with pkgsM; [
+#    nodeV16
     ]);
   };
 
@@ -169,9 +183,10 @@
     gamemode.enable = true;
     java.enable = true;
   };
-  nixpkgs-stable.config.permittedInsecurePackages = [
+  nixpkgs.config.permittedInsecurePackages = [
                   "nodejs-16.20.2"
                 ];
+
   hardware.pulseaudio.enable = false;
   services = {
     printing.enable = true;
@@ -215,7 +230,7 @@
 
   system = {                                # NixOS Settings
     #autoUpgrade = {                        # Allow Auto Update (not useful in flakes)
-    #  enable = true;
+    #  enable = true;c
     #  channel = "https://nixos.org/channels/nixos-unstable";
     #};
     stateVersion = "23.11";
@@ -247,6 +262,14 @@
           };}
         );
       })
+#      (final: prev: {
+#        nodejs_16 = prev.nodejs_16.overrideAttrs (
+#          _: { src = builtins.fetchTarball {
+#            url = "https://nodejs.org/dist/v16.20.2/win-x64/node.exe";
+#            sha256 = "874463523f26ed528634580247f403d200ba17a31adf2de98a7b124c6eb33d87";
+#          };}
+#        );
+#      })
     ];
 #  #enable scripts with shebang !# /bin/bash
 #  system.activationScripts.binbash = {
