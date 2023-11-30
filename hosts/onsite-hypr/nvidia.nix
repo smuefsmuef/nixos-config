@@ -7,18 +7,6 @@
 
 
 { config, lib, pkgs, ... }:
-
-let
-  nvidia-offload = pkgs.writeShellScriptBin "nvidia-offload" ''
-    export __NV_PRIME_RENDER_OFFLOAD=1
-    export __NV_PRIME_RENDER_OFFLOAD_PROVIDER=NVIDIA-G0
-    export __GLX_VENDOR_LIBRARY_NAME=nvidia
-    export __VK_LAYER_NV_optimus=NVIDIA_only
-    exec -a "$0" "$@"
-  '';
-in
-
-
 {
 
   # Enable OpenGL
@@ -29,14 +17,12 @@ in
   };
 
   # Load nvidia driver for Xorg and Wayland
-  services.xserver.enable = true;
   services.xserver.videoDrivers = ["nvidia"];
 
   hardware.nvidia = {
 
     # Modesetting is required.
     modesetting.enable = true;
-    nvidiaPersistenced = true;
     prime = {
      		offload = {
      			enable = true;
@@ -47,7 +33,7 @@ in
      		nvidiaBusId = "PCI:1:0:0";
      	};
     # Nvidia power management. Experimental, and can cause sleep/suspend to fail.
-    powerManagement.enable = true;
+    powerManagement.enable = false;
     # Fine-grained power management. Turns off GPU when not in use.
     # Experimental and only works on modern Nvidia GPUs (Turing or newer).
     powerManagement.finegrained = false;
@@ -59,7 +45,7 @@ in
     # https://github.com/NVIDIA/open-gpu-kernel-modules#compatible-gpus
     # Only available from driver 515.43.04+
     # Currently alpha-quality/buggy, so false is currently the recommended setting.
-    open = false;
+    open = true;
 
     # Enable the Nvidia settings menu,
 	# accessible via `nvidia-settings`.

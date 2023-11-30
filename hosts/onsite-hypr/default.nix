@@ -14,7 +14,7 @@
 #               └─ docker.nix
 #
 
-{ pkgs, config, lib, unstable, inputs, vars, modulesPath, host, ... }:
+{ pkgs, config, lib, unstable, inputs, vars, host, ... }:
 
 {
   imports =
@@ -79,48 +79,50 @@
 
 
 
-
-
-
+  # Enable the GNOME Desktop Environment.
+#  services.xserver.displayManager.gdm.enable = true;
+#  services.xserver.desktopManager.gnome.enable = true;
+#  gnome.enable = true;
   hyprland.enable = true;
-#  programs.hyprland.enable = true;
-#  programs.hyprland.nvidiaPatches = true;
-#  programs.hyprland.xwayland.enable = true;
+#  bspwm.enable = true;
+#laptop.enable = true;                     # Laptop Modules
+
+
+
+#  # Enable CUPS to print documents.
+#  services.printing.enable = true;
 #
-#  environment.sessionVariables.LIBVA_DRIVER_NAME="nvidia";
-#  environment.sessionVariables.CLUTTER_BACKEND="wayland";
-#  environment.sessionVariables.XDG_SESSION_TYPE="wayland";
-#  environment.sessionVariables.QT_WAYLAND_DISABLE_WINDOWDECORATION="1";
-#  environment.sessionVariables.MOZ_ENABLE_WAYLAND="1";
-#  environment.sessionVariables.GBM_BACKEND="nvidia-drm";
-#  environment.sessionVariables.__GLX_VENDOR_LIBRARY_NAME="nvidia";
-#  environment.sessionVariables.WLR_NO_HARDWARE_CURSORS="1";
-#  environment.sessionVariables.WLR_BACKEND="vulkan";
-#  environment.sessionVariables.QT_QPA_PLATFORM="wayland";
-#  environment.sessionVariables.GDK_BACKEND="wayland";
-#  environment.sessionVariables.LIBSEAT_BACKEND="logind";
-#  environment.sessionVariables.WLR_RENDERER_ALLOW_SOFTWARE="1";
+#  # Enable sound with pipewire. (needed for gnome.enabled)
+#  sound.enable = true;
+#  hardware.pulseaudio.enable = false;
+#  security.rtkit.enable = true;
+#  services.pipewire = {
+#    enable = true;
+#    alsa.enable = true;
+#    alsa.support32Bit = true;
+#    pulse.enable = true;
+#  };
+#
+#  # Allow unfree packages
+#  nixpkgs.config.allowUnfree = true;
 
-  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-  powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
+  # List packages installed in system profile. To search, run:
+  # $ nix search wget
+  environment.systemPackages = with pkgs; [
 
-  nixpkgs.config.packageOverrides = pkgs: {
-    vaapiIntel = pkgs.vaapiIntel.override { enableHybridCodec = true; };
-  };
-  hardware.opengl = {
-    enable = true;
-    driSupport = true;
-    extraPackages = with pkgs; [
-      libsForQt5.qt5ct
-      libva
-      intel-compute-runtime
-      intel-media-driver # LIBVA_DRIVER_NAME=iHD
-      vaapiIntel         # LIBVA_DRIVER_NAME=i965 (older but works better for Firefox/Chromium)
-      vaapiVdpau
-      libvdpau-va-gl
-    ];
-  };
-
-  }
+  mesa #elden ring
+  directx-headers #elden ring
+  directx-shader-compiler #elden ring
+  ];
+#
+#  #java
+#  programs.java.enable = true;
+#  nixpkgs.config.permittedInsecurePackages = [
+#                "nodejs-16.20.2"
+#              ];
+#
+#  programs.dconf = {
+#  enable = true;
+#  };
+}
 
