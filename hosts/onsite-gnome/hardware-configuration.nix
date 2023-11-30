@@ -26,26 +26,28 @@
     boot.extraModulePackages = [ ];
 
     fileSystems."/" =
-      { device = "/dev/disk/by-uuid/40c6a2ad-2559-4559-985c-64bd930c70be";
+      { device = "/dev/disk/by-uuid/ee27e751-d935-4ff7-9c0f-e24e41bdc2d2";
         fsType = "ext4";
       };
 
     fileSystems."/boot" =
-      { device = "/dev/disk/by-uuid/FD28-26EC";
+      { device = "/dev/disk/by-uuid/E149-6EE4";
         fsType = "vfat";
       };
 
-  fileSystems."/mnt/ubuntu" =
-    { device = "/dev/disk/by-uuid/"; #todo
-      fsType = "ext4";
-    };
+#  fileSystems."/mnt/ubuntu" =
+#    { device = "/dev/disk/by-uuid/luks-ee27e751-d935-4ff7-9c0f-e24e41bdc2d2"; #todo
+#      fsType = "ext4";
+#    };
+#
+#  fileSystems."/mnt/hypr" =
+#    { device = "/dev/disk/by-uuid/luks-8b98b040-b8c0-4d4c-ba49-508cd2fb0760"; #todo
+#      fsType = "ext4";
+#    };
 
-  fileSystems."/mnt/hypr" =
-    { device = "/dev/disk/by-uuid/"; #todo
-      fsType = "ext4";
-    };
-
-  swapDevices = [ ];
+  swapDevices = [{ device = "/dev/disk/by-uuid/8b98b040-b8c0-4d4c-ba49-508cd2fb0760";
+                         fsType = "ext4";
+                       } ];
 
   networking = with host; {
     useDHCP = false;                        # Deprecated
