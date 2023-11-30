@@ -46,6 +46,7 @@
 #    };
 
 #  swapDevices = [{ device = "/dev/disk/by-uuid/8b98b040-b8c0-4d4c-ba49-508cd2fb0760";  } ];
+  swapDevices = [  ];
 
   networking = with host; {
     useDHCP = false;                        # Deprecated
