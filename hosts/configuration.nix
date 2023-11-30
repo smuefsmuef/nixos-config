@@ -160,8 +160,8 @@
       stremio
       gimp
 
-      jetbrains.jdk
-#      jdk17
+#      jetbrains.jdk
+      jdk17
       jre17_minimal
 #      nodejs-16_x
       catppuccin-papirus-folders
@@ -186,7 +186,6 @@
   nixpkgs.config.permittedInsecurePackages = [
                   "nodejs-16.20.2"
                 ];
-
   hardware.pulseaudio.enable = false;
   services = {
     printing.enable = true;
@@ -254,14 +253,14 @@
     };
 
     nixpkgs.overlays = [                          # Overlay pulls latest version of Discord
-      (final: prev: {
-        discord = prev.discord.overrideAttrs (
-          _: { src = builtins.fetchTarball {
-            url = "https://discord.com/api/download?platform=linux&format=tar.gz";
-            sha256 = "1xjk77g9lj5b78c1w3fj42by9b483pkbfb41yzxrg4p36mnd2hkn";
-          };}
-        );
-      })
+#      (final: prev: {
+#        discord = prev.discord.overrideAttrs (
+#          _: { src = builtins.fetchTarball {
+#            url = "https://discord.com/api/download?platform=linux&format=tar.gz";
+#            sha256 = "1xjk77g9lj5b78c1w3fj42by9b483pkbfb41yzxrg4p36mnd2hkn";
+#          };}
+#        );
+#      })
 #      (final: prev: {
 #        nodejs_16 = prev.nodejs_16.overrideAttrs (
 #          _: { src = builtins.fetchTarball {
@@ -303,7 +302,7 @@
       config = "config ~/Downloads/ch-zur.prod.surfshark.comsurfshark_openvpn_udp.ovpn";
     };
   };
-  environment.etc = {
+  environment.etc = with pkgs; {
     "xdg/gtk-2.0/gtkrc".text = "gtk-error-bell=0";
     "xdg/gtk-3.0/settings.ini".text = ''
       gtk-prefer-dark-theme=true
@@ -313,5 +312,6 @@
       gtk-prefer-dark-theme=true
       gtk-error-bell=false
     '';
-  };
+        "jdk17".source = jdk17_headless;
+      };
 }
