@@ -29,52 +29,55 @@
                       import ../../modules/programs ++
                       import ../../modules/services ++
                       import ../../modules/shell ++
-                      import ../../modules/theming
-                      );
+                      import ../../modules/theming );
 
-#  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
-#  boot.initrd.kernelModules = [ ];
-#  boot.blacklistedKernelModules = [ "nouveau" "nvidia" ];
-#  boot.kernelParams = [ "i915.enable_guc=2" ];
-#  boot.kernelModules = [ "kvm-intel" ];
-#  boot.extraModulePackages = [ ];
+  # Bootloader.
+  # boot.loader.systemd-boot.enable = true;
+  # boot.loader.efi.canTouchEfiVariables = true;
+  # boot.loader.grub.useOSProber = true;
 
-    boot.loader.grub.enable = true;
-    boot.loader.grub.device = "/dev/sda";
-    boot.loader.grub.useOSProber = true;
-
-
-  fileSystems."/" =
-    { device = "/dev/disk/by-uuid/18fd3508-94a9-4d44-8b18-d7971fbb86c5";
-      fsType = "ext4";
-    };
-
-      swapDevices = [ ];
-
-  # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
-  # (the default) this is the recommended approach. When using systemd-networkd it's
-  # still possible to use this option, but it's recommended to use it in conjunction
-  # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
-#  networking.useDHCP = lib.mkDefault true;
-  # networking.interfaces.wlp0s20f3.useDHCP = lib.mkDefault true;
-#  bspwm.enable = true;
-#  gnome.enable = true;
-   # Enable sound with pipewire.
-    sound.enable = true;
-    hardware.pulseaudio.enable = false;
-    security.rtkit.enable = true;
-    services.pipewire = {
+#  boot.kernelParams = [ "psmouse.synaptics_intertouch=0" ];
+  boot.loader = {
+    grub = {
       enable = true;
-      alsa.enable = true;
-      alsa.support32Bit = true;
-      pulse.enable = true;
-      # If you want to use JACK applications, uncomment this
-      #jack.enable = true;
-
-      # use the example session manager (no others are packaged yet so this is enabled by default,
-      # no need to redefine it in your config for now)
-      #media-session.enable = true;
+      efiSupport = true;
+      enableCryptodisk = true;
+      device = "nodev";
+      useOSProber = true;
+      configurationLimit = 20;
+      default=0;
     };
+    efi = {
+      canTouchEfiVariables = true;
+      efiSysMountPoint = "/boot";
+    };
+  };
+
+#  networking.hostName = hostname; # Define your hostname.
+  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+
+
+
+
+
+  # Configure network proxy if necessary
+  # networking.proxy.default = "http://user:password@proxy:port/";
+  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+
+  # Enable networking
+  networking.networkmanager.enable = true;
+
+  # Set your time zone.
+  time.timeZone = "Europe/Zurich";
+
+  # Select internationalisation properties.
+  i18n.defaultLocale = "en_US.UTF-8";
+
+  # Enable the X11 windowing system. (gnome?)
+#  services.xserver.enable = true;
+
+
+
 
 
 
