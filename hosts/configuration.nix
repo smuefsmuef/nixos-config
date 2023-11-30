@@ -142,7 +142,7 @@
     lshw
     glxinfo
     hwinfo
-    nodejs_16
+    nodejs_18
     docker-compose
     openvpn
     qbittorrent
@@ -183,9 +183,6 @@
     gamemode.enable = true;
     java.enable = true;
   };
-    stable.config.permittedInsecurePackages = [
-                    "nodejs-16.20.2"
-                  ];
     nixpkgs.config.permittedInsecurePackages = [
               "nodejs-16.20.2"
             ];
