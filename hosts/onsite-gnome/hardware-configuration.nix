@@ -25,15 +25,18 @@
     boot.kernelModules = [ "kvm-intel" ];
     boot.extraModulePackages = [ ];
 
-    fileSystems."/" =
-      { device = "/dev/disk/by-uuid/af764af7-bb34-42d3-b374-de472c168a27";
-        fsType = "ext4";
-      };
+  fileSystems."/" =
+    { device = "/dev/disk/by-uuid/e88d78aa-b5cc-451e-9fd6-c1d07f28c884";
+      fsType = "ext4";
+    };
 
-    fileSystems."/boot" =
-      { device = "/dev/disk/by-uuid/1E60-6F1B";
-        fsType = "vfat";
-      };
+  boot.initrd.luks.devices."luks-af764af7-bb34-42d3-b374-de472c168a27".device = "/dev/disk/by-uuid/af764af7-bb34-42d3-b374-de472c168a27";
+
+  fileSystems."/boot" =
+    { device = "/dev/disk/by-uuid/1E60-6F1B";
+      fsType = "vfat";
+    };
+
 
 #  fileSystems."/mnt/ubuntu" =
 #    { device = "/dev/disk/by-uuid/luks-ee27e751-d935-4ff7-9c0f-e24e41bdc2d2"; #todo
