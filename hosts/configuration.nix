@@ -247,8 +247,8 @@
     flatpak = {                                   # Flatpak Packages (see module options)
       extraPackages = [
         "com.github.tchx84.Flatseal"
-        "com.ultimaker.cura"
-        "org.upscayl.Upscayl"
+#        "com.ultimaker.cura"
+#        "org.upscayl.Upscayl"
       ];
     };
 

@@ -22,10 +22,11 @@ with lib;
     };
   };
 
-  config = mkIf (config.flatpak.enable && !config.gnome.enable) #gnome and kde enable install already the gtk.portal
+#  config = mkIf (config.flatpak.enable && !config.gnome.enable) #gnome and kde enable install already the gtk.portal
+    config = mkIf (config.flatpak.enable)
   {
     xdg.portal.enable = true;
-    xdg.portal.extraPortals = mkIf (config.wlwm.enable || config.x11wm.enable) [
+    xdg.portal.extraPortals = mkIf (config.wlwm.enable || config.x11wm.enable) [ #or is is !gnome.enable?
       pkgs.xdg-desktop-portal-gtk
     ];
 
