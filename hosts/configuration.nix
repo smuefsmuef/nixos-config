@@ -163,6 +163,8 @@
 #      jetbrains.jdk
       jdk17
       jre17_minimal
+      jetbrains.pycharm-professional
+      jetbrains.datagrip
 #      nodejs-16_x
       catppuccin-papirus-folders
       catppuccin-gtk
