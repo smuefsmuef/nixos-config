@@ -107,6 +107,7 @@
       usbutils          # Manage USB
       wget              # Retriever
       xdg-utils         # Environment integration
+      psmisc            # A set of small useful utilities that use the proc filesystem (such as fuser, killall and pstree)
 
       # Video/Audio
       alsa-utils        # Audio Control
@@ -185,13 +186,31 @@
     gamemode.enable = true;
     java.enable = true;
   };
+networking.networkmanager.enableStrongSwan = true;
+services.strongswan-swanctl.enable = true;
+services.strongswan-swanctl.strongswan.extraConfig = ''
+charon-nm {
+           plugins {
+             eap-peap {
+               load = no
+             }
+             eap-md5 {
+               load = no
+             }
+             eap-gtc {
+               load = no
+             }
+           }
+}
+                                                                ''; # Strongswan config to append
+
     nixpkgs.config.permittedInsecurePackages = [
               "nodejs-16.20.2"
             ];
   hardware.pulseaudio.enable = false;
   services = {
     printing.enable = true;
-    strongswan.enable = true;
+#    strongswan.enable = true;
     pipewire = {                            # Sound
       enable = true;
       alsa = {
