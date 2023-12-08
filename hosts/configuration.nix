@@ -155,6 +155,7 @@
       # Apps
 #      firefox           # Browser
     telegram-desktop
+    whatsapp-for-linux
     networkmanager_strongswan
       brave
       discord
