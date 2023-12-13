@@ -337,13 +337,4 @@ charon-nm {
         "jdk17".source = jdk17_headless;
       };
 
-      # Enable the X11 windowing system for Remote Desktop Protocol (RDP) connections.
-      services.xserver.enable = true;
-      services.xserver.displayManager.sddm.enable = true;
-      services.xserver.desktopManager.plasma5.enable = true;
-
-      services.xrdp.enable = true;
-      services.xrdp.defaultWindowManager = "startplasma-x11";
-      services.xrdp.openFirewall = true;
-
 }
