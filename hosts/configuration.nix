@@ -155,7 +155,7 @@
       # Apps
 #      firefox           # Browser
     telegram-desktop
-    whatsapp-for-linux
+#    whatsapp-for-linux
     networkmanager_strongswan
       brave
       discord
@@ -270,8 +270,8 @@ charon-nm {
     flatpak = {                                   # Flatpak Packages (see module options)
       extraPackages = [
         "com.github.tchx84.Flatseal"
-#        "com.ultimaker.cura"
-#        "org.upscayl.Upscayl"
+#        "com.github.eneshecan.WhatsAppForLinux"
+        "io.github.mimbrero.WhatsAppDesktop"
       ];
     };
 
