@@ -100,6 +100,7 @@
       killall           # Process Killer
       nano              # Text Editor
       nix-tree          # Browse Nix Store
+      nixpkgs-fmt       # Formatter for nix files
       pciutils          # Manage PCI
       ranger            # File Manager
       screen            # Deatach
