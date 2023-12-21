@@ -8,6 +8,8 @@
   config = lib.mkIf (config.services.xserver.enable) {#
     networking.firewall.allowedTCPPorts = [
     3899
+    4500
+    5000
     5900 ];   # Open Firewall
 
     environment = {                                   # VNC used for remote access to the desktop

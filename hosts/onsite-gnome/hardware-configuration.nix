@@ -56,7 +56,7 @@
     hostName = hostName;
     networkmanager.enable = true;
     interfaces = {
-      lo = {
+      enp0s31f6 = {
         useDHCP = true;                     # For versatility sake, manually edit IP on nm-applet.
         #ipv4.addresses = [ {
         #    address = "192.168.0.51";
