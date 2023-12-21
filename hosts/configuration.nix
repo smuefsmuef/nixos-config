@@ -122,6 +122,7 @@
       # Apps
       appimage-run      # Runs AppImages on NixOS
       google-chrome     # Browser
+      libreoffice       # OpenOffice
       remmina           # XRDP & VNC Client
 
       # File Management
