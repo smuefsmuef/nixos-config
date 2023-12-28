@@ -91,7 +91,6 @@ with host;
       hyprland = {                            # Window Manager
         enable = true;
         package = hyprland.packages.${pkgs.system}.hyprland;
-        enableNvidiaPatches = if hostName == "libelula" || hostName == "libelula" || hostName == "oldie" then true else false;
       };
     };
 
