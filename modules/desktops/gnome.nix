@@ -30,8 +30,8 @@ with lib;
         enable = true;
 
         layout = "ch";
-        xkbVariant = "de_nodeadkeys";
-        xkbOptions = "eurosign:e";
+        xkbVariant = "ch";
+#        xkbOptions = "eurosign:e";
         libinput.enable = true;
 #        modules = [ pkgs.xf86_input_wacom ];
 #        wacom.enable = true;
