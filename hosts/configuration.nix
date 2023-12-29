@@ -174,7 +174,8 @@
       catppuccin-gtk
       steam
     (jetbrains.plugins.addPlugins jetbrains.idea-ultimate [ "github-copilot" ])
-
+#    (texlive.combine { inherit (texlive) scheme-full; })
+    texlive.combined.scheme-full
 #    steam
 #    megasync
 #    ])++
@@ -205,7 +206,7 @@ charon-nm {
              }
            }
 }
-                                                                ''; # Strongswan config to append
+                                                                ''; # Strongswan config to append todo delete not working
 
     nixpkgs.config.permittedInsecurePackages = [
               "nodejs-16.20.2"
