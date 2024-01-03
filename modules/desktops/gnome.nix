@@ -57,7 +57,6 @@ with lib;
         atomix
         epiphany
         geary
-        gedit
         gnome-characters
         gnome-contacts
         gnome-initial-setup

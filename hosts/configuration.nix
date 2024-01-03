@@ -138,7 +138,6 @@
 
     htop
     gparted
-    gnome.gedit
     gnome.gnome-tweaks
     yaru-theme
     git
@@ -156,13 +155,14 @@
     (with pkgs; [
       # Apps
 #      firefox           # Browser
-    telegram-desktop
-#    whatsapp-for-linux
-    networkmanager_strongswan
+      telegram-desktop
+#      whatsapp-for-linux
+      networkmanager_strongswan
       brave
       discord
       stremio
       gimp
+      gedit
 
 #      jetbrains.jdk
       jdk17
