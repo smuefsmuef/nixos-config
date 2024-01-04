@@ -36,8 +36,16 @@ with lib;
 #        modules = [ pkgs.xf86_input_wacom ];
 #        wacom.enable = true;
 
-        displayManager.gdm.enable = true;               # Display Manager
-        desktopManager.gnome.enable = true;             # Desktop Environment
+#        displayManager.gdm.enable = true;               # Display Manager
+#        desktopManager.gnome.enable = true;             # Desktop Environment
+
+          displayManager.sddm.enable = true;
+          desktopManager.plasma5.enable = true;
+
+
+          services.xrdp.enable = true;
+          services.xrdp.defaultWindowManager = "startplasma-x11";
+          networking.firewall.allowedTCPPorts = [ 3389 ];
       };
       udev.packages = with pkgs; [
         gnome.gnome-settings-daemon
