@@ -42,18 +42,16 @@ with lib;
           displayManager.sddm.enable = true;
           desktopManager.plasma5.enable = true;
 
+
+          services.xrdp.enable = true;
+          services.xrdp.defaultWindowManager = "startplasma-x11";
+          networking.firewall.allowedTCPPorts = [ 3389 ];
       };
       udev.packages = with pkgs; [
         gnome.gnome-settings-daemon
       ];
-
-
-          xrdp.enable = true;
-          xrdp.defaultWindowManager = "startplasma-x11";
-
     };
 
-  networking.firewall.allowedTCPPorts = [ 3389 ];
 
     environment = {
       systemPackages = with pkgs; [                     # System-Wide Packages
