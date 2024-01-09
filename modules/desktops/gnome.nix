@@ -36,24 +36,14 @@ with lib;
 #        modules = [ pkgs.xf86_input_wacom ];
 #        wacom.enable = true;
 
-#        displayManager.gdm.enable = true;               # Display Manager # todo reinstate
-#        desktopManager.gnome.enable = true;             # Desktop Environment # todo reinstate
-
-          displayManager.sddm.enable = true; # todo delete
-          desktopManager.plasma5.enable = true; # todo delete
-
+        displayManager.gdm.enable = true;               # Display Manager
+        desktopManager.gnome.enable = true;             # Desktop Environment
       };
       udev.packages = with pkgs; [
         gnome.gnome-settings-daemon
       ];
-
-
-          xrdp.enable = true; # todo delete
-          xrdp.defaultWindowManager = "startplasma-x11"; # todo delete
-
     };
 
-  networking.firewall.allowedTCPPorts = [ 3389 ]; # todo delete
 
     environment = {
       systemPackages = with pkgs; [                     # System-Wide Packages
