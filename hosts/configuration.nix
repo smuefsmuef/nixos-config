@@ -174,7 +174,7 @@
       catppuccin-gtk
       steam
     (jetbrains.plugins.addPlugins jetbrains.idea-ultimate [ "github-copilot" ])
-#    (texlive.combine { inherit (texlive) scheme-full; })
+#    (texlive.combine { inherit (texlive) scheme-fullh; })
     texlive.combined.scheme-full
 #    steam
 #    megasync
