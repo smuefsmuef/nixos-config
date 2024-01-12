@@ -339,7 +339,7 @@ charon-nm {
       gtk-prefer-dark-theme=true
       gtk-error-bell=false
     '';
-        "jdk17".source = jdk17_headless;
+#        "jdk17".source = jdk17_headless;
       };
 
 }
