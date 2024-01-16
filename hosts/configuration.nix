@@ -155,6 +155,7 @@
     (with pkgs; [
       # Apps
 #      firefox           # Browser
+      authy
       telegram-desktop
 #      whatsapp-for-linux
       networkmanager_strongswan
