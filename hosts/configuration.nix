@@ -154,7 +154,7 @@
     ] ++
     (with pkgs; [
       # Apps
-#      firefox           # Browser
+      firefox           # Browser
       authy
       telegram-desktop
 #      whatsapp-for-linux
