@@ -157,6 +157,7 @@
       firefox           # Browser
       authy
       telegram-desktop
+      spotify
 #      whatsapp-for-linux
       networkmanager_strongswan
       brave
