@@ -158,8 +158,6 @@
       authy
       telegram-desktop
       spotify
-      signald
-#      whatsapp-for-linux
       networkmanager_strongswan
       brave
       discord
@@ -167,14 +165,13 @@
       gimp
       gedit
 
-#      jetbrains.jdk
       jdk17
       jre17_minimal
       jetbrains.pycharm-professional
       jetbrains.datagrip
       python3
-#      nodejs-16_x
-      catppuccin-papirus-folders
+      catppuccin-p
+      apirus-folders
       catppuccin-gtk
       steam
     (jetbrains.plugins.addPlugins jetbrains.idea-ultimate [ "github-copilot" ])
@@ -281,6 +278,7 @@ charon-nm {
         "com.github.tchx84.Flatseal"
 #        "com.github.eneshecan.WhatsAppForLinux"
         "io.github.mimbrero.WhatsAppDesktop"
+        "org.signal.Signal"
       ];
     };
 
