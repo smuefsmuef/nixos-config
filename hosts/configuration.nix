@@ -158,6 +158,7 @@
       authy
       telegram-desktop
       spotify
+      signald
 #      whatsapp-for-linux
       networkmanager_strongswan
       brave
