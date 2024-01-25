@@ -170,8 +170,7 @@
       jetbrains.pycharm-professional
       jetbrains.datagrip
       python3
-      catppuccin-p
-      apirus-folders
+      catppuccin-papirus-folders
       catppuccin-gtk
       steam
     (jetbrains.plugins.addPlugins jetbrains.idea-ultimate [ "github-copilot" ])
