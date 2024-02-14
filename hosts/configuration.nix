@@ -164,6 +164,7 @@
       stremio
       gimp
       gedit
+      gnupg1orig
 
       jdk17
       jre17_minimal
