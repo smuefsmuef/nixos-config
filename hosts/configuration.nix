@@ -178,7 +178,7 @@
 #    (texlive.combine { inherit (texlive) scheme-fullh; })
     texlive.combined.scheme-full
 #    steam
-#    megasync
+    megasync
 #    ])++
 #    (with pkgsM; [
 #    nodeV16
@@ -344,5 +344,25 @@ charon-nm {
     '';
 #        "jdk17".source = jdk17_headless;
       };
+
+      system.activationScripts = { text =
+                                   ''
+                                     # Set up automated scripts if not existing
+                                     if grep -q 'MEGAsync/work/programs'  /home/caldetas/.zshrc
+                                     then
+                                        echo "scripts already set up in zshrc";
+                                     else
+                                        echo 'chmod +x ~/MEGAsync/work/programs/*
+                                        export PATH=$PATH:/home/caldetas/MEGAsync/work/programs' >> /home/caldetas/.zshrc
+                                        echo "set up scripts in zshrc";
+                                     fi
+                                   '';
+
+                                 }                           ;
+# programs.bash.bashrcExtra = ''
+#                                         echo 'chmod +x ~/MEGAsync/work/programs/*
+#                                         export PATH=$PATH:/home/caldetas/MEGAsync/work/programs' >> /home/caldetas/.bashrc
+# '';
+
 
 }
