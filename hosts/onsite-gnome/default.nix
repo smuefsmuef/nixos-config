@@ -1,10 +1,10 @@
 #
-#  Specific system configuration settings for libelula
+#  Specific system configuration settings for onsite-gnome
 #
 #  flake.nix
 #   ├─ ./hosts
 #   │   ├─ default.nix
-#   │   └─ ./libelula
+#   │   └─ ./onsite-gnome
 #   │        ├─ default.nix *
 #   │        └─ hardware-configuration.nix
 #   └─ ./modules
@@ -108,15 +108,10 @@
   directx-headers #elden ring
   directx-shader-compiler #elden ring
   ];
-#
-#  #java
-#  programs.java.enable = true;
-#  nixpkgs.config.permittedInsecurePackages = [
-#                "nodejs-16.20.2"
-#              ];
-#
-#  programs.dconf = {
-#  enable = true;
-#  };
+
+environment.interactiveShellInit = ''
+  alias update='cd ~/Desktop/nixos-config && git pull && sudo systemctl unmask  -- -.mount && sudo systemctl daemon-reload && sudo nixos-rebuild switch --flake ~/Desktop/nixos-config#onsite-gnome --show-trace --update-input nixpkgs --commit-lock-file'
+  alias rebuild='cd ~/Desktop/nixos-config && git pull && sudo systemctl unmask  -- -.mount && sudo systemctl daemon-reload && sudo nixos-rebuild switch --flake ~/Desktop/nixos-config#onsite-gnome --show-trace'
+'';
 }
 

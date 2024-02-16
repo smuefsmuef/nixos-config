@@ -81,56 +81,16 @@
 #  bspwm.enable = true;
 #laptop.enable = true;                     # Laptop Modules
 
-
-
-#  # Enable CUPS to print documents.
-#  services.printing.enable = true;
-#
-#  # Enable sound with pipewire. (needed for gnome.enabled)
-#  sound.enable = true;
-#  hardware.pulseaudio.enable = false;
-#  security.rtkit.enable = true;
-#  services.pipewire = {
-#    enable = true;
-#    alsa.enable = true;
-#    alsa.support32Bit = true;
-#    pulse.enable = true;
-#  };
-#
-#  # Allow unfree packages
-#  nixpkgs.config.allowUnfree = true;
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
   environment.systemPackages = with pkgs; [
 
   mesa #elden ring
   directx-headers #elden ring
   directx-shader-compiler #elden ring
   ];
-#  programs.git = {
-##        enable = true;
-#  #          userName = "caldetas";
-#  #          userEmail = "misterhannes@hotmail.com";
-#            includes = [
-#              { # onsite
-#                condition = "gitdir:~/Desktop/db2020-backend";
-#                contents.user = {
-#                  email = "hannes.graf@onsite.ch";
-#                  name = "Hannes Graf";
-#                };
-#              }
-#            ];
-#          };
-#
-#  #java
-#  programs.java.enable = true;
-#  nixpkgs.config.permittedInsecurePackages = [
-#                "nodejs-16.20.2"
-#              ];
-#
-#  programs.dconf = {
-#  enable = true;
-#  };
+
+environment.interactiveShellInit = ''
+  alias update='cd ~/Desktop/nixos-config && git pull && sudo systemctl unmask  -- -.mount && sudo systemctl daemon-reload && sudo nixos-rebuild switch --flake ~/Desktop/nixos-config#libelula --show-trace --update-input nixpkgs --commit-lock-file'
+  alias rebuild='cd ~/Desktop/nixos-config && git pull && sudo systemctl unmask  -- -.mount && sudo systemctl daemon-reload && sudo nixos-rebuild switch --flake ~/Desktop/nixos-config#libelula --show-trace'
+'';
 }
 
