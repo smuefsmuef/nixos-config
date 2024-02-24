@@ -212,6 +212,7 @@ charon-nm {
     nixpkgs.config.permittedInsecurePackages = [
               "nodejs-16.20.2"
               "electron-25.9.0"
+              "freeimage-unstable-2021-11-01"
             ];
   hardware.pulseaudio.enable = false;
   services = {
