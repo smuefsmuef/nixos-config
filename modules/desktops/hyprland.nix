@@ -5,6 +5,9 @@
 
 { config, lib, system, pkgs, hyprland, vars, host, ... }:
 
+let
+  colors = import ../theming/colors.nix;
+in
 with lib;
 with host;
 {
@@ -61,19 +64,20 @@ with host;
         MOZ_ENABLE_WAYLAND = "1";
       };
       systemPackages = with pkgs; [
-        grim            # Grab Images
-        slurp           # Region Selector
-        swappy          # Snapshot Editor
+        grimblast       # Screenshot
         swayidle        # Idle Daemon
         swaylock        # Lock Screen
         wl-clipboard    # Clipboard
         wlr-randr       # Monitor Settings
+        xwayland        # X session
       ];
     };
 
     security.pam.services.swaylock = {
       text = ''
-       auth include login
+               auth sufficient pam_unix.so try_first_pass likeauth nullok
+               auth sufficient pam_fprintd.so
+               auth include login
       '';
     };
 
@@ -112,6 +116,7 @@ with host;
         if hostName == "libelula" || hostName == "oldie" || hostName == "laptop" || hostName == "work" then ''
             touchpad {
               natural_scroll=true
+              scroll_factor=0.2
               middle_button_emulation=true
               tap-to-click=true
             }
@@ -134,7 +139,7 @@ with host;
           monitor=${toString secondMonitor},1920x1200@60,1920x0,1
           monitor=${toString thirdMonitor},1920x1200@60,3840x0,1
         '' else ''
-          monitor=${toString mainMonitor},1920x1080@60,0x0,1
+          monitor=${toString mainMonitor},1920x1080@60,1920x0,1
         '';
       monitors =
         if hostName == "desktop" || hostName == "beelink" then ''
@@ -165,6 +170,7 @@ with host;
                           workspace=${toString mainMonitor},6
                           workspace=${toString mainMonitor},7
                           workspace=${toString mainMonitor},8
+                          bindl=,switch:Lid Switch,exec,$HOME/.config/hypr/script/clamshell.sh
                         '';
       execute =
         if hostName == "desktop" || hostName == "beelink" then ''
@@ -319,28 +325,36 @@ with host;
         bind=,escape,submap,reset
         submap=reset
 
-        bind=,print,exec,${pkgs.grim}/bin/grim -g "$(${pkgs.slurp}/bin/slurp)" - | ${pkgs.swappy}/bin/swappy -f - -o ~/Pictures/$(date +%Hh_%Mm_%Ss_%d_%B_%Y).png && notify-send "Saved to ~/Pictures/$(date +%Hh_%Mm_%Ss_%d_%B_%Y).png"
+        bind=SUPER,Z,layoutmsg,togglesplit
 
+        bind=,print,exec,${pkgs.grimblast}/bin/grimblast --notify --freeze --wait 1 copysave area ~/Pictures/$(date +%Y-%m-%dT%H%M%S).png
         bind=,XF86AudioLowerVolume,exec,${pkgs.pamixer}/bin/pamixer -d 10
         bind=,XF86AudioRaiseVolume,exec,${pkgs.pamixer}/bin/pamixer -i 10
         bind=,XF86AudioMute,exec,${pkgs.pamixer}/bin/pamixer -t
         bind=SUPER_L,c,exec,${pkgs.pamixer}/bin/pamixer --default-source -t
+        bind=CTRL,F10,exec,${pkgs.pamixer}/bin/pamixer -t
         bind=,XF86AudioMicMute,exec,${pkgs.pamixer}/bin/pamixer --default-source -t
         bind=,XF86MonBrightnessDown,exec,${pkgs.light}/bin/light -U 10
         bind=,XF86MonBrightnessUP,exec,${pkgs.light}/bin/light -A 10
 
-        #windowrule=float,^(Rofi)$
-        windowrule=float,title:^(Volume Control)$
-        windowrule=float,title:^(Picture-in-Picture)$
-        windowrule=pin,title:^(Picture-in-Picture)$
-        windowrule=move 75% 75% ,title:^(Picture-in-Picture)$
-        windowrule=size 24% 24% ,title:^(Picture-in-Picture)$
+        windowrulev2=float,title:^(Volume Control)$
+        windowrulev2 = keepaspectratio,class:^(firefox)$,title:^(Picture-in-Picture)$
+        windowrulev2 = noborder,class:^(firefox)$,title:^(Picture-in-Picture)$
+        windowrulev2 = float, title:^(Picture-in-Picture)$
+        windowrulev2 = size 24% 24%, title:(Picture-in-Picture)
+        windowrulev2 = move 75% 75%, title:(Picture-in-Picture)
+        windowrulev2 = pin, title:^(Picture-in-Picture)$
+        windowrulev2 = float, title:^(Firefox)$
+        windowrulev2 = size 24% 24%, title:(Firefox)
+        windowrulev2 = move 74% 74%, title:(Firefox)
+        windowrulev2 = pin, title:^(Firefox)$
 
         exec-once=dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
         exec-once=${pkgs.waybar}/bin/waybar
         exec-once=${pkgs.eww-wayland}/bin/eww daemon
         #exec-once=$HOME/.config/eww/scripts/eww        # When running eww as a bar
         exec-once=${pkgs.blueman}/bin/blueman-applet
+        exec-once=${pkgs.swaynotificationcenter}/bin/swaync
         ${execute}
       '';
     in
@@ -378,14 +392,14 @@ with host;
           text = ''
             #!/bin/sh
 
-            if grep open /proc/acpi/button/lid/LID/state; then
-              ${config.programs.hyprland.package}/bin/hyprctl keyword monitor "eDP-1, 1920x1080, 0x0, 1"
+            if grep open /proc/acpi/button/lid/${lid}/state; then
+              ${config.programs.hyprland.package}/bin/hyprctl keyword monitor "${toString mainMonitor}, 1920x1080, 0x0, 1"
             else
               if [[ `hyprctl monitors | grep "Monitor" | wc -l` != 1 ]]; then
-                ${config.programs.hyprland.package}/bin/hyprctl keyword monitor "eDP-1, disable"
+                ${config.programs.hyprland.package}/bin/hyprctl keyword monitor "${toString mainMonitor}, disable"
               else
                 ${pkgs.swaylock}/bin/swaylock -f
-                ${pkgs.systemd}/bin/systemctl sleep
+                ${pkgs.systemd}/bin/systemctl suspend
               fi
             fi
           '';

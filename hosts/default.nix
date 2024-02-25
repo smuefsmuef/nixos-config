@@ -56,7 +56,7 @@ in
 #      inherit inputs system unstable vars;
       host = {
         hostName = "libelula";
-        mainMonitor = "eDP-1-1";
+        mainMonitor = "eDP-1";
         secondMonitor = "";#"HDMI-1-1";
       };
     };
