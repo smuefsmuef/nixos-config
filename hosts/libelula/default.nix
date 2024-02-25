@@ -89,8 +89,8 @@
   ];
 
 environment.interactiveShellInit = ''
-  alias update='echo 'cd ~/Desktop/nixos-config && git pull && sudo systemctl unmask  -- -.mount && sudo systemctl daemon-reload && sudo nixos-rebuild switch --flake ~/Desktop/nixos-config#libelula --show-trace --update-input nixpkgs --commit-lock-file'; cd ~/Desktop/nixos-config && git pull && sudo systemctl unmask  -- -.mount && sudo systemctl daemon-reload && sudo nixos-rebuild switch --flake ~/Desktop/nixos-config#libelula --show-trace --update-input nixpkgs --commit-lock-file'
-  alias rebuild='echo 'cd ~/Desktop/nixos-config && git pull && sudo systemctl unmask  -- -.mount && sudo systemctl daemon-reload && sudo nixos-rebuild switch --flake ~/Desktop/nixos-config#libelula --show-trace'; cd ~/Desktop/nixos-config && git pull && sudo systemctl unmask  -- -.mount && sudo systemctl daemon-reload && sudo nixos-rebuild switch --flake ~/Desktop/nixos-config#libelula --show-trace'
+  alias update='echo cd ~/Desktop/nixos-config \&\& git pull \&\& sudo systemctl unmask  -- -.mount \&\& sudo systemctl daemon-reload \&\& sudo nixos-rebuild switch --flake ~/Desktop/nixos-config#libelula --show-trace --update-input nixpkgs --commit-lock-file && cd ~/Desktop/nixos-config && git pull && sudo systemctl unmask  -- -.mount && sudo systemctl daemon-reload && sudo nixos-rebuild switch --flake ~/Desktop/nixos-config#libelula --show-trace --update-input nixpkgs --commit-lock-file'
+  alias rebuild='echo cd ~/Desktop/nixos-config \&\& git pull \&\& sudo systemctl unmask  -- -.mount \&\& sudo systemctl daemon-reload \&\& sudo nixos-rebuild switch --flake ~/Desktop/nixos-config#libelula --show-trace && cd ~/Desktop/nixos-config && git pull && sudo systemctl unmask  -- -.mount && sudo systemctl daemon-reload && sudo nixos-rebuild switch --flake ~/Desktop/nixos-config#libelula --show-trace'
 '';
 }
 
