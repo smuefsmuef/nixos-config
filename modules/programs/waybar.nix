@@ -22,6 +22,7 @@ let
       "custom/menu" "hyprland/workspaces"
     ] else if sway.enable == true then [
       "sway/workspaces" "sway/window" "sway/mode"
+      echo
     ] else [];
 
   modules-right =

@@ -51,7 +51,8 @@
     extraGroups = [ "wheel" "video" "audio" "camera" "networkmanager" "lp" "scanner" ];
   };
 
-  time.timeZone = "America/Mexico_City";        # Time zone and Internationalisation
+#  time.timeZone = "America/Mexico_City";        # Time zone and Internationalisation
+  time.timeZone = "Europe/Zurich";        # Time zone and Internationalisation
   i18n = {
     defaultLocale = "en_US.UTF-8";
     extraLocaleSettings = {

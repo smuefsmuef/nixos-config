@@ -48,10 +48,10 @@
     };
     kernelPackages = pkgs.linuxPackages_latest;
   };
-hyprland.enable = true;
+#hyprland.enable = true;
 #  bspwm.enable = true;                          # Window Manager
 #  security.rtkit.enable = true;
-# gnome.enable = true;                          # Window Manager
+gnome.enable = true;                          # Window Manager
 #  laptop.enable = true;                          # Window Manager
 
   # Enable sound with pipewire.
