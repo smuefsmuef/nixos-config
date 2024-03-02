@@ -134,7 +134,7 @@ with host;
           }
         '' else "";
       workspaces =
-        if hostName == "desktop" || hostName == "beelink" then ''
+        if hostName == "desktop" || (hostName == "libelula" && secondMonitor != "") then ''
           monitor=${toString mainMonitor},1920x1080@60,1920x0,1
           monitor=${toString secondMonitor},1920x1080@60,0x0,1
         '' else if hostName == "work" then ''
@@ -145,7 +145,7 @@ with host;
           monitor=${toString mainMonitor},1920x1080@60,0x0,1
         '';
       monitors =
-        if hostName == "desktop" || hostName == "beelink" then ''
+        if hostName == "desktop" || (hostName == "libelula" && secondMonitor != "") then ''
           workspace=${toString mainMonitor},1
           workspace=${toString mainMonitor},2
           workspace=${toString mainMonitor},3
