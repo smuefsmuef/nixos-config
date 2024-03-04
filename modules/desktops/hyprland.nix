@@ -64,14 +64,15 @@ with host;
         MOZ_ENABLE_WAYLAND = "1";
       };
       systemPackages = with pkgs; [
-        pamixer         # Volume Control
-        light           # Brightness Control
         grimblast       # Screenshot
-        xfce.thunar          # File Manager
+        light           # Brightness Control
+        pamixer         # Volume Control
         swayidle        # Idle Daemon
         swaylock-effects# Lock Screen
         wl-clipboard    # Clipboard
         wlr-randr       # Monitor Settings
+        xfce.thunar     # File Manager
+        xorg.xrandr     # Monitor Settings
         xwayland        # X session
       ];
     };
