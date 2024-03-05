@@ -155,7 +155,7 @@ with host;
           workspace=${toString secondMonitor},6
           workspace=${toString secondMonitor},7
           workspace=${toString secondMonitor},8
-        '' else if hostName == "work" then ''
+        '' else if hostName == "work" || hostName == "onsite-gnome" then ''
           workspace=${toString mainMonitor},1
           workspace=${toString mainMonitor},2
           workspace=${toString mainMonitor},3

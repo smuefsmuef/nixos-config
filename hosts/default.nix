@@ -124,9 +124,9 @@ in
       inherit inputs system stable hyprland vars;
       host = {
         hostName = "onsite-gnome";
-        mainMonitor = "eDP-1-1";
-        secondMonitor = "DP-1-2-1-8";
-        thirdMonitor = "DP-1-2-1-1-8";
+        mainMonitor = "eDP-1";
+        secondMonitor = "DP-8";
+        thirdMonitor = "DP-6";
       };
     };
     modules = [
