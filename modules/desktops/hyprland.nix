@@ -126,25 +126,31 @@ with host;
             }
           }
           '' else "";
-      gestures =
-        if hostName == "libelula" || hostName == "oldie" || hostName == "laptop" || hostName == "work" then ''
+      gestures = ''
           gestures {
             workspace_swipe=true
             workspace_swipe_fingers=3
             workspace_swipe_distance=100
           }
-        '' else "";
+          '';
       workspaces =
-        if hostName == "desktop" || (hostName == "libelula" && secondMonitor != "") then ''
-          monitor=${toString mainMonitor},1920x1080@60,1920x0,1
-          monitor=${toString secondMonitor},1920x1080@60,0x0,1
-        '' else if hostName == "work" then ''
-          monitor=${toString mainMonitor},1920x1080@60,0x0,1
-          monitor=${toString secondMonitor},1920x1200@60,1920x0,1
-          monitor=${toString thirdMonitor},1920x1200@60,3840x0,1
-        '' else ''
-          monitor=${toString mainMonitor},1920x1080@60,0x0,1
-        '';
+      if secondMonitor != "" && thirdMonitor != ""
+        then
+              ''
+                monitor=${toString mainMonitor},1920x1080@60,0x0,1
+                monitor=${toString secondMonitor},1920x1200@60,1920x0,1
+                monitor=${toString thirdMonitor},1920x1200@60,3840x0,1
+              ''
+      else if secondMonitor != "" && thirdMonitor == ""
+        then ''
+            monitor=${toString mainMonitor},1920x1080@60,1920x0,1
+            monitor=${toString secondMonitor},1920x1080@60,0x0,1
+        ''
+        else
+        ''
+            monitor=${toString mainMonitor},1920x1080@60,1920x0,1
+        ''
+        ;
       monitors =
         if hostName == "desktop" || (hostName == "libelula" && secondMonitor != "") then ''
           workspace=${toString mainMonitor},1
@@ -157,12 +163,8 @@ with host;
           workspace=${toString secondMonitor},8
         '' else if hostName == "work" || hostName == "onsite-gnome" then ''
           workspace=${toString mainMonitor},1
-          workspace=${toString mainMonitor},2
-          workspace=${toString mainMonitor},3
-          workspace=${toString secondMonitor},4
-          workspace=${toString secondMonitor},5
-          workspace=${toString secondMonitor},6
-          workspace=${toString thirdMonitor},7
+          workspace=${toString secondMonitor},2
+          workspace=${toString thirdMonitor},3
 
           bindl=,switch:Lid Switch,exec,$HOME/.config/hypr/script/clamshell.sh
         '' else ''

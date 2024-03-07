@@ -86,6 +86,8 @@
       ];
     })
   ];
+#  fonts.fontconfig.enable = true;
+  fonts.fontconfig.enable = lib.mkForce true;
 
   environment = {
     variables = {                           # Environment Variables
@@ -167,7 +169,8 @@
       gedit
       gnupg1orig
 
-      jdk17
+#      jdk17
+      jetbrains.jdk
       jre17_minimal
       jetbrains.pycharm-professional
       jetbrains.datagrip
