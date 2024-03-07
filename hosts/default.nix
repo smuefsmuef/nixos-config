@@ -58,6 +58,7 @@ in
         hostName = "libelula";
         mainMonitor = "eDP-1";
         secondMonitor = "HDMI-1";#"HDMI-1-1";
+        thirdMonitor = "";
       };
     };
     modules = [
@@ -82,6 +83,7 @@ in
         hostName = "oldie";
         mainMonitor = "eDP-1-1";
         secondMonitor = "";
+        thirdMonitor = "";
       };
     };
     modules = [
@@ -104,6 +106,7 @@ in
         hostName = "hypr-oldie";
         mainMonitor = "eDP-1-1";
         secondMonitor = "";
+        thirdMonitor = "";
       };
     };
     modules = [
@@ -125,8 +128,8 @@ in
       host = {
         hostName = "onsite-gnome";
         mainMonitor = "eDP-1";
-        secondMonitor = "DP-8";
-        thirdMonitor = "DP-6";
+        secondMonitor = "DP-6";
+        thirdMonitor = "DP-8";
       };
     };
     modules = [
