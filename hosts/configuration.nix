@@ -328,13 +328,8 @@ charon-nm {
 #  ];
 #};
 #};
-  services.openvpn.servers = {
-    suiza = {
-      autoStart = false;
-      # TODO put vpn files somewhere better or move config here.
-      config = "config ~/Downloads/ch-zur.prod.surfshark.comsurfshark_openvpn_udp.ovpn";
-    };
-  };
+
+
   environment.etc = with pkgs; {
     "xdg/gtk-2.0/gtkrc".text = "gtk-error-bell=0";
     "xdg/gtk-3.0/settings.ini".text = ''

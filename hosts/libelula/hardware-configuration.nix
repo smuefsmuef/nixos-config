@@ -72,4 +72,20 @@
   };
   powerManagement.cpuFreqGovernor = lib.mkDefault "performance";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+
+  services.resolved.enable = true;
+  services.openvpn.servers = {
+  soysuper = {
+  config = ''
+    config /home/caldetas/MEGAsync/encrypt/surfshark/surfZurich.ovpn
+
+    script-security 2
+    up ${pkgs.update-systemd-resolved}/libexec/openvpn/update-systemd-resolved
+    up-restart
+    down ${pkgs.update-systemd-resolved}/libexec/openvpn/update-systemd-resolved
+    down-pre
+  '';
+   autoStart = true;
+  };
+  };
 }
