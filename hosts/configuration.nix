@@ -160,7 +160,7 @@
       firefox           # Browser
       authy
       telegram-desktop
-      spotify
+#      spotify
       networkmanager_strongswan
       brave
       discord
@@ -194,7 +194,7 @@
     java.enable = true;
   };
 
-services.spotifyd.enable = true;
+services.spotifyd.enable = true;/*
 networking.networkmanager.enableStrongSwan = true;
 services.strongswan-swanctl.enable = true;
 services.strongswan-swanctl.strongswan.extraConfig = ''
@@ -211,7 +211,7 @@ charon-nm {
              }
            }
 }
-                                                                ''; # Strongswan config to append todo delete not working
+                                                                ''; # Strongswan config to append todo delete not working*/
 
     nixpkgs.config.permittedInsecurePackages = [
               "nodejs-16.20.2"
