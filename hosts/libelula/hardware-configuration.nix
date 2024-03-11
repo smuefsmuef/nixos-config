@@ -45,7 +45,14 @@
   networking = with host; {
     useDHCP = false;                        # Deprecated
     hostName = hostName;
-    networkmanager.enable = true;
+#    nameservers = [ "208.67.222.222" "208.67.220.220"]; #openDNS
+    networkmanager = {
+        enable = true;
+#        extraConfig =''
+##           supersede domain-name-servers 127.0.0.53;
+##            prepend domain-name-servers 208.67.222.222;
+#          '';
+        };
     interfaces = {
       lo = {
         useDHCP = true;                     # For versatility sake, manually edit IP on nm-applet.
@@ -78,14 +85,13 @@
   soysuper = {
   config = ''
     config /home/caldetas/MEGAsync/encrypt/surfshark/surfZurich.ovpn
-
-    script-security 2
     up ${pkgs.update-systemd-resolved}/libexec/openvpn/update-systemd-resolved
     up-restart
     down ${pkgs.update-systemd-resolved}/libexec/openvpn/update-systemd-resolved
     down-pre
   '';
    autoStart = true;
+   updateResolvConf = true;
   };
   };
 }
