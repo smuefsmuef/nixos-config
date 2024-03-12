@@ -160,7 +160,7 @@
       firefox           # Browser
       authy
       telegram-desktop
-#      spotify
+      spotify
       networkmanager_strongswan
       brave
       discord
@@ -279,55 +279,10 @@ charon-nm {
     flatpak = {                                   # Flatpak Packages (see module options)
       extraPackages = [
         "com.github.tchx84.Flatseal"
-#        "com.github.eneshecan.WhatsAppForLinux"
         "io.github.mimbrero.WhatsAppDesktop"
         "org.signal.Signal"
       ];
     };
-
-    nixpkgs.overlays = [                          # Overlay pulls latest version of Discord
-#      (final: prev: {
-#        discord = prev.discord.overrideAttrs (
-#          _: { src = builtins.fetchTarball {
-#            url = "https://discord.com/api/download?platform=linux&format=tar.gz";
-#            sha256 = "1xjk77g9lj5b78c1w3fj42by9b483pkbfb41yzxrg4p36mnd2hkn";
-#          };}
-#        );
-#      })
-#      (final: prev: {
-#        nodejs_16 = prev.nodejs_16.overrideAttrs (
-#          _: { src = builtins.fetchTarball {
-#            url = "https://nodejs.org/dist/v16.20.2/win-x64/node.exe";
-#            sha256 = "874463523f26ed528634580247f403d200ba17a31adf2de98a7b124c6eb33d87";
-#          };}
-#        );
-#      })
-    ];
-#  #enable scripts with shebang !# /bin/bash
-#  system.activationScripts.binbash = {
-#      deps = [ "binsh" ];
-#      text = ''
-#           ln -s /bin/sh /bin/bash
-#      '';
-#    };
-
-#VPN setup https://www.reddit.com/r/NixOS/comments/olou0x/using_vpn_on_nixos/
-#networking.wg-quick.interfaces = {
-#ch-surf = {
-##  autoStart = false;
-#  address = [ "89.37.173.41" ];
-#  listenPort = 51820;
-#  privateKeyFile = "/home/caldetas/Downloads/ch-zur.conf";
-#  peers = [
-#    {
-#      publicKey = "qFuwaE8IyDbNBTNar3xAXRGaBdkTtmLh1uIGMJxTxUs=";
-#      allowedIPs = [ "0.0.0.0/0" ]; # Only send communication through mullvad if it is in the range of the given ips, allows for split tunneling
-##      endpoint = "51820"; # my selected mullvad enpoint
-#       persistentKeepalive = 25; # make sure nat tables are always fresh
-#    }
-#  ];
-#};
-#};
 
 
   environment.etc = with pkgs; {
@@ -357,12 +312,4 @@ system.activationScripts = { text =
                            '';
 
                          };
-# programs.bash = {
-# enable = true;
-# bashrcExtra = ''
-#                                         echo 'chmod +x ~/MEGAsync/work/programs/*
-#                                         export PATH=$PATH:/home/caldetas/MEGAsync/work/programs' >> /home/caldetas/.bashrc
-# '';
-#};
-
 }
