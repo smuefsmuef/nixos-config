@@ -415,7 +415,7 @@ bind=CTRLALT SHIFT,left,movetoworkspace,-1
 #bind=CTRL,right,resizeactive,20 0
 #bind=CTRL,left,resizeactive,-20 0
 #bind=CTRL,up,resizeactive,0 -20
-#bind=CTRL,down,resizeactive,0 20
+#bind=CTRL,down,resizeactive,0 20c
 
 bind=SUPER,M,submap,resize
 submap=resize

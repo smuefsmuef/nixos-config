@@ -194,7 +194,7 @@
     java.enable = true;
   };
 
-services.spotifyd.enable = true;/*
+/*services.spotifyd.enable = true;
 networking.networkmanager.enableStrongSwan = true;
 services.strongswan-swanctl.enable = true;
 services.strongswan-swanctl.strongswan.extraConfig = ''
