@@ -127,6 +127,7 @@
       google-chrome     # Browser
       libreoffice       # OpenOffice
       remmina           # XRDP & VNC Client
+      gnome.gnome-remote-desktop
 
       # File Management
       gnome.file-roller # Archive Manager
@@ -161,7 +162,7 @@
       authy
       telegram-desktop
       spotify
-#      networkmanager_strongswan
+      networkmanager_strongswan
       brave
       discord
       stremio

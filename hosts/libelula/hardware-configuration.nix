@@ -73,8 +73,8 @@
 #    nameservers = [ "192.168.0.4" ];
     firewall = {
       enable = false;
-      #allowedUDPPorts = [ 53 67 ];
-      #allowedTCPPorts = [ 53 80 443 9443 ];
+      allowedUDPPorts = [ 500 4500 3389 5900];
+      allowedTCPPorts = [ 500 4500 3389 5900];
     };
   };
   powerManagement.cpuFreqGovernor = lib.mkDefault "performance";
