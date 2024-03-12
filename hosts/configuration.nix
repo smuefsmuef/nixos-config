@@ -286,6 +286,34 @@ charon-nm {
 
 
   environment.etc = with pkgs; {
+    # Creates /etc/strongswan.conf necessary for vpn
+    "strongswan.conf".text = ''
+                plugins {
+                     eap-peap {
+                       load = no
+                     }
+                     eap-md5 {
+                       load = no
+                     }
+                     eap-gtc {
+                       load = no
+                     }
+                   }
+      '';
+  /*  # Creates /etc/strongswan.conf necessary for vpn NOT ALLOWED..
+    "${pkgs.networkmanager_strongswan}/etc/".text = ''
+                plugins {
+                     eap-peap {
+                       load = no
+                     }
+                     eap-md5 {
+                       load = no
+                     }
+                     eap-gtc {
+                       load = no
+                     }
+                   }
+      '';*/
     "xdg/gtk-2.0/gtkrc".text = "gtk-error-bell=0";
     "xdg/gtk-3.0/settings.ini".text = ''
       gtk-prefer-dark-theme=true
