@@ -40,9 +40,11 @@ with lib;
 
        #XRDP settings for remmina
         xrdp.enable = true;
-        xrdp.defaultWindowManager =  "gnome-remote-desktop";
+#        xrdp.defaultWindowManager =  "gnome-remote-desktop";
+        xrdp.defaultWindowManager =  "/run/current-system/sw/bin/gnome-session";
         xrdp.openFirewall = true;
         gnome.gnome-remote-desktop.enable = true;
+        tailscale.enable = true;
         
       udev.packages = with pkgs; [
         gnome.gnome-settings-daemon

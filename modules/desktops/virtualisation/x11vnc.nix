@@ -7,7 +7,14 @@
 {
   config = lib.mkIf (config.services.xserver.enable) {#
     networking.firewall.allowedTCPPorts = [
-    3899
+    80
+    3389
+    4500
+    5000
+    5900 ];   # Open Firewall
+    networking.firewall.allowedUDPPorts = [
+    80
+    3389
     4500
     5000
     5900 ];   # Open Firewall

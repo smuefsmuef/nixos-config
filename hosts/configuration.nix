@@ -130,7 +130,6 @@
 
       # File Management
       gnome.file-roller # Archive Manager
-      gnome.gnome-remote-desktop # Remote Desktop
       okular            # PDF Viewer
       pcmanfm           # File Browser
       p7zip             # Zip Encryption
@@ -189,30 +188,9 @@
   };
 
   programs = {
-#    dconf.enable = true;
-#    openvpn3.enable = true;
     gamemode.enable = true;
     java.enable = true;
   };
-
-/*services.spotifyd.enable = true;
-networking.networkmanager.enableStrongSwan = true;
-services.strongswan-swanctl.enable = true;
-services.strongswan-swanctl.strongswan.extraConfig = ''
-charon-nm {
-           plugins {
-             eap-peap {
-               load = no
-             }
-             eap-md5 {
-               load = no
-             }
-             eap-gtc {
-               load = no
-             }
-           }
-}
-                                                                ''; # Strongswan config to append todo delete not working*/
 
     nixpkgs.config.permittedInsecurePackages = [
               "nodejs-16.20.2"
@@ -289,17 +267,32 @@ charon-nm {
   environment.etc = with pkgs; {
     # Creates /etc/strongswan.conf necessary for vpn
     "strongswan.conf".text = ''
-                plugins {
-                     eap-peap {
-                       load = no
-                     }
-                     eap-md5 {
-                       load = no
-                     }
-                     eap-gtc {
-                       load = no
-                     }
-                   }
+    # strongswan.conf - strongSwan configuration file
+    #
+    # Refer to the strongswan.conf(5) manpage for details
+    #
+    # Configuration changes should be made in the included files
+
+    charon {
+    	load_modular = yes
+    	plugins {
+    		include strongswan.d/charon/*.conf
+    	}
+    }
+
+    include ${pkgs.networkmanager_strongswan}/etc/strongswan.d/*.conf
+
+    plugins {
+         eap-peap {
+           load = no
+         }
+         eap-md5 {
+           load = no
+         }
+         eap-gtc {
+           load = no
+         }
+       }
       '';
   /*  # Creates /etc/strongswan.conf necessary for vpn NOT ALLOWED..
     "${pkgs.networkmanager_strongswan}/etc/".text = ''
