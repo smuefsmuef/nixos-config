@@ -38,7 +38,12 @@ with lib;
 
         displayManager.gdm.enable = true;               # Display Manager
         desktopManager.gnome.enable = true;             # Desktop Environment
+
       };
+       #XRDP settings for remmina
+        xrdp.enable = true;
+        xrdp.defaultWindowManager = "startplasma-x11";
+        xrdp.openFirewall = true;
       udev.packages = with pkgs; [
         gnome.gnome-settings-daemon
       ];
