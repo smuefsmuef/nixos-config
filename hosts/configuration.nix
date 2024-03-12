@@ -126,7 +126,7 @@
       appimage-run      # Runs AppImages on NixOS
       google-chrome     # Browser
       libreoffice       # OpenOffice
-      remmina           # XRDP & VNC Client
+      (remmina.override { freerdp = (freerdp.override { openssl = pkgs.openssl_1_1; }); })           # XRDP & VNC Client
 
       # File Management
       gnome.file-roller # Archive Manager
