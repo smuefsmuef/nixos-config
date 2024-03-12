@@ -42,7 +42,7 @@ with lib;
       };
        #XRDP settings for remmina
         xrdp.enable = true;
-        xrdp.defaultWindowManager = "startplasma-x11";
+        xrdp.defaultWindowManager = "gnome-remote-desktop";
         xrdp.openFirewall = true;
       udev.packages = with pkgs; [
         gnome.gnome-settings-daemon
