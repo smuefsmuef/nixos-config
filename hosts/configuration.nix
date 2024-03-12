@@ -161,7 +161,7 @@
       authy
       telegram-desktop
       spotify
-      networkmanager_strongswan
+#      networkmanager_strongswan
       brave
       discord
       stremio

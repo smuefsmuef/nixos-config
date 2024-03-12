@@ -66,6 +66,7 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
+  networking.networkmanager.enableStrongSwan = true;
 
   # Enable the X11 windowing system. (gnome?)
 #  services.xserver.enable = true;
