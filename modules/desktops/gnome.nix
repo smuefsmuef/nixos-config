@@ -31,19 +31,19 @@ with lib;
 
         xkb.layout = "ch";
         xkb.variant = "de";
-#        xkbOptions = "eurosign:e";
         libinput.enable = true;
-#        modules = [ pkgs.xf86_input_wacom ];
-#        wacom.enable = true;
 
         displayManager.gdm.enable = true;               # Display Manager
         desktopManager.gnome.enable = true;             # Desktop Environment
 
       };
+
        #XRDP settings for remmina
         xrdp.enable = true;
-        xrdp.defaultWindowManager = "gnome-remote-desktop";
+        xrdp.defaultWindowManager =  "gnome-remote-desktop";
         xrdp.openFirewall = true;
+        gnome.gnome-remote-desktop.enable = true;
+        
       udev.packages = with pkgs; [
         gnome.gnome-settings-daemon
       ];
