@@ -11,7 +11,7 @@ pkgs.mkShell {
       ps.pip
       ps.tkinter
     ]))
-    python3Packages.python-lsp-server
+    python3Packages.python-lsp-server # Language Server Protocol for Python deprecated
     poetry # Instead of pip, you can use $ poetry init -n --name <name> and $ poetry add request <package> to install python packages
   ];
   shellHook = ''

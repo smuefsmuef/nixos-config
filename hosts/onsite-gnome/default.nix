@@ -111,7 +111,7 @@ gnome.enable = true;
   ];
 
 environment.interactiveShellInit = ''
-  alias update='cd ~/Desktop/nixos-config && git pull && sudo systemctl unmask  -- -.mount && sudo systemctl daemon-reload && sudo nixos-rebuild switch --flake ~/Desktop/nixos-config#onsite-gnome --show-trace --update-input nixpkgs --commit-lock-file'
+  alias update='cd ~/Desktop/nixos-config && git pull && sudo systemctl unmask  -- -.mount && sudo systemctl daemon-reload && sudo nixos-rebuild switch --flake ~/Desktop/nixos-config#onsite-gnome --show-trace --update-input nixpkgs'
   alias rebuild='cd ~/Desktop/nixos-config && git pull && sudo systemctl unmask  -- -.mount && sudo systemctl daemon-reload && sudo nixos-rebuild switch --flake ~/Desktop/nixos-config#onsite-gnome --show-trace'
 '';
 }

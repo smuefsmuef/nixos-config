@@ -9,7 +9,7 @@
 #           └─ default.nix 
 #
 
-{ lib, inputs, nixpkgs, nixpkgs-stable, home-manager, nur, nixvim, doom-emacs, hyprland, plasma-manager, vars, ... }:
+{ lib, inputs, nixpkgs, nixpkgs-stable, home-manager, nur, hyprland, plasma-manager, vars, ... }:
 
 let
   system = "x86_64-linux";                                  # System Architecture
@@ -38,7 +38,6 @@ in
       };
     };
     modules = [
-      nixvim.nixosModules.nixvim
       ./vm
       ./configuration.nix
 
@@ -70,7 +69,6 @@ in
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
         home-manager.users.${vars.user}.imports = [
-          nixvim.homeManagerModules.nixvim
         ];
       }
     ];
@@ -92,9 +90,6 @@ in
       home-manager.nixosModules.home-manager {
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
-        home-manager.users.${vars.user}.imports = [
-          nixvim.homeManagerModules.nixvim
-        ];
       }
     ];
   };
@@ -115,9 +110,6 @@ in
       home-manager.nixosModules.home-manager {
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
-        home-manager.users.${vars.user}.imports = [
-          nixvim.homeManagerModules.nixvim
-        ];
       }
     ];
   };
@@ -138,9 +130,6 @@ in
       home-manager.nixosModules.home-manager {
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
-        home-manager.users.${vars.user}.imports = [
-          nixvim.homeManagerModules.nixvim
-        ];
       }
     ];
   };

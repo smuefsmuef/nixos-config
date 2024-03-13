@@ -422,7 +422,6 @@
     zig
     numbat
 
-    python311Packages.python-lsp-server
     nodePackages_latest.nodemon
     nodePackages_latest.typescript
     nodePackages_latest.typescript-language-server
@@ -436,7 +435,7 @@
 
     (rust-bin.fromRustupToolchainFile ./rust-toolchain.toml)
     evcxr #rust repl
-    taplo #toml formatter & lsp
+#    taplo #toml formatter & lsp
     cargo-deny
     cargo-audit
     cargo-update

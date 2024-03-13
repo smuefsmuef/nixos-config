@@ -12,7 +12,7 @@
   inputs =                                                                  # References Used by Flake
     {
       nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";                  # Unstable Nix Packages (Default)
-      nixpkgs-stable.url = "github:nixos/nixpkgs/release-23.05";            # Stable Nix Packages
+      nixpkgs-stable.url = "github:nixos/nixpkgs/release-23.11";            # Stable Nix Packages
       rust-overlay.url = "github:oxalica/rust-overlay";
 
       home-manager = {                                                      # User Environment Manager
@@ -29,22 +29,6 @@
         inputs.nixpkgs.follows = "nixpkgs";
       };
 
-      nixvim = {                                                            # Neovim
-        url = "github:nix-community/nixvim";
-        inputs.nixpkgs.follows = "nixpkgs";
-      };
-
-      emacs-overlay = {                                                     # Emacs Overlays
-        url = "github:nix-community/emacs-overlay";
-        flake = false;
-      };
-
-      doom-emacs = {                                                        # Nix-Community Doom Emacs
-        url = "github:nix-community/nix-doom-emacs";
-        inputs.nixpkgs.follows = "nixpkgs";
-        inputs.emacs-overlay.follows = "emacs-overlay";
-      };
-
       hyprland = {                                                          # Official Hyprland Flake
         url = "github:hyprwm/Hyprland";                                     # Requires "hyprland.nixosModules.default" to be added the host modules
         inputs.nixpkgs.follows = "nixpkgs";
@@ -57,7 +41,7 @@
       };
     };
 
-  outputs = inputs @ { self, nixpkgs, nixpkgs-stable, home-manager, nur, nixgl, nixvim, doom-emacs, hyprland, plasma-manager, ... }:   # Function telling flake which inputs to use
+  outputs = inputs @ { self, nixpkgs, nixpkgs-stable, home-manager, nur, nixgl, hyprland, plasma-manager, ... }:   # Function telling flake which inputs to use
     let
       vars = {                                                              # Variables Used In Flake
         user = "caldetas";
@@ -70,7 +54,7 @@
       nixosConfigurations = (                                               # NixOS Configurations
         import ./hosts {
           inherit (nixpkgs) lib;
-          inherit inputs nixpkgs nixpkgs-stable home-manager nur nixvim doom-emacs hyprland plasma-manager vars;   # Inherit inputs
+          inherit inputs nixpkgs nixpkgs-stable home-manager nur hyprland plasma-manager vars;   # Inherit inputs
         }
       );
 
