@@ -52,9 +52,6 @@ with lib;
 
 
     environment = {
-#      variables = {
-#        DISPLAY = ":0"; Remmina
-#      };
       systemPackages = with pkgs; [                     # System-Wide Packages
         gnome.adwaita-icon-theme
         gnome.dconf-editor
