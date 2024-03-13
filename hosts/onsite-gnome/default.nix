@@ -111,8 +111,9 @@ gnome.enable = true;
   ];
 
 environment.interactiveShellInit = ''
-  alias update='cd ~/Desktop/nixos-config && git pull && sudo systemctl unmask  -- -.mount && sudo systemctl daemon-reload && sudo nixos-rebuild switch --flake ~/Desktop/nixos-config#onsite-gnome --show-trace --update-input nixpkgs'
-  alias rebuild='cd ~/Desktop/nixos-config && git pull && sudo systemctl unmask  -- -.mount && sudo systemctl daemon-reload && sudo nixos-rebuild switch --flake ~/Desktop/nixos-config#onsite-gnome --show-trace'
+  alias update='echo cd ~/Desktop/nixos-config \&\& git pull \&\& sudo systemctl unmask  -- -.mount \&\& sudo systemctl daemon-reload \&\& sudo nixos-rebuild switch --flake ~/Desktop/nixos-config#libelula --show-trace --update-input nixpkgs --commit-lock-file && cd ~/Desktop/nixos-config && git pull && sudo systemctl unmask  -- -.mount && sudo systemctl daemon-reload && sudo nixos-rebuild switch --flake ~/Desktop/nixos-config#${host.hostName} --show-trace --update-input nixpkgs'
+  alias rebuild='echo cd ~/Desktop/nixos-config \&\& git pull \&\& sudo systemctl unmask  -- -.mount \&\& sudo systemctl daemon-reload \&\& sudo nixos-rebuild switch --flake ~/Desktop/nixos-config#libelula --show-trace && cd ~/Desktop/nixos-config && git pull && sudo systemctl unmask  -- -.mount && sudo systemctl daemon-reload && sudo nixos-rebuild switch --flake ~/Desktop/nixos-config#${host.hostName} --show-trace'
+  alias remminaResetRDP='rm -fr ~/.config/remmina && rm -f ~/.config/freerdp/known_hosts2'
 '';
 }
 

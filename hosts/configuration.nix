@@ -126,8 +126,7 @@
       appimage-run      # Runs AppImages on NixOS
       google-chrome     # Browser
       libreoffice       # OpenOffice
-      remmina           # XRDP & VNC Client
-      gnome.gnome-remote-desktop
+
 
       # File Management
       gnome.file-roller # Archive Manager
@@ -169,6 +168,8 @@
       gimp
       gedit
       gnupg1orig
+      gnome.gnome-remote-desktop
+      remmina
 
 #      jdk17
       jetbrains.jdk
@@ -318,7 +319,6 @@
       gtk-prefer-dark-theme=true
       gtk-error-bell=false
     '';
-#        "jdk17".source = jdk17_headless;
       };
 
 system.activationScripts = { text =

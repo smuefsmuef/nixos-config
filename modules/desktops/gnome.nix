@@ -44,8 +44,7 @@ with lib;
         xrdp.defaultWindowManager =  "/run/current-system/sw/bin/gnome-session";
         xrdp.openFirewall = true;
         gnome.gnome-remote-desktop.enable = true;
-        tailscale.enable = true;
-        
+
       udev.packages = with pkgs; [
         gnome.gnome-settings-daemon
       ];
@@ -53,6 +52,9 @@ with lib;
 
 
     environment = {
+#      variables = {
+#        DISPLAY = ":0"; Remmina
+#      };
       systemPackages = with pkgs; [                     # System-Wide Packages
         gnome.adwaita-icon-theme
         gnome.dconf-editor
