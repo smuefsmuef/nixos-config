@@ -34,7 +34,6 @@
 #
 #     nodeV16 = pkgsM.nodejs_16;
 #in
-
 {
   imports = (
               import ../modules/desktops ++
@@ -88,6 +87,8 @@
   ];
 #  fonts.fontconfig.enable = true;
   fonts.fontconfig.enable = lib.mkForce true;
+
+  networking.nameservers =  [ "1.1.1.1" "9.9.9.9"]; # privacy respecting nameserver for dns queries (cloudflare & quad9)
 
   environment = {
     variables = {                           # Environment Variables
@@ -161,7 +162,6 @@
       authy
       telegram-desktop
       spotify
-      networkmanager_strongswan
       brave
       discord
       stremio
@@ -281,8 +281,8 @@
     		include strongswan.d/charon/*.conf
     	}
     }
-
-    include ${pkgs.networkmanager_strongswan}/etc/strongswan.d/*.conf
+    #strongswanNM = "${pkgs.strongswanNM}";
+    include strongswan.d/*.conf
 
     plugins {
          eap-peap {
