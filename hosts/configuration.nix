@@ -265,7 +265,7 @@
       ];
     };
 
-
+  services.strongswan.enable = true;
   environment.etc = with pkgs; {
     # Creates /etc/strongswan.conf necessary for vpn
     "strongswan.conf".text = ''
