@@ -34,6 +34,17 @@
 #
 #     nodeV16 = pkgsM.nodejs_16;
 #in
+#let
+#strongswan = pkgs.strongswan.overrideAttrs (oldAttrs: {
+#    patches = oldAttrs.patches ++ [
+#      (pkgs.fetchpatch {
+#        name = "fix-strongswan.patch";
+#        url = "https://github.com/caldetas/nixpkgs/commit/e2573b8534b39b627d318e685268acf6b20ffce4.patch";
+#        hash = "sha256-rClVIqSN8ZXKlakyyRK+p8uwiy3w9EvxDqwQlJyPX0c=";
+#     })
+#    ];
+#  });
+#in
 {
   imports = (
               import ../modules/desktops ++
@@ -142,6 +153,7 @@
 
     htop
     gparted
+    strongswan
     gnome.gnome-tweaks
     yaru-theme
     git
@@ -267,7 +279,7 @@
 
   services.strongswan.enable = true;
   environment.etc = with pkgs; {
-    # Creates /etc/strongswan.conf necessary for vpn
+   /* # Creates /etc/strongswan.conf necessary for vpn
     "strongswan.conf".text = ''
     # strongswan.conf - strongSwan configuration file
     #
@@ -295,7 +307,7 @@
            load = no
          }
        }
-      '';
+      '';*/
   /*  # Creates /etc/strongswan.conf necessary for vpn NOT ALLOWED..
     "${pkgs.networkmanager_strongswan}/etc/".text = ''
                 plugins {
@@ -320,6 +332,14 @@
       gtk-error-bell=false
     '';
       };
+
+xdg.mime.defaultApplications = {
+    "text/html" = "brave-browser.desktop";
+    "x-scheme-handler/http" = "brave-browser.desktop";
+    "x-scheme-handler/https" = "brave-browser.desktop";
+    "x-scheme-handler/about" = "brave-browser.desktop";
+    "x-scheme-handler/unknown" = "brave-browser.desktop";
+  };
 
 system.activationScripts = { text =
                            ''
