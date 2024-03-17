@@ -127,6 +127,7 @@
 
       # Video/Audio
       alsa-utils        # Audio Control
+      audacity          # Audio Editor
       feh               # Image Viewer
       mpv               # Media Player
       pavucontrol       # Audio Control
@@ -339,6 +340,7 @@ xdg.mime.defaultApplications = {
     "x-scheme-handler/https" = "brave-browser.desktop";
     "x-scheme-handler/about" = "brave-browser.desktop";
     "x-scheme-handler/unknown" = "brave-browser.desktop";
+    "video/mp4" = "vlc.desktop";
   };
 
 system.activationScripts = { text =

@@ -1,10 +1,10 @@
 #
-#  Specific system configuration settings for libelula
+#  Specific system configuration settings for hypr-oldie
 #
 #  flake.nix
 #   ├─ ./hosts
 #   │   ├─ default.nix
-#   │   └─ ./libelula
+#   │   └─ ./hypr-oldie
 #   │        ├─ default.nix *
 #   │        └─ hardware-configuration.nix
 #   └─ ./modules
@@ -129,5 +129,9 @@
     ];
   };
 
+environment.interactiveShellInit = ''
+  alias update='echo cd ~/Desktop/nixos-config \&\& git pull \&\& sudo systemctl unmask  -- -.mount \&\& sudo systemctl daemon-reload \&\& sudo nixos-rebuild switch --flake ~/Desktop/nixos-config#hypr-oldie --show-trace --update-input nixpkgs && cd ~/Desktop/nixos-config && git pull && sudo systemctl unmask  -- -.mount && sudo systemctl daemon-reload && sudo nixos-rebuild switch --flake ~/Desktop/nixos-config#${host.hostName} --show-trace --update-input nixpkgs'
+  alias rebuild='echo cd ~/Desktop/nixos-config \&\& git pull \&\& sudo systemctl unmask  -- -.mount \&\& sudo systemctl daemon-reload \&\& sudo nixos-rebuild switch --flake ~/Desktop/nixos-config#hypr-oldie --show-trace && cd ~/Desktop/nixos-config && git pull && sudo systemctl unmask  -- -.mount && sudo systemctl daemon-reload && sudo nixos-rebuild switch --flake ~/Desktop/nixos-config#${host.hostName} --show-trace'
+'';
   }
 
