@@ -26,7 +26,7 @@
 #        name = "Yaru-Dark";
 #        name = "Catppuccin-Macchiato-Compact-Blue-Dark";
         name = "Orchis-Dark-Compact";
-#        package = pkgs.orchis-theme;
+        package = pkgs.orchis-theme;
 #        package = pkgs.dracula-theme;
 #        package = pkgs.catppuccin-gtk.override {
 #          accents = ["blue"];
@@ -48,9 +48,6 @@
         name = "Ubuntu";
       };
     };
-    qt.enable = true;
-    qt.platformTheme = "gtk";
-    qt.style.name = "adwaita-dark";
-    qt.style.package = pkgs.adwaita-qt;
   };
+  programs.dconf.enable = true;
 }

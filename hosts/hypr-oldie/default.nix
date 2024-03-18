@@ -44,10 +44,10 @@
     boot.loader.grub.useOSProber = true;
     boot.plymouth = {
     enable = true;
-     logo = pkgs.fetchurl {
-             url = "https://pluspng.com/img-png/black-lagoon-png-revy-1-png-1594-1080-anime-boysdjblack-lagoon-1594.png";
-             sha256 = "e0CZmXTVIJv6BDXXYksTsncl9t/QGkYC/BavNy4fcnQ=";
-           };
+    # logo = pkgs.fetchurl {
+    #         url = "https://pluspng.com/img-png/black-lagoon-png-revy-1-png-1594-1080-anime-boysdjblack-lagoon-1594.png";
+    #         sha256 = "e0CZmXTVIJv6BDXXYksTsncl9t/QGkYC/BavNy4fcnQ=";
+    #       };
     font = "${pkgs.jetbrains-mono}/share/fonts/truetype/JetBrainsMono-Regular.ttf";
     themePackages = [ pkgs.catppuccin-plymouth ];
     theme = "catppuccin-macchiato";
