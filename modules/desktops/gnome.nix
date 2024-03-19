@@ -52,15 +52,10 @@ with lib;
 
 
     environment = {
-      systemPackages = with pkgs; [                     # System-Wide Packages
-        gnome.adwaita-icon-theme
-        gnome.dconf-editor
-        gnome.gnome-tweaks
-
-        # orchid theme dependencies
-        gnome.gnome-themes-extra
-        gtk-engine-murrine
-        sassc
+      systemPackages = with pkgs.gnome; [                     # System-Wide Packages
+        adwaita-icon-theme
+        dconf-editor
+        gnome-tweaks
       ];
       gnome.excludePackages = (with pkgs; [             # Ignored Packages
         gnome-tour
@@ -82,25 +77,12 @@ with lib;
       dconf.settings = {
         "org/gnome/shell" = {
           favorite-apps = [
-#            "org.gnome.settings.desktop"
             "brave-browser.desktop"
             "kitty.desktop"
-#            "firefox.desktop"
-#            "emacs.desktop"
             "org-gnome-nautilus.desktop"
-#            "com.obsproject.studio.desktop"
-#            "plexmediaplayer.desktop"
-#            "smartcode-stremio.desktop"
-#            "discord.desktop"
             "steam.desktop"
             "idea-ultimate.desktop"
             "vlc.desktop"
-#            "retroarch.desktop"
-#            "com.parsecgaming.parsec.desktop"
-#            "org.remmina.remmina.desktop"
-#            "virt-manager.desktop"
-            # "blueman-manager.desktop"
-            # "pavucontrol.desktop"
           ];
           disable-user-extensions = false;
           enabled-extensions = [
@@ -126,11 +108,7 @@ with lib;
           color-scheme = "prefer-dark";
           enable-hot-corners = false;
           clock-show-weekday = true;
-#           gtk-theme = "yaru-dark";
         };
-        # "org/gnome/desktop/session" = {               # Not Working
-        #   idle-delay = "uint32 900";
-        # };
         "org/gnome/desktop/privacy" = {
           report-technical-problems = "false";
         };
@@ -147,22 +125,10 @@ with lib;
         "org/gnome/desktop/wm/keybindings" = {
            maximize = ["<super>up"];                   # Floating
            unmaximize = ["<super>down"];
-#          maximize = ["@as []"];                        # Tiling
-#          unmaximize = ["@as []"];
           switch-to-workspace-left = ["<ctrl><alt>left"];
           switch-to-workspace-right = ["<ctrl><alt>right"];
-#          switch-to-workspace-1 = ["<alt>1"];
-#          switch-to-workspace-2 = ["<alt>2"];
-#          switch-to-workspace-3 = ["<alt>3"];
-#          switch-to-workspace-4 = ["<alt>4"];
-#          switch-to-workspace-5 = ["<alt>5"];
           move-to-workspace-left = ["<ctrl><shift><alt>left"];
           move-to-workspace-right = ["<ctrl><shift><alt>right"];
-#          move-to-workspace-1 = ["<shift><alt>1"];
-#          move-to-workspace-2 = ["<shift><alt>2"];
-#          move-to-workspace-3 = ["<shift><alt>3"];
-#          move-to-workspace-4 = ["<shift><alt>4"];
-#          move-to-workspace-5 = ["<shift><alt>5"];
           move-to-monitor-left = ["<super><alt>left"];
           move-to-monitor-right = ["<super><alt>right"];
           close = ["<super>q" "<alt>f4"];
@@ -177,8 +143,6 @@ with lib;
         "org/gnome/mutter/keybindings" = {
           toggle-tiled-left = ["<super>left"];         # Floating
           toggle-tiled-right = ["<super>right"];
-#          toggle-tiled-left = ["@as []"];               # Tiling
-#          toggle-tiled-right = ["@as []"];
         };
 
         "org/gnome/settings-daemon/plugins/power" = {
@@ -262,7 +226,7 @@ with lib;
         };
         "org/gnome/shell/extensions/forge/keybindings" = { # Set Manually
           focus-border-toggle = true;
-#          float-always-on-top-enabled = true;
+          float-always-on-top-enabled = false;
           window-focus-up = ["<super><shift>up"];
           window-focus-down = ["<super><shift>down"];
           window-focus-left = ["<super><shift>left"];
@@ -291,9 +255,10 @@ with lib;
 
       home.packages = with pkgs.gnomeExtensions; [
         tray-icons-reloaded
+        gnome-themes-extra
         blur-my-shell
         removable-drive-menu
-#        dash-to-panel
+        dash-to-panel
         battery-indicator-upower
         just-perfection
         caffeine
@@ -305,7 +270,7 @@ with lib;
         pop-shell
         forge
         # fullscreen-avoider
-        # dash-to-dock
+         dash-to-dock
       ];
     };
   };

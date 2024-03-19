@@ -7,6 +7,8 @@
 {
   home-manager.users.${vars.user} = {
     home = {
+      file.".face".source = ./face;
+      file.".config/.face".source = ./face;
       file.".config/wall".source = ./wall;
       file.".config/wall.mp4".source = ./wall.mp4;
       pointerCursor = {                     # System-Wide Cursor
@@ -23,10 +25,11 @@
       enable = true;
       theme = {
 #        name = "Dracula";
-#        name = "Yaru-Dark";
+        name = "Yaru-Dark";
 #        name = "Catppuccin-Macchiato-Compact-Blue-Dark";
-        name = "Orchis-Dark-Compact";
-        package = pkgs.orchis-theme;
+#        name = "Orchis-Dark-Compact";
+        package = pkgs.yaru-theme;
+#        package = pkgs.orchis-theme;
 #        package = pkgs.dracula-theme;
 #        package = pkgs.catppuccin-gtk.override {
 #          accents = ["blue"];
