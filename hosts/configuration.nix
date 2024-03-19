@@ -151,6 +151,7 @@
     docker-compose
     openvpn
     qbittorrent
+    (jetbrains.plugins.addPlugins jetbrains.idea-ultimate [ "github-copilot" ])
 
       # - ./<host>/default.nix
       # - ../modules
@@ -180,7 +181,6 @@
       catppuccin-papirus-folders
       catppuccin-gtk
       steam
-    (jetbrains.plugins.addPlugins jetbrains.idea-ultimate [ "github-copilot" ])
 
     #CV creation with Latex
 #    texlive.combined.scheme-full
