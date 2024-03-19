@@ -25,11 +25,11 @@
       enable = true;
       theme = {
 #        name = "Dracula";
-        name = "Yaru-Dark";
+#        name = "Yaru-Dark";
 #        name = "Catppuccin-Macchiato-Compact-Blue-Dark";
-#        name = "Orchis-Dark-Compact";
-        package = pkgs.yaru-theme;
-#        package = pkgs.orchis-theme;
+        name = "Orchis-Dark-Compact";
+        package = pkgs.orchis-theme;
+#        package = pkgs.yaru-theme;
 #        package = pkgs.dracula-theme;
 #        package = pkgs.catppuccin-gtk.override {
 #          accents = ["blue"];

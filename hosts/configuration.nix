@@ -323,7 +323,7 @@
                      }
                    }
       '';*/
-    "xdg/gtk-2.0/gtkrc".text = "gtk-error-bell=0";
+/*    "xdg/gtk-2.0/gtkrc".text = "gtk-error-bell=0";
     "xdg/gtk-3.0/settings.ini".text = ''
       gtk-prefer-dark-theme=true
       gtk-error-bell=false
@@ -331,7 +331,7 @@
     "xdg/gtk-4.0/settings.ini".text = ''
       gtk-prefer-dark-theme=true
       gtk-error-bell=false
-    '';
+    '';*/
       };
 
 xdg.mime.defaultApplications = {

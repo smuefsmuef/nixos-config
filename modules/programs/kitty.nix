@@ -15,7 +15,7 @@
           enable_audio_bell = "no";
           resize_debounce_time = "0";
 #          background = "#${colors.scheme.default.hex.bg}";
-          font_family = "FiraCode Nerd Font";
+          font_family = "Ubuntu";
         };
       };
     };

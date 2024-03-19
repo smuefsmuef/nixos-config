@@ -55,6 +55,7 @@ with lib;
       systemPackages = with pkgs.gnome; [                     # System-Wide Packages
         adwaita-icon-theme
         dconf-editor
+        gnome-themes-extra
         gnome-tweaks
       ];
       gnome.excludePackages = (with pkgs; [             # Ignored Packages
@@ -255,10 +256,9 @@ with lib;
 
       home.packages = with pkgs.gnomeExtensions; [
         tray-icons-reloaded
-        gnome-themes-extra
         blur-my-shell
         removable-drive-menu
-        dash-to-panel
+#        dash-to-panel
         battery-indicator-upower
         just-perfection
         caffeine
@@ -270,7 +270,7 @@ with lib;
         pop-shell
         forge
         # fullscreen-avoider
-         dash-to-dock
+        # dash-to-dock
       ];
     };
   };
