@@ -56,6 +56,11 @@ with lib;
         gnome.adwaita-icon-theme
         gnome.dconf-editor
         gnome.gnome-tweaks
+
+        # orchid theme dependencies
+        gnome.gnome-themes-extra
+        gtk-engine-murrine
+        sassc
       ];
       gnome.excludePackages = (with pkgs; [             # Ignored Packages
         gnome-tour
@@ -288,7 +293,7 @@ with lib;
         tray-icons-reloaded
         blur-my-shell
         removable-drive-menu
-        dash-to-panel
+#        dash-to-panel
         battery-indicator-upower
         just-perfection
         caffeine

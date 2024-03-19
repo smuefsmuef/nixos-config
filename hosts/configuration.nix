@@ -34,7 +34,17 @@
 #
 #     nodeV16 = pkgsM.nodejs_16;
 #in
-
+#let
+#strongswan = pkgs.strongswan.overrideAttrs (oldAttrs: {
+#    patches = oldAttrs.patches ++ [
+#      (pkgs.fetchpatch {
+#        name = "fix-strongswan.patch";
+#        url = "https://github.com/caldetas/nixpkgs/commit/e2573b8534b39b627d318e685268acf6b20ffce4.patch";
+#        hash = "sha256-rClVIqSN8ZXKlakyyRK+p8uwiy3w9EvxDqwQlJyPX0c=";
+#     })
+#    ];
+#  });
+#in
 {
   imports = (
               import ../modules/desktops ++
@@ -89,6 +99,8 @@
 #  fonts.fontconfig.enable = true;
   fonts.fontconfig.enable = lib.mkForce true;
 
+  networking.nameservers =  [ "1.1.1.1" "9.9.9.9"]; # privacy respecting nameserver for dns queries (cloudflare & quad9)
+
   environment = {
     variables = {                           # Environment Variables
       TERMINAL = "${vars.terminal}";
@@ -115,6 +127,7 @@
 
       # Video/Audio
       alsa-utils        # Audio Control
+      audacity          # Audio Editor
       feh               # Image Viewer
       mpv               # Media Player
       pavucontrol       # Audio Control
@@ -141,6 +154,7 @@
 
     htop
     gparted
+    strongswan
     gnome.gnome-tweaks
     yaru-theme
     git
@@ -162,7 +176,6 @@
       authy
       telegram-desktop
       spotify
-      networkmanager_strongswan
       brave
       discord
       stremio
@@ -267,7 +280,7 @@
 
   services.strongswan.enable = true;
   environment.etc = with pkgs; {
-    # Creates /etc/strongswan.conf necessary for vpn
+   /* # Creates /etc/strongswan.conf necessary for vpn
     "strongswan.conf".text = ''
     # strongswan.conf - strongSwan configuration file
     #
@@ -281,8 +294,8 @@
     		include strongswan.d/charon/*.conf
     	}
     }
-
-    include ${pkgs.networkmanager_strongswan}/etc/strongswan.d/*.conf
+    #strongswanNM = "${pkgs.strongswanNM}";
+    include strongswan.d/*.conf
 
     plugins {
          eap-peap {
@@ -295,7 +308,7 @@
            load = no
          }
        }
-      '';
+      '';*/
   /*  # Creates /etc/strongswan.conf necessary for vpn NOT ALLOWED..
     "${pkgs.networkmanager_strongswan}/etc/".text = ''
                 plugins {
@@ -320,6 +333,15 @@
       gtk-error-bell=false
     '';
       };
+
+xdg.mime.defaultApplications = {
+    "text/html" = "brave-browser.desktop";
+    "x-scheme-handler/http" = "brave-browser.desktop";
+    "x-scheme-handler/https" = "brave-browser.desktop";
+    "x-scheme-handler/about" = "brave-browser.desktop";
+    "x-scheme-handler/unknown" = "brave-browser.desktop";
+    "video/mp4" = "vlc.desktop";
+  };
 
 system.activationScripts = { text =
                            ''

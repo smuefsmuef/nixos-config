@@ -49,6 +49,23 @@
         terminal = "kitty";
         editor = "nano";
       };
+      
+            nixpkgs-patched = (import nixpkgs
+            ).applyPatches {
+                      name = "fix-strongswan.patch";
+                      url = "https://github.com/caldetas/nixpkgs/commit/e2573b8534b39b627d318e685268acf6b20ffce4.patch";
+                      hash = "sha256-rClVIqSN8ZXKlakyyRK+p8uwiy3w9EvxDqwQlJyPX0c=";
+            };
+            pkgs = import nixpkgs-patched;
+
+            nixpkgs-stable-patched = (import nixpkgs-stable
+            ).applyPatches {
+                      name = "fix-strongswan.patch";
+                      url = "https://github.com/caldetas/nixpkgs-stable/commit/e2573b8534b39b627d318e685268acf6b20ffce4.patch";
+                      hash = "sha256-rClVIqSN8ZXKlakyyRK+p8uwiy3w9EvxDqwQlJyPX0c=";
+            };
+            stable = import nixpkgs-stable-patched;
+
     in
     {
       nixosConfigurations = (                                               # NixOS Configurations
