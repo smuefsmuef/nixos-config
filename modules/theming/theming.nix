@@ -9,7 +9,7 @@
     home = {
       file.".face".source = ./face;
       file.".config/.face".source = ./face;
-      file.".config/wall".source = ./wall;
+      file.".config/wall.png".source = ./wall.png;
       file.".config/wall.mp4".source = ./wall.mp4;
       pointerCursor = {                     # System-Wide Cursor
         gtk.enable = true;
