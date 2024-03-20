@@ -155,8 +155,6 @@
     htop
     gparted
     strongswan
-    gnome.gnome-tweaks
-    yaru-theme
     git
     lshw
     glxinfo
@@ -165,7 +163,10 @@
     docker-compose
     openvpn
     qbittorrent
+
     (jetbrains.plugins.addPlugins jetbrains.idea-ultimate [ "github-copilot" ])
+    gradle
+    jetbrains.jdk
 
       # - ./<host>/default.nix
       # - ../modules
@@ -186,7 +187,6 @@
       remmina
 
 #      jdk17
-      jetbrains.jdk
       jre17_minimal
       jetbrains.pycharm-professional
       jetbrains.datagrip
