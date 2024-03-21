@@ -45,6 +45,7 @@
 #        name = "cat-mocha-mauve";
 #       package = pkgs.catppuccin-papirus-folders.override {
 #           flavor = "mocha";
+
 #           accent = "mauve";
 #         };
       };
@@ -54,30 +55,4 @@
     };
   };
   programs.dconf.enable = true;
- /* nixpkgs = {
-    overlays = [
-      (self: super: {
-        gnome = super.gnome.overrideScope' (selfg: superg: {
-          gnome-shell = superg.gnome-shell.overrideAttrs (old: {
-            patches = (old.patches or []) ++ [
-              (pkgs.substituteAll {
-                      name = "login-screen.patch";
-                      url = "https://gist.githubusercontent.com/caldetas/183671dfc848c389aad53c49d356130a/raw/240fbf93aa7bd3a0b9138a7011a91f682371023a/gistfile1.txt";
-                      hash = "";
-              })
-            ];
-          });
-        });
-      })
-    ];
-  };*/
-
-  services.xserver.desktopManager.gnome.extraGSettingsOverrides = ''
-  [com.ubuntu.login-screen]
-  background-repeat='no-repeat'
-  background-size='cover'
-  background-color='#777777'
-  background-picture-uri='file:///home/${vars.user}/.background-image'
-  '';
-
 }
