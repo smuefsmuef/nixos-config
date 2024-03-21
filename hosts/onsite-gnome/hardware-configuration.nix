@@ -37,18 +37,6 @@
       fsType = "vfat";
     };
 
-
-#  fileSystems."/mnt/ubuntu" =
-#    { device = "/dev/disk/by-uuid/luks-ee27e751-d935-4ff7-9c0f-e24e41bdc2d2"; #todo
-#      fsType = "ext4";
-#    };
-#
-#  fileSystems."/mnt/hypr" =
-#    { device = "/dev/disk/by-uuid/luks-8b98b040-b8c0-4d4c-ba49-508cd2fb0760"; #todo
-#      fsType = "ext4";
-#    };
-
-#  swapDevices = [{ device = "/dev/disk/by-uuid/8b98b040-b8c0-4d4c-ba49-508cd2fb0760";  } ];
   swapDevices = [  ];
 
   networking = with host; {
