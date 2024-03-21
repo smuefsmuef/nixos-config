@@ -252,13 +252,13 @@ with lib;
            click-action = "previews";
            scroll-action = "cycle-windows";
          };
-#             todo necessary??
-#             "org/gnome/desktop/background" = {
-#                 "picture-uri" = "/home/${vars.user}/.background-image";
-#             };
-#             "org/gnome/desktop/screensaver" = {
-#                 "picture-uri" = "/home/${vars.user}/.background-image";
-#             };
+             # todo necessary??
+             "org/gnome/desktop/background" = {
+                 "picture-uri" = "/home/${vars.user}/.background-image";
+             };
+             "org/gnome/desktop/screensaver" = {
+                 "picture-uri" = "/home/${vars.user}/.background-image";
+             };
       };
 
       home.packages = with pkgs.gnomeExtensions; [
