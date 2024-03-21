@@ -252,12 +252,21 @@ with lib;
            click-action = "previews";
            scroll-action = "cycle-windows";
          };
-             # todo necessary??
              "org/gnome/desktop/background" = {
                  "picture-uri" = "/home/${vars.user}/.background-image";
              };
+             "org/gnome/desktop/background" = {
+                 "picture-uri-dark" = "/home/${vars.user}/.background-image";
+             };
              "org/gnome/desktop/screensaver" = {
                  "picture-uri" = "/home/${vars.user}/.background-image";
+               primary-color = "#3465a4";
+               secondary-color = "#000000";
+             };
+             "org/gnome/desktop/screensaver" = {
+                 "picture-uri-dark" = "/home/${vars.user}/.background-image";
+               primary-color = "#3465a4";
+               secondary-color = "#000000";
              };
       };
 
