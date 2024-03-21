@@ -174,7 +174,7 @@ with lib;
 
         "org/gnome/shell/extension/dash-to-panel" = {   # Set Manually
           panel-position = ''{"0":"top","1":"top"}'';
-          panel-sizes = ''{"0":24,"1":24}'';
+          panel-sizes = ''{"0":64,"1":64}'';
           panel-element-positions-monitors-sync = true;
           appicon-margin = 0;
           appicon-padding = 4;
@@ -242,7 +242,7 @@ with lib;
          "org/gnome/shell/extensions/dash-to-dock" = { # If Dock Preferred
            multi-monitor = true;
            dock-fixed = true;
-           dash-max-icon-size = 16;
+           dash-max-icon-size = 64;
            custom-theme-shrink = true;
            transparency-mode = "fixed";
            background-opacity = 0.0;
@@ -252,6 +252,13 @@ with lib;
            click-action = "previews";
            scroll-action = "cycle-windows";
          };
+#             todo necessary??
+#             "org/gnome/desktop/background" = {
+#                 "picture-uri" = "/home/${vars.user}/.background-image";
+#             };
+#             "org/gnome/desktop/screensaver" = {
+#                 "picture-uri" = "/home/${vars.user}/.background-image";
+#             };
       };
 
       home.packages = with pkgs.gnomeExtensions; [
