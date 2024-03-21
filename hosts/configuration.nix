@@ -167,6 +167,7 @@
     (jetbrains.plugins.addPlugins jetbrains.idea-ultimate [ "github-copilot" ])
     gradle
     jetbrains.jdk
+    openconnect
 
       # - ./<host>/default.nix
       # - ../modules
