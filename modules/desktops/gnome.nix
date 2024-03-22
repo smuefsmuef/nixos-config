@@ -99,10 +99,10 @@ with lib;
             "bluetooth-quick-connect@bjarosze.gmail.com"
             "battery-indicator@jgotti.org"
             "gsconnect@andyholmes.github.io"
-            "pip-on-top@rafostar.github.com"
+#            "pip-on-top@rafostar.github.com"
             "forge@jmmaranan.com"
 #             "dash-to-dock@micxgx.gmail.com"           # Alternative Dash-to-Panel
-            # "fullscreen-avoider@noobsai.github.com"   # Dash-to-Panel Incompatable
+#            "fullscreen-avoider@noobsai.github.com"   # Dash-to-Panel Incompatable
           ];
         };
 
@@ -256,8 +256,8 @@ with lib;
              "org/gnome/desktop/background" = {
                  "picture-uri" = "/home/${vars.user}/.background-image";
                  "picture-uri-dark" = "/home/${vars.user}/.background-image";
-               primary-color = "#3465a4";
-               secondary-color = "#000000";
+#               primary-color = "#3465a4";
+#               secondary-color = "#000000";
              };
              "org/gnome/desktop/screensaver" = {
                  "picture-uri" = "/home/${vars.user}/.background-image";
@@ -279,10 +279,10 @@ with lib;
         workspace-indicator-2
         bluetooth-quick-connect
         gsconnect
-        pip-on-top
+#        pip-on-top
         pop-shell
         forge
-        # fullscreen-avoider
+        fullscreen-avoider
         # dash-to-dock
       ];
     };
