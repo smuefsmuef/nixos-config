@@ -29,13 +29,15 @@ with lib;
       xserver = {
         enable = true;
 
-        xkb.layout = "ch";
-        xkb.variant = "de";
+        xkb =  {
+            layout = "ch";
+            variant = "de_nodeadkeys";
+            options = "compose:ralt";
+        };
         libinput.enable = true;
 
         displayManager.gdm.enable = true;               # Display Manager
         desktopManager.gnome.enable = true;             # Desktop Environment
-        desktopManager.wallpaper.combineScreens = true; # Wallpaper
 
       };
 
@@ -110,6 +112,10 @@ with lib;
           color-scheme = "prefer-dark";
           enable-hot-corners = false;
           clock-show-weekday = true;
+        };
+        "org/gnome/desktop/input-sources" = {
+            sources = [ ( lib.gvariant.mkTuple [ "xkb" "ch+de_nodeadkeys" ] ) ];
+            xkb-options = "compose:ralt";
         };
         "org/gnome/desktop/privacy" = {
           report-technical-problems = "false";
