@@ -231,8 +231,6 @@ with lib;
           float-always-on-top-enabled = false;
           window-focus-up = ["<super><shift>up"];
           window-focus-down = ["<super><shift>down"];
-          window-focus-left = ["<super><shift>left"];
-          window-focus-right = ["<super><shift>right"];
           window-move-up = ["<ctrl><super>up"];
           window-move-down = ["<ctrl><super>down"];
           window-move-left = ["<ctrl><super>left"];
