@@ -35,6 +35,7 @@ with lib;
 
         displayManager.gdm.enable = true;               # Display Manager
         desktopManager.gnome.enable = true;             # Desktop Environment
+        desktopManager.wallpaper.combineScreens = true; # Wallpaper
 
       };
 
@@ -252,18 +253,18 @@ with lib;
            click-action = "previews";
            scroll-action = "cycle-windows";
          };
-#             "org/gnome/desktop/background" = {
-#                 "picture-uri" = "/home/${vars.user}/.background-image";
-#                 "picture-uri-dark" = "/home/${vars.user}/.background-image";
-#               primary-color = "#3465a4";
-#               secondary-color = "#000000";
-#             };
-#             "org/gnome/desktop/screensaver" = {
-#                 "picture-uri" = "/home/${vars.user}/.background-image";
-#                 "picture-uri-dark" = "/home/${vars.user}/.background-image";
-#               primary-color = "#3465a4";
-#               secondary-color = "#000000";
-#             };
+             "org/gnome/desktop/background" = {
+                 "picture-uri" = "/home/${vars.user}/.background-image";
+                 "picture-uri-dark" = "/home/${vars.user}/.background-image";
+               primary-color = "#3465a4";
+               secondary-color = "#000000";
+             };
+             "org/gnome/desktop/screensaver" = {
+                 "picture-uri" = "/home/${vars.user}/.background-image";
+                 "picture-uri-dark" = "/home/${vars.user}/.background-image";
+               primary-color = "#3465a4";
+               secondary-color = "#000000";
+             };
       };
 
       home.packages = with pkgs.gnomeExtensions; [
