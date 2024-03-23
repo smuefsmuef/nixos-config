@@ -334,12 +334,26 @@
       };
 
 xdg.mime.defaultApplications = {
-    "text/html" = "brave-browser.desktop";
-    "x-scheme-handler/http" = "brave-browser.desktop";
-    "x-scheme-handler/https" = "brave-browser.desktop";
-    "x-scheme-handler/about" = "brave-browser.desktop";
-    "x-scheme-handler/unknown" = "brave-browser.desktop";
-    "video/mp4" = "vlc.desktop";
+              "image/jpeg" = ["image-roll.desktop" "feh.desktop"];
+              "image/png" = ["image-roll.desktop" "feh.desktop"];
+              "text/plain" = "gedit.desktop";
+              "text/html" = "gedit.desktop";
+              "text/csv" = "gedit.desktop";
+              "application/pdf" =  "brave-browser.desktop";
+              "application/zip" = "org.gnome.FileRoller.desktop";
+              "application/x-tar" = "org.gnome.FileRoller.desktop";
+              "application/x-bzip2" = "org.gnome.FileRoller.desktop";
+              "application/x-gzip" = "org.gnome.FileRoller.desktop";
+              "x-scheme-handler/http" = ["brave-browser.desktop" "firefox.desktop"];
+              "x-scheme-handler/https" = ["brave-browser.desktop" "firefox.desktop"];
+              "x-scheme-handler/about" = ["brave-browser.desktop" "firefox.desktop"];
+              "x-scheme-handler/unknown" = ["brave-browser.desktop" "firefox.desktop"];
+              "x-scheme-handler/mailto" = ["brave-browser.desktop"];
+              "audio/mp3" = "vlc.desktop";
+              "audio/x-matroska" = "vlc.desktop";
+              "video/webm" = "vlc.desktop";
+              "video/mp4" = "vlc.desktop";
+              "video/x-matroska" = "vlc.desktop";
   };
 
 system.activationScripts = { text =

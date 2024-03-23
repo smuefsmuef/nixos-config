@@ -113,6 +113,9 @@ with lib;
           enable-hot-corners = false;
           clock-show-weekday = true;
         };
+        "/org/gnome/desktop/peripherals/touchpad " = {
+            tap-to-click = true;
+        };
         "org/gnome/desktop/input-sources" = {
             sources = [ ( lib.gvariant.mkTuple [ "xkb" "ch" ] ) ];
 #            xkb-options = "compose:ralt";

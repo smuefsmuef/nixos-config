@@ -16,6 +16,7 @@
           resize_debounce_time = "0";
 #          background = "#${colors.scheme.default.hex.bg}";
           font_family = "Ubuntu";
+          font_size = 15;
         };
       };
     };
