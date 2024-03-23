@@ -113,7 +113,7 @@ with lib;
           enable-hot-corners = false;
           clock-show-weekday = true;
         };
-        "/org/gnome/desktop/peripherals/touchpad " = {
+        "org/gnome/desktop/peripherals/touchpad " = {
             tap-to-click = true;
         };
         "org/gnome/desktop/input-sources" = {
@@ -287,7 +287,7 @@ with lib;
         workspace-indicator-2
         bluetooth-quick-connect
         gsconnect
-#        pip-on-top
+        pip-on-top
         pop-shell
         forge
         fullscreen-avoider
