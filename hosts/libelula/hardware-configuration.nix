@@ -45,9 +45,9 @@
   networking = with host; {
     useDHCP = false;                        # Deprecated
     hostName = hostName;
-#    nameservers = [ "208.67.222.222" "208.67.220.220"]; #openDNS
     networkmanager = {
         enable = true;
+        plugins = [ pkgs.networkmanager-openvpn ];
 #        extraConfig =''
 ##           supersede domain-name-servers 127.0.0.53;
 ##            prepend domain-name-servers 208.67.222.222;

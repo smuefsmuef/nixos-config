@@ -336,9 +336,9 @@
 xdg.mime.defaultApplications = {
               "image/jpeg" = ["image-roll.desktop" "feh.desktop"];
               "image/png" = ["image-roll.desktop" "feh.desktop"];
-              "text/plain" = "gedit.desktop";
-              "text/html" = "gedit.desktop";
-              "text/csv" = "gedit.desktop";
+              "text/plain" = "org.gnome.gedit.desktop";
+              "text/html" = "brave-browser.desktop";
+              "text/csv" = "org.gnome.gedit.desktop";
               "application/pdf" =  "brave-browser.desktop";
               "application/zip" = "org.gnome.FileRoller.desktop";
               "application/x-tar" = "org.gnome.FileRoller.desktop";

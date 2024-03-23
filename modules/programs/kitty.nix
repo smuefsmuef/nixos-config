@@ -17,6 +17,8 @@
 #          background = "#${colors.scheme.default.hex.bg}";
           font_family = "Ubuntu";
           font_size = 15;
+          background_opacity = "0.8";
+          background_blur = "64";
         };
       };
     };
