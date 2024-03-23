@@ -192,8 +192,6 @@
       jetbrains.pycharm-professional
       jetbrains.datagrip
       python3
-      catppuccin-papirus-folders
-      catppuccin-gtk
       steam
 
     #CV creation with Latex
