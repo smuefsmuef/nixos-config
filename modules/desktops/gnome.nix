@@ -31,8 +31,8 @@ with lib;
 
         xkb =  {
             layout = "ch";
-            variant = "de_nodeadkeys";
-            options = "compose:ralt";
+#            variant = "de_nodeadkeys";
+#            options = "compose:ralt";
         };
         libinput.enable = true;
 
@@ -114,8 +114,8 @@ with lib;
           clock-show-weekday = true;
         };
         "org/gnome/desktop/input-sources" = {
-            sources = [ ( lib.gvariant.mkTuple [ "xkb" "ch+de_nodeadkeys" ] ) ];
-            xkb-options = "compose:ralt";
+            sources = [ ( lib.gvariant.mkTuple [ "xkb" "ch" ] ) ];
+#            xkb-options = "compose:ralt";
         };
         "org/gnome/desktop/privacy" = {
           report-technical-problems = "false";
@@ -260,6 +260,7 @@ with lib;
              "org/gnome/desktop/background" = {
                  "picture-uri" = "/home/${vars.user}/.background-image";
                  "picture-uri-dark" = "/home/${vars.user}/.background-image";
+                 "picture-options" = "spanned"; # default: zoom
 #               primary-color = "#3465a4";
 #               secondary-color = "#000000";
              };
