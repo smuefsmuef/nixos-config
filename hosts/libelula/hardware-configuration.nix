@@ -82,16 +82,5 @@
 
   services.resolved.enable = true;
   services.openvpn.servers = {
-  soysuper = {
-  config = ''
-    config /home/caldetas/MEGAsync/encrypt/surfshark/surfZurich.ovpn
-    up ${pkgs.update-systemd-resolved}/libexec/openvpn/update-systemd-resolved
-    up-restart
-    down ${pkgs.update-systemd-resolved}/libexec/openvpn/update-systemd-resolved
-    down-pre
-  '';
-   autoStart = true;
-   updateResolvConf = true;
-  };
   };
 }

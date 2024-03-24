@@ -99,7 +99,8 @@
 #  fonts.fontconfig.enable = true;
   fonts.fontconfig.enable = lib.mkForce true;
 
-  networking.nameservers =  [ "1.1.1.1" "9.9.9.9"]; # privacy respecting nameserver for dns queries (cloudflare & quad9)
+#  networking.nameservers =  [ "1.1.1.1" "9.9.9.9"]; # privacy respecting nameserver for dns queries (cloudflare & quad9)
+  networking.nameservers =  [ "162.252.172.57" "149.154.159.92"]; # Surfshark
 
   environment = {
     variables = {                           # Environment Variables

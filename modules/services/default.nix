@@ -13,10 +13,9 @@
 [
   ./avahi.nix
   ./dunst.nix
-#  ./flameshot.nix
   ./picom.nix
   ./polybar.nix
-#  ./samba.nix
+  ./surfshark.nix
   ./sxhkd.nix
   ./udiskie.nix
 ]
