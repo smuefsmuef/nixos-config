@@ -200,8 +200,8 @@ clock
 screenshots
 
 effect-blur=11x11
-effect-compose=1110,-170;40%x-1;${vars.location}/hosts/hypr-oldie/home-configs-to-copy/.config/swaylock/rani.png
-effect-compose=120,-100;${vars.location}/hosts/hypr-oldie/home-configs-to-copy/.config/swaylock/warrior.png
+effect-compose=1110,-170;40%x-1;${vars.location}/modules/theming/rani.png
+effect-compose=120,-100;${vars.location}/modules/theming/warrior.png
 font=JetBrains Mono
 indicator-radius=80
 indicator-thickness=8
