@@ -22,7 +22,7 @@
 #           └─ default.nix
 #
 
-{ config, lib, pkgs, stable, inputs, vars, ... }:
+{ config, lib, pkgs, stable, inputs, vars, sops-nix, ... }:
 #let
 #     pkgsM = import (builtins.fetchGit {
 #         # Descriptive name to make the store path easier to identify
@@ -46,7 +46,10 @@
 #  });
 #in
 {
-  imports = (
+  imports =
+    [
+      inputs.sops-nix.nixosModules.sops
+    ] ++ (
               import ../modules/desktops ++
               import ../modules/editors ++
               import ../modules/hardware ++
@@ -55,6 +58,11 @@
               import ../modules/shell ++
               import ../modules/theming
               );
+
+
+    sops.defaultSopsFile = ./secrets/sops.yaml;
+    sops.defaultSopsFormat = "yaml";
+    sops.age.keyFile = "/home/${vars.user}/.config/sops/age/keys.txt";
 
   users.users.${vars.user} = {              # System User
     isNormalUser = true;
@@ -108,6 +116,7 @@
       EDITOR = "${vars.editor}";
       VISUAL = "${vars.editor}";
     };
+
     systemPackages = with stable; [           # System-Wide Packages
       # Terminal
       btop              # Resource Manager
@@ -152,6 +161,9 @@
       unrar             # Rar Files
       zip               # Zip
 
+      # Security
+      sops
+
 
     htop
     gparted
@@ -165,13 +177,11 @@
     openvpn
     qbittorrent
 
+    #Java
     (jetbrains.plugins.addPlugins jetbrains.idea-ultimate [ "github-copilot" ])
     gradle
     jetbrains.jdk
-    openconnect
 
-      # - ./<host>/default.nix
-      # - ../modules
     ] ++
     (with pkgs; [
       # Apps
@@ -276,60 +286,14 @@
     };
 
   services.strongswan.enable = true;
-  environment.etc = with pkgs; {
-   /* # Creates /etc/strongswan.conf necessary for vpn
-    "strongswan.conf".text = ''
-    # strongswan.conf - strongSwan configuration file
-    #
-    # Refer to the strongswan.conf(5) manpage for details
-    #
-    # Configuration changes should be made in the included files
-
-    charon {
-    	load_modular = yes
-    	plugins {
-    		include strongswan.d/charon/*.conf
-    	}
-    }
-    #strongswanNM = "${pkgs.strongswanNM}";
-    include strongswan.d/*.conf
-
-    plugins {
-         eap-peap {
-           load = no
-         }
-         eap-md5 {
-           load = no
-         }
-         eap-gtc {
-           load = no
-         }
-       }
-      '';*/
-  /*  # Creates /etc/strongswan.conf necessary for vpn NOT ALLOWED..
-    "${pkgs.networkmanager_strongswan}/etc/".text = ''
-                plugins {
-                     eap-peap {
-                       load = no
-                     }
-                     eap-md5 {
-                       load = no
-                     }
-                     eap-gtc {
-                       load = no
-                     }
-                   }
-      '';*/
-/*    "xdg/gtk-2.0/gtkrc".text = "gtk-error-bell=0";
-    "xdg/gtk-3.0/settings.ini".text = ''
-      gtk-prefer-dark-theme=true
-      gtk-error-bell=false
-    '';
-    "xdg/gtk-4.0/settings.ini".text = ''
-      gtk-prefer-dark-theme=true
-      gtk-error-bell=false
-    '';*/
-      };
+#  environment.etc = with pkgs; {
+#    # EXAMPLE: Creates /etc/secret.txt
+#            "secret.txt".text = ''
+#            Hey man! I am proof the encryption is working!
+#            My secret is:
+#            ${config.sops.secrets."my-secret".path}
+#            '';
+#      };
 
 xdg.mime.defaultApplications = {
               "image/jpeg" = ["image-roll.desktop" "feh.desktop"];

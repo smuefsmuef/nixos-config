@@ -13,7 +13,9 @@
     {
       nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";                  # Unstable Nix Packages (Default)
       nixpkgs-stable.url = "github:nixos/nixpkgs/release-23.11";            # Stable Nix Packages
-      rust-overlay.url = "github:oxalica/rust-overlay";
+      sops-nix.url = "github:Mic92/sops-nix";                        # Sops Nix Secure Secretes Manager
+      sops-nix.inputs.nixpkgs.follows = "nixpkgs";
+#      rust-overlay.url = "github:oxalica/rust-overlay";
 
       home-manager = {                                                      # User Environment Manager
         url = "github:nix-community/home-manager";
@@ -41,7 +43,7 @@
       };
     };
 
-  outputs = inputs @ { self, nixpkgs, nixpkgs-stable, home-manager, nur, nixgl, hyprland, plasma-manager, ... }:   # Function telling flake which inputs to use
+  outputs = inputs @ { self, nixpkgs, nixpkgs-stable, home-manager, nur, nixgl, hyprland, plasma-manager, sops-nix, ... }:   # Function telling flake which inputs to use
     let
       vars = {                                                              # Variables Used In Flake
         user = "caldetas";
@@ -54,14 +56,14 @@
       nixosConfigurations = (                                               # NixOS Configurations
         import ./hosts {
           inherit (nixpkgs) lib;
-          inherit inputs nixpkgs nixpkgs-stable home-manager nur hyprland plasma-manager vars;   # Inherit inputs
+          inherit inputs nixpkgs nixpkgs-stable home-manager nur hyprland plasma-manager vars sops-nix;   # Inherit inputs
         }
       );
 
       homeConfigurations = (                                                # Nix Configurations
         import ./nix {
           inherit (nixpkgs) lib;
-          inherit inputs nixpkgs nixpkgs-stable home-manager nixgl vars;
+          inherit inputs nixpkgs nixpkgs-stable home-manager nixgl vars sops-nix;
         }
       );
     };
