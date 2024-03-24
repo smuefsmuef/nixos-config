@@ -45,7 +45,7 @@
     let
       vars = {                                                              # Variables Used In Flake
         user = "caldetas";
-        location = "$HOME/Desktop/nixos-config";
+        location = "/home/caldetas/Desktop/nixos-config";
         terminal = "kitty";
         editor = "nano";
       };

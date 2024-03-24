@@ -75,8 +75,8 @@
 
 
   # Enable the GNOME Desktop Environment.
-#gnome.enable = true;
-hyprland.enable = true;
+gnome.enable = true;
+#hyprland.enable = true;
 
   environment.systemPackages = with pkgs; [
 
