@@ -75,8 +75,8 @@
 
 
   # Enable the GNOME Desktop Environment.
-gnome.enable = true;
-#hyprland.enable = true;
+#gnome.enable = true;
+hyprland.enable = true;
 
   environment.systemPackages = with pkgs; [
 
@@ -90,9 +90,6 @@ environment.interactiveShellInit = ''
   alias update='echo cd ${vars.location} \&\& git pull \&\& sudo systemctl unmask  -- -.mount \&\& sudo systemctl daemon-reload \&\& sudo nixos-rebuild switch --flake ${vars.location}#libelula --show-trace --update-input nixpkgs && cd ${vars.location} && git pull && sudo systemctl unmask  -- -.mount && sudo systemctl daemon-reload && sudo nixos-rebuild switch --flake ${vars.location}#${host.hostName} --show-trace --update-input nixpkgs'
   alias rebuild='echo cd ${vars.location} \&\& git pull \&\& sudo systemctl unmask  -- -.mount \&\& sudo systemctl daemon-reload \&\& sudo nixos-rebuild switch --flake ${vars.location}#libelula --show-trace && cd ${vars.location} && git pull && sudo systemctl unmask  -- -.mount && sudo systemctl daemon-reload && sudo nixos-rebuild switch --flake ${vars.location}#${host.hostName} --show-trace'
   alias remminaResetRDP='rm -fr ~/.config/remmina && rm -f ~/.config/freerdp/known_hosts2'
-  alias surfZurichStart='systemctl restart openvpn-soysuper.service'
-  alias surfZurichStop='systemctl stop openvpn-soysuper.service'
-  alias surfZurichStatus='systemctl status openvpn-soysuper.service'
   '';
 }
 
