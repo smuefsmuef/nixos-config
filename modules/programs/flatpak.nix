@@ -22,7 +22,6 @@ with lib;
     };
   };
 
-#  config = mkIf (config.flatpak.enable && !config.gnome.enable) #gnome and kde enable install already the gtk.portal
     config = mkIf (config.flatpak.enable)
   {
     xdg.portal.enable = true;

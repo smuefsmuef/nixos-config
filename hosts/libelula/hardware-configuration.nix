@@ -47,7 +47,7 @@
     hostName = hostName;
     networkmanager = {
         enable = true;
-        plugins = [ pkgs.networkmanager-openvpn ];
+        plugins = [ pkgs.networkmanager-openvpn pkgs.networkmanager_strongswan];
 #        extraConfig =''
 ##           supersede domain-name-servers 127.0.0.53;
 ##            prepend domain-name-servers 208.67.222.222;
