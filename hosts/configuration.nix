@@ -208,7 +208,7 @@
   };
 
     nixpkgs.config.permittedInsecurePackages = [
-§              "freeimage-unstable-2021-11-01"
+               "freeimage-unstable-2021-11-01"
             ];
   hardware.pulseaudio.enable = false;
   services = {
