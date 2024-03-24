@@ -60,7 +60,7 @@
               );
 
 
-    sops.defaultSopsFile = ./secrets/sops.yaml;
+    sops.defaultSopsFile = ./secrets/secrets.yaml;
     sops.defaultSopsFormat = "yaml";
     sops.age.keyFile = "/home/${vars.user}/.config/sops/age/keys.txt";
 
@@ -286,14 +286,16 @@
     };
 
   services.strongswan.enable = true;
-#  environment.etc = with pkgs; {
-#    # EXAMPLE: Creates /etc/secret.txt
+  environment.etc = with config; {
+    # EXAMPLE: Creates /etc/secret.txt
 #            "secret.txt".text = ''
 #            Hey man! I am proof the encryption is working!
 #            My secret is:
-#            ${config.sops.secrets."my-secret".path}
+#            $(cat ${config.sops."mysecret".path})
+#            My secret path is:
+#            ${config.sops."mysecret".path}
 #            '';
-#      };
+      };
 
 xdg.mime.defaultApplications = {
               "image/jpeg" = ["image-roll.desktop" "feh.desktop"];
