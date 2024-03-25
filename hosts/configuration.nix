@@ -297,7 +297,7 @@
             ${config.sops.secrets.my-secret.path}
 
             My secret value is not readable, only in a shell environment:
-            $(cat ${ (builtins.readFile config.sops.secrets.my-secret.path ) })
+            $(cat ${config.sops.secrets.my-secret.path})
 
 
             '';
