@@ -60,9 +60,15 @@
               );
 
 
-    sops.defaultSopsFile = ./secrets/secrets.yaml;
+    sops.defaultSopsFile = ./../secrets/secrets.yaml;
     sops.defaultSopsFormat = "yaml";
     sops.age.keyFile = "/home/${vars.user}/.config/sops/age/keys.txt";
+
+      sops.secrets.example-key = { };
+      sops.secrets."my-secret" = {
+#        owner = "caldetas";
+      };
+     users.groups.secrets = { };
 
   users.users.${vars.user} = {              # System User
     isNormalUser = true;
@@ -261,10 +267,6 @@
   nixpkgs.config.allowUnfree = true;        # Allow Proprietary Software.
 
   system = {                                # NixOS Settings
-    #autoUpgrade = {                        # Allow Auto Update (not useful in flakes)
-    #  enable = true;c
-    #  channel = "https://nixos.org/channels/nixos-unstable";
-    #};
     stateVersion = "23.11";
   };
 
@@ -288,15 +290,29 @@
   services.strongswan.enable = true;
   environment.etc = with config; {
     # EXAMPLE: Creates /etc/secret.txt
-#            "secret.txt".text = ''
-#            Hey man! I am proof the encryption is working!
-#            My secret is:
-#            $(cat ${config.sops."mysecret".path})
-#            My secret path is:
-#            ${config.sops."mysecret".path}
-#            '';
+            "secret.txt".text = ''
+            Hey man! I am proof the encryption is working!
+            My secret is:
+            $(cat ${config.sops.secrets."my-secret".path})
+            My secret path is:
+            ${config.sops.secrets."my-secret".path}
+            '';
       };
-
+  systemd.services."sometestservice" = {
+    script = ''
+        echo "
+        Hey bro! I'm a service, and imma send this secure password:
+        $(cat ${config.sops.secrets."my-secret".path})
+        located in:
+        ${config.sops.secrets."my-secret".path}
+        to database and hack the mainframe
+        " > /var/lib/sometestservice/testfile
+      '';
+    serviceConfig = {
+      User = "sometestservice";
+      WorkingDirectory = "/var/lib/sometestservice";
+    };
+  };
 xdg.mime.defaultApplications = {
               "image/jpeg" = ["image-roll.desktop" "feh.desktop"];
               "image/png" = ["image-roll.desktop" "feh.desktop"];
