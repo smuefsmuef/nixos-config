@@ -66,13 +66,13 @@
 
       sops.secrets.example-key = { };
       sops.secrets."my-secret" = {
-#        owner = "caldetas";
+        owner = "${vars.user}";
       };
      users.groups.secrets = { };
 
   users.users.${vars.user} = {              # System User
     isNormalUser = true;
-    extraGroups = [ "wheel" "video" "audio" "camera" "networkmanager" "lp" "scanner" ];
+    extraGroups = [ "wheel" "video" "audio" "camera" "networkmanager" "lp" "scanner" "secrets" ];
   };
 
 #  time.timeZone = "America/Mexico_City";        # Time zone and Internationalisation
@@ -292,27 +292,17 @@
     # EXAMPLE: Creates /etc/secret.txt
             "secret.txt".text = ''
             Hey man! I am proof the encryption is working!
-            My secret is:
-            $(cat ${config.sops.secrets."my-secret".path})
-            My secret path is:
-            ${config.sops.secrets."my-secret".path}
+
+            My secret is here:
+            ${config.sops.secrets.my-secret.path}
+
+            My secret value is not readable, only in a shell environment:
+            $(cat ${ (builtins.readFile config.sops.secrets.my-secret.path ) })
+
+
             '';
       };
-  systemd.services."sometestservice" = {
-    script = ''
-        echo "
-        Hey bro! I'm a service, and imma send this secure password:
-        $(cat ${config.sops.secrets."my-secret".path})
-        located in:
-        ${config.sops.secrets."my-secret".path}
-        to database and hack the mainframe
-        " > /var/lib/sometestservice/testfile
-      '';
-    serviceConfig = {
-      User = "sometestservice";
-      WorkingDirectory = "/var/lib/sometestservice";
-    };
-  };
+#      xdg.configFile."secrets.txt".text = hyprlandConf;
 xdg.mime.defaultApplications = {
               "image/jpeg" = ["image-roll.desktop" "feh.desktop"];
               "image/png" = ["image-roll.desktop" "feh.desktop"];
