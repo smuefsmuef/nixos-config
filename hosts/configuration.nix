@@ -60,9 +60,6 @@
               );
 
 
-    sops.defaultSopsFile = ./../secrets/secrets.yaml;
-    sops.defaultSopsFormat = "yaml";
-    sops.age.keyFile = "/home/${vars.user}/.config/sops/age/keys.txt";
 
       sops.secrets.example-key = { };
       sops.secrets."my-secret" = {
@@ -288,6 +285,11 @@
     };
 
   services.strongswan.enable = true;
+
+  # SOPS Configuration Secrets
+  sops.defaultSopsFile = ./../secrets/secrets.yaml;
+  sops.defaultSopsFormat = "yaml";
+  sops.age.keyFile = "/home/${vars.user}/.config/sops/age/keys.txt";
   environment.etc = with config; {
     # EXAMPLE: Creates /etc/secret.txt
             "secret.txt".text = ''
@@ -297,33 +299,33 @@
             ${config.sops.secrets.my-secret.path}
 
             My secret value is not readable, only in a shell environment:
-            $(cat ${config.sops.secrets.my-secret.path})
-
-
+            echo $(cat ${config.sops.secrets.my-secret.path})
             '';
       };
-#      xdg.configFile."secrets.txt".text = hyprlandConf;
-xdg.mime.defaultApplications = {
-              "image/jpeg" = ["image-roll.desktop" "feh.desktop"];
-              "image/png" = ["image-roll.desktop" "feh.desktop"];
-              "text/plain" = "org.gnome.gedit.desktop";
-              "text/html" = "brave-browser.desktop";
-              "text/csv" = "org.gnome.gedit.desktop";
-              "application/pdf" =  "brave-browser.desktop";
-              "application/zip" = "org.gnome.FileRoller.desktop";
-              "application/x-tar" = "org.gnome.FileRoller.desktop";
-              "application/x-bzip2" = "org.gnome.FileRoller.desktop";
-              "application/x-gzip" = "org.gnome.FileRoller.desktop";
-              "x-scheme-handler/http" = ["brave-browser.desktop" "firefox.desktop"];
-              "x-scheme-handler/https" = ["brave-browser.desktop" "firefox.desktop"];
-              "x-scheme-handler/about" = ["brave-browser.desktop" "firefox.desktop"];
-              "x-scheme-handler/unknown" = ["brave-browser.desktop" "firefox.desktop"];
-              "x-scheme-handler/mailto" = ["brave-browser.desktop"];
-              "audio/mp3" = "vlc.desktop";
-              "audio/x-matroska" = "vlc.desktop";
-              "video/webm" = "vlc.desktop";
-              "video/mp4" = "vlc.desktop";
-              "video/x-matroska" = "vlc.desktop";
+
+
+    #Default Applications
+    xdg.mime.defaultApplications = {
+            "image/jpeg" = ["image-roll.desktop" "feh.desktop"];
+            "image/png" = ["image-roll.desktop" "feh.desktop"];
+            "text/plain" = "org.gnome.gedit.desktop";
+            "text/html" = "brave-browser.desktop";
+            "text/csv" = "org.gnome.gedit.desktop";
+            "application/pdf" =  "brave-browser.desktop";
+            "application/zip" = "org.gnome.FileRoller.desktop";
+            "application/x-tar" = "org.gnome.FileRoller.desktop";
+            "application/x-bzip2" = "org.gnome.FileRoller.desktop";
+            "application/x-gzip" = "org.gnome.FileRoller.desktop";
+            "x-scheme-handler/http" = ["brave-browser.desktop" "firefox.desktop"];
+            "x-scheme-handler/https" = ["brave-browser.desktop" "firefox.desktop"];
+            "x-scheme-handler/about" = ["brave-browser.desktop" "firefox.desktop"];
+            "x-scheme-handler/unknown" = ["brave-browser.desktop" "firefox.desktop"];
+            "x-scheme-handler/mailto" = ["brave-browser.desktop"];
+            "audio/mp3" = "vlc.desktop";
+            "audio/x-matroska" = "vlc.desktop";
+            "video/webm" = "vlc.desktop";
+            "video/mp4" = "vlc.desktop";
+            "video/x-matroska" = "vlc.desktop";
   };
 
 system.activationScripts = { text =
