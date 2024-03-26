@@ -29,6 +29,8 @@
      			enableOffloadCmd = true;
      		};
      		# Make sure to use the correct Bus ID values for your system!
+     		# You can find them by running `lshw -c display`.
+     		# Ask chatgpt: convert pci@0000:00:02.0 from hexadecimal to decimal. (Only write as int? not sure)
      		intelBusId = "PCI:0:0:2";
      		nvidiaBusId = "PCI:0:1:0";
      	};
