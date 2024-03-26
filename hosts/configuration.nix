@@ -181,7 +181,6 @@
     qbittorrent
 
     #Java
-    (jetbrains.plugins.addPlugins jetbrains.idea-ultimate [ "github-copilot" ])
     gradle
     jetbrains.jdk
 
@@ -200,8 +199,11 @@
       gnupg1orig
       gnome.gnome-remote-desktop
       remmina
+      teams-for-linux
+
 
 #      jdk17
+      (jetbrains.plugins.addPlugins jetbrains.idea-ultimate [ "github-copilot" ])
       jre17_minimal
       jetbrains.pycharm-professional
       jetbrains.datagrip
@@ -289,7 +291,7 @@
   # SOPS Configuration Secrets
   sops.defaultSopsFile = ./../secrets/secrets.yaml;
   sops.defaultSopsFormat = "yaml";
-  sops.age.keyFile = "/home/${vars.user}/.config/sops/age/keys.txt";
+  sops.age.keyFile = "/home/${vars.user}/MEGAsync/encrypt/nixos/keys.txt";
   environment.etc = with config; {
     # EXAMPLE: Creates /etc/secret.txt
             "secret.txt".text = ''
