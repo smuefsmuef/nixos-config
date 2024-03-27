@@ -198,6 +198,8 @@
       gedit
       gnupg1orig
       gnome.gnome-remote-desktop
+      netbird
+      netbird-ui
       remmina
       teams-for-linux
 
@@ -287,6 +289,7 @@
     };
 
   services.strongswan.enable = true;
+  services.netbird.enable = true;
 
   # SOPS Configuration Secrets
   sops.defaultSopsFile = ./../secrets/secrets.yaml;
