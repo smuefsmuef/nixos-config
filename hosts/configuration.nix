@@ -335,6 +335,18 @@
 
 system.activationScripts = { text =
                            ''
+
+                            # Check if sops encryption is working
+                            echo '
+                            Hey man! I am proof the encryption is working!
+
+                            My secret is here:
+                            ${config.sops.secrets.my-secret.path}
+
+                            My secret value is not readable, only in a shell environment:'  > $(cat ${config.sops.secrets.home.path})/secretProof.txt
+                            echo $(cat ${config.sops.secrets.my-secret.path}) >> $(cat ${config.sops.secrets.home.path})/secretProof.txt
+
+
                              # Set up automated scripts if not existing
                              if grep -q 'MEGAsync/work/programs'  /home/caldetas/.zshrc
                              then
