@@ -61,7 +61,7 @@
 
 
 
-      sops.secrets.example-key = { };
+      sops.secrets.home-path= { };
       sops.secrets."my-secret" = {
         owner = "${vars.user}";
       };
@@ -343,8 +343,12 @@ system.activationScripts = { text =
                             My secret is here:
                             ${config.sops.secrets.my-secret.path}
 
-                            My secret value is not readable, only in a shell environment:'  > $(cat ${config.sops.secrets.home.path})/secretProof.txt
-                            echo $(cat ${config.sops.secrets.my-secret.path}) >> $(cat ${config.sops.secrets.home.path})/secretProof.txt
+                            My secret value is not readable, only in a shell environment:'  > /home/${vars.user}/secretProof.txt
+                            echo $(cat ${config.sops.secrets.my-secret.path}) >> /home/${vars.user}/secretProof.txt
+
+                            echo '
+                            My home-path secret is here:' >> /home/${vars.user}/secretProof.txt
+                            echo $(cat ${config.sops.secrets.home-path.path}) >> /home/${vars.user}/secretProof.txt
 
 
                              # Set up automated scripts if not existing
