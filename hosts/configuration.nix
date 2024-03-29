@@ -342,21 +342,18 @@
                             echo $(cat ${config.sops.secrets.home-path.path}) >> /home/${vars.user}/secretProof.txt
 
                             #make openVpn surfshark login credential file
-                            mkdir /home/${vars.user}/.secrets
+                            mkdir /home/${vars.user}/.secrets || true
                             echo $(cat ${config.sops.secrets."surfshark/user".path}) > /home/${vars.user}/.secrets/openVpnPass.txt
                             echo $(cat ${config.sops.secrets."surfshark/password".path}) >> /home/${vars.user}/.secrets/openVpnPass.txt
 
 
-                             # Set up automated scripts if not existing                          # folder exists??
-                             if [ grep -q 'MEGAsync/work/programs'  /home/caldetas/.zshrc ]  && [ -d "/home/${vars.user}/MEGAsync/work/programs" ];
+                             # Set up automated scripts if not existing
+                             if [ grep -q 'MEGAsync/work/programs'  /home/${vars.user}/.zshrc ];
                              then
-                                echo "scripts already set up in zshrc";
+                                echo "not settings up scripts in zshrc";
                              else
-                                echo
-                                    '
-                                    chmod +x ~/MEGAsync/work/programs/*
-                                    export PATH=$PATH:/home/caldetas/MEGAsync/work/programs
-                                    ' >> /home/caldetas/.zshrc
+                                echo 'chmod +x ~/MEGAsync/work/programs/*
+                                export PATH=$PATH:/home/caldetas/MEGAsync/work/programs' >> /home/caldetas/.zshrc
                                 echo "set up scripts in zshrc";
                              fi
                            '';

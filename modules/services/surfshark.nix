@@ -20,7 +20,7 @@ with host;
   # systemctl status openvpn-ch-zur.service
   # systemctl stop openvpn-ch-zur.service
 
-  config = mkIf (config.surfshark.enable && builtins.pathExists "/home/${vars.user}/.secrets/openVpnPass.txt") {
+  config = mkIf (config.surfshark.enable) {
       services.openvpn =
       #variables are defined here due to crash upon unssuccessful connection behind firewall
       let
@@ -35,7 +35,8 @@ with host;
             installPhase = ''
               unzip $src
               find . -type f ! -name '*_udp.ovpn' -delete
-              find . -type f -exec sed -i "s+auth-user-pass+auth-user-pass \"/home/${vars.user}/.secrets/openVpnPass.txt\"+" {} +
+              find . -type f -exec sed -i "s+auth-user-pass+auth-user-pass \"/home/caldetas/MEGAsync/encrypt/surfshark/pass.txt\"+" {} +
+#             find . -type f -exec sed -i "s+auth-user-pass+auth-user-pass \"/home/${vars.user}/.secrets/openVpnPass.txt\"+" {} + #file has only root rights
               find . -type f -exec sed -i "s+cipher+data-ciphers-fallback+" {} +
               rename 's/prod.surfshark.com_udp.//' *
               mkdir -p $out
