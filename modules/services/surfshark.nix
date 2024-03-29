@@ -20,7 +20,7 @@ with host;
   # systemctl status openvpn-ch-zur.service
   # systemctl stop openvpn-ch-zur.service
 
-  config = mkIf (config.surfshark.enable) {
+  config = mkIf (config.surfshark.enable && builtins.pathExists "/home/${vars.user}/.secrets/openVpnPass.txt") {
       services.openvpn =
       #variables are defined here due to crash upon unssuccessful connection behind firewall
       let
