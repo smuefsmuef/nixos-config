@@ -62,7 +62,6 @@
 
 
       sops.secrets.home-path = { };
-      sops.secrets.surfshark = { };
       sops.secrets."surfshark/user" = { };
       sops.secrets."surfshark/password" = { };
       sops.secrets."my-secret" = {
@@ -294,22 +293,6 @@
   services.strongswan.enable = true;
   services.netbird.enable = true;
 
-  # SOPS Configuration Secrets
-  sops.defaultSopsFile = ./../secrets/secrets.yaml;
-  sops.defaultSopsFormat = "yaml";
-  sops.age.keyFile = "/home/${vars.user}/MEGAsync/encrypt/nixos/keys.txt";
-  environment.etc = with config; {
-    # EXAMPLE: Creates /etc/secret.txt
-            "secret.txt".text = ''
-            Hey man! I am proof the encryption is working!
-
-            My secret is here:
-            ${config.sops.secrets.my-secret.path}
-
-            My secret value is not readable, only in a shell environment:
-            echo $(cat ${config.sops.secrets.my-secret.path})
-            '';
-      };
 
 
     #Default Applications
@@ -336,7 +319,12 @@
             "video/x-matroska" = "vlc.desktop";
   };
 
-system.activationScripts = { text =
+
+  # SOPS Configuration Secrets
+  sops.defaultSopsFile = ./../secrets/secrets.yaml;
+  sops.defaultSopsFormat = "yaml";
+  sops.age.keyFile = "/home/${vars.user}/MEGAsync/encrypt/nixos/keys.txt";
+  system.activationScripts = { text =
                            ''
 
                             # Check if sops encryption is working
@@ -350,12 +338,12 @@ system.activationScripts = { text =
                             echo $(cat ${config.sops.secrets.my-secret.path}) >> /home/${vars.user}/secretProof.txt
 
                             echo '
-                            My home-path secret is here:' >> /home/${vars.user}/secretProof.txt
+                            My home-pathon this computer:' >> /home/${vars.user}/secretProof.txt
                             echo $(cat ${config.sops.secrets.home-path.path}) >> /home/${vars.user}/secretProof.txt
 
-                            mkdir -p /home/${vars.user}/.secrets
-                            echo $(cat ${config.sops.secrets.surfshark.user}) > /home/${vars.user}/.secrets/openVpnPass.txt
-                            echo $(cat ${config.sops.secrets.surfshark.password}) >> /home/${vars.user}/.secrets/openVpnPass.txt
+                            #make openVpn surfshark login credential file
+                            echo $(cat ${config.sops.secrets."surfshark/user".path}) > /home/${vars.user}/.secrets/openVpnPass.txt
+                            echo $(cat ${config.sops.secrets."surfshark/password".path}) >> /home/${vars.user}/.secrets/openVpnPass.txt
 
 
                              # Set up automated scripts if not existing
