@@ -61,7 +61,10 @@
 
 
 
-      sops.secrets.home-path= { };
+      sops.secrets.home-path = { };
+      sops.secrets.surfshark = { };
+      sops.secrets."surfshark/user" = { };
+      sops.secrets."surfshark/password" = { };
       sops.secrets."my-secret" = {
         owner = "${vars.user}";
       };
@@ -349,6 +352,10 @@ system.activationScripts = { text =
                             echo '
                             My home-path secret is here:' >> /home/${vars.user}/secretProof.txt
                             echo $(cat ${config.sops.secrets.home-path.path}) >> /home/${vars.user}/secretProof.txt
+
+                            mkdir -p /home/${vars.user}/.secrets
+                            echo $(cat ${config.sops.secrets.surfshark.user}) > /home/${vars.user}/.secrets/openVpnPass.txt
+                            echo $(cat ${config.sops.secrets.surfshark.password}) >> /home/${vars.user}/.secrets/openVpnPass.txt
 
 
                              # Set up automated scripts if not existing
