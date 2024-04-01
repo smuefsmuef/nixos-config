@@ -235,6 +235,9 @@ with lib;
           window-gap-size = 8;
           dnd-center-layout = "stacked";
         };
+        "org/gnome/shell/extensions" = {
+          user-theme = "Orchis-Dark-Compact";
+        };
         "org/gnome/shell/extensions/forge/keybindings" = { # Set Manually
           focus-border-toggle = true;
           float-always-on-top-enabled = false;
