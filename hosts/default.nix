@@ -48,13 +48,13 @@ in
     ];
   };
 
-  libelula = lib.nixosSystem {                               #
+  oppidum = lib.nixosSystem {                               #
     inherit system;
     specialArgs = {
       inherit inputs system unstable hyprland vars;
 #      inherit inputs system unstable vars;
       host = {
-        hostName = "petra";
+        hostName = "oppidum";
         mainMonitor = "eDP-1";
         secondMonitor = "";
         thirdMonitor = "";

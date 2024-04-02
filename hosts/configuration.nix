@@ -72,6 +72,7 @@
     extraGroups = [ "wheel" "video" "audio" "camera" "networkmanager" "lp" "scanner" "secrets" ];
   };
 
+
 #  time.timeZone = "America/Mexico_City";        # Time zone and Internationalisation
   time.timeZone = "Europe/Zurich";        # Time zone and Internationalisation
   i18n = {
@@ -187,7 +188,7 @@
     python3
 
     # Apps
-    authy
+   # authy
     brave
     discord
     docker-compose
@@ -206,7 +207,12 @@
     qbittorrent
     remmina
     spotify
+    steam
+    stremio
+    strongswan
+    teams-for-linux
     telegram-desktop
+    megasync
     ] ++
 
     (with unstable; [
@@ -247,6 +253,7 @@
   nix = {                                   # Nix Package Manager Settings
     settings ={
       auto-optimise-store = true;
+      experimental-features = "nix-command flakes";
     };
     gc = {                                  # Garbage Collection
       automatic = true;
@@ -259,6 +266,7 @@
       experimental-features = nix-command flakes
       keep-outputs          = true
       keep-derivations      = true
+
     '';
   };
   nixpkgs.config.allowUnfree = true;        # Allow Proprietary Software.

@@ -41,7 +41,6 @@
     grub = {
       enable = true;
       efiSupport = true;
-      enableCryptodisk = true;
       device = "nodev";
       useOSProber = true;
       configurationLimit = 20;
@@ -66,7 +65,7 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
-  networking.networkmanager.enableStrongSwan = true;
+#  networking.networkmanager.enableStrongSwan = true;
 
   # Enable the X11 windowing system. (gnome?)
 #  services.xserver.enable = true;
@@ -101,14 +100,6 @@ gnome.enable = true;
 #  # Allow unfree packages
 #  nixpkgs.config.allowUnfree = true;
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages = with pkgs; [
-
-  mesa #elden ring
-  directx-headers #elden ring
-  directx-shader-compiler #elden ring
-  ];
 
 environment.interactiveShellInit = ''
   alias commit='echo cd ${vars.location} \&\& git pull \&\& sudo systemctl unmask  -- -.mount \&\& sudo systemctl daemon-reload \&\& sudo nixos-rebuild switch --flake ${vars.location}#${host.hostName} --show-trace --update-input nixpkgs --commit-lock-file && cd ${vars.location} && git pull && sudo systemctl unmask  -- -.mount && sudo systemctl daemon-reload && sudo nixos-rebuild switch --flake ${vars.location}#${host.hostName} --show-trace --update-input nixpkgs --commit-lock-file'
@@ -119,27 +110,5 @@ environment.interactiveShellInit = ''
 
 
 
-  ### Adaptions to stay awake as a remote server.
-  # Disable the GNOME3/GDM auto-suspend feature that cannot be disabled in GUI!
-  # If no user is logged in, the machine will power down after 20 minutes.
-  systemd.targets.sleep.enable = false;
-  systemd.targets.suspend.enable = false;
-  systemd.targets.hibernate.enable = false;
-  systemd.targets.hybrid-sleep.enable = false;
-
-  services.logind.lidSwitch = "ignore"; #Remmina stay accessible when lid is closed
-
-    services.xserver.displayManager.gdm.autoSuspend = false;
-    security.polkit.extraConfig = ''
-      polkit.addRule(function(action, subject) {
-          if (action.id == "org.freedesktop.login1.suspend" ||
-              action.id == "org.freedesktop.login1.suspend-multiple-sessions" ||
-              action.id == "org.freedesktop.login1.hibernate" ||
-              action.id == "org.freedesktop.login1.hibernate-multiple-sessions")
-          {
-              return polkit.Result.NO;
-          }
-      });
-    '';
 }
 
