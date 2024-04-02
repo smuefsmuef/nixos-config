@@ -31,10 +31,11 @@
                       import ../../modules/shell ++
                       import ../../modules/theming );
 
-  # Bootloader.
-  # boot.loader.systemd-boot.enable = true;
-  # boot.loader.efi.canTouchEfiVariables = true;
-  # boot.loader.grub.useOSProber = true;
+#   Bootloader.
+   boot.loader.systemd-boot.enable = true;
+   boot.loader.efi.canTouchEfiVariables = true;
+   boot.loader.grub.useOSProber = true;
+/*
 
 #  boot.kernelParams = [ "psmouse.synaptics_intertouch=0" ];
   boot.loader = {
@@ -51,6 +52,7 @@
       efiSysMountPoint = "/boot";
     };
   };
+*/
 
 #  networking.hostName = hostname; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
