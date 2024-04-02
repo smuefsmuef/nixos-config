@@ -25,36 +25,22 @@
     boot.kernelModules = [ "kvm-intel" ];
     boot.extraModulePackages = [ ];
 
-    fileSystems."/" =
-      { device = "/dev/disk/by-uuid/40c6a2ad-2559-4559-985c-64bd930c70be";
-        fsType = "ext4";
-      };
-
-    fileSystems."/boot" =
-      { device = "/dev/disk/by-uuid/FD28-26EC";
-        fsType = "vfat";
-      };
-
-  fileSystems."/mnt/ubuntu" =
-    { device = "/dev/disk/by-uuid/b2ac4448-e9e5-4201-a84a-dec1ad82bf77";
+  fileSystems."/" =
+    { device = "/dev/disk/by-uuid/6e8e43d2-ab2b-4b45-b051-1f9231adf84f";
       fsType = "ext4";
     };
 
-  swapDevices = [ ];
+  fileSystems."/boot" =
+    { device = "/dev/disk/by-uuid/7A13-043A";
+      fsType = "vfat";
+    };
 
   networking = with host; {
     useDHCP = false;                        # Deprecated
     hostName = hostName;
-    networkmanager = {
-        enable = true;
-        plugins = [ pkgs.networkmanager-openvpn pkgs.networkmanager_strongswan];
-#        extraConfig =''
-##           supersede domain-name-servers 127.0.0.53;
-##            prepend domain-name-servers 208.67.222.222;
-#          '';
-        };
+    networkmanager.enable = true;
     interfaces = {
-      lo = {
+      enp0s31f6 = {
         useDHCP = true;                     # For versatility sake, manually edit IP on nm-applet.
         #ipv4.addresses = [ {
         #    address = "192.168.0.51";
@@ -73,12 +59,13 @@
 #    nameservers = [ "192.168.0.4" ];
     firewall = {
       enable = false;
-      allowedUDPPorts = [ 500 4500 3389 5900];
-      allowedTCPPorts = [ 500 4500 3389 5900];
+#      allowedUDPPorts = [ 500 4500 3389 5900 ];
+#      allowedTCPPorts = [ 500 4500 3389 5900 ];
     };
   };
   powerManagement.cpuFreqGovernor = lib.mkDefault "performance";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+
 
   services.resolved.enable = true;
   services.openvpn.servers = {

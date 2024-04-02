@@ -54,15 +54,15 @@ in
       inherit inputs system unstable hyprland vars;
 #      inherit inputs system unstable vars;
       host = {
-        hostName = "libelula";
+        hostName = "petra";
         mainMonitor = "eDP-1";
-        secondMonitor = "HDMI-1";#"HDMI-1-1";
+        secondMonitor = "";
         thirdMonitor = "";
       };
     };
     modules = [
-      nur.nixosModules.nur #todo delete?
-      ./libelula
+      nur.nixosModules.nur
+      ./oppidum
       ./configuration.nix
 
       home-manager.nixosModules.home-manager {
@@ -70,66 +70,6 @@ in
         home-manager.useUserPackages = true;
         home-manager.users.${vars.user}.imports = [
         ];
-      }
-    ];
-  };
-  oldie = lib.nixosSystem {                               #
-    inherit system;
-    specialArgs = {
-      inherit inputs system unstable hyprland vars;
-      host = {
-        hostName = "oldie";
-        mainMonitor = "eDP-1-1";
-        secondMonitor = "";
-        thirdMonitor = "";
-      };
-    };
-    modules = [
-      ./oldie
-      ./configuration.nix
-      home-manager.nixosModules.home-manager {
-        home-manager.useGlobalPkgs = true;
-        home-manager.useUserPackages = true;
-      }
-    ];
-  };
-  hypr-oldie = lib.nixosSystem {                               #
-    inherit system;
-    specialArgs = {
-      inherit inputs system unstable hyprland vars;
-      host = {
-        hostName = "hypr-oldie";
-        mainMonitor = "eDP-1-1";
-        secondMonitor = "";
-        thirdMonitor = "";
-      };
-    };
-    modules = [
-      ./hypr-oldie
-      ./configuration.nix
-      home-manager.nixosModules.home-manager {
-        home-manager.useGlobalPkgs = true;
-        home-manager.useUserPackages = true;
-      }
-    ];
-  };
-  onsite-gnome = lib.nixosSystem {                               #
-    inherit system;
-    specialArgs = {
-      inherit inputs system unstable hyprland vars;
-      host = {
-        hostName = "onsite-gnome";
-        mainMonitor = "eDP-1";
-        secondMonitor = "DP-6";
-        thirdMonitor = "DP-8";
-      };
-    };
-    modules = [
-      ./onsite-gnome
-      ./configuration.nix
-      home-manager.nixosModules.home-manager {
-        home-manager.useGlobalPkgs = true;
-        home-manager.useUserPackages = true;
       }
     ];
   };

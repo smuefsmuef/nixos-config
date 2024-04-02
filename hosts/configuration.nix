@@ -62,8 +62,6 @@
 
 
       sops.secrets.home-path = { };
-      sops.secrets."surfshark/user" = { };
-      sops.secrets."surfshark/password" = { };
       sops.secrets."my-secret" = {
         owner = "${vars.user}";
       };
@@ -208,12 +206,7 @@
     qbittorrent
     remmina
     spotify
-    steam
-    stremio
-    strongswan
-    teams-for-linux
     telegram-desktop
-    megasync
     ] ++
 
     (with unstable; [
@@ -328,6 +321,7 @@
   sops.defaultSopsFile = ./../secrets/secrets.yaml;
   sops.defaultSopsFormat = "yaml";
   sops.age.keyFile = "/home/${vars.user}/MEGAsync/encrypt/nixos/keys.txt";
+
   system.activationScripts = { text =
                            ''
 
@@ -344,23 +338,6 @@
                             echo '
                             My home-path on this computer:' >> /home/${vars.user}/secretProof.txt
                             echo $(cat ${config.sops.secrets.home-path.path}) >> /home/${vars.user}/secretProof.txt
-
-                            #make openVpn surfshark login credential file
-                            mkdir /home/${vars.user}/.secrets || true
-                            echo $(cat ${config.sops.secrets."surfshark/user".path}) > /home/${vars.user}/.secrets/openVpnPass.txt
-                            echo $(cat ${config.sops.secrets."surfshark/password".path}) >> /home/${vars.user}/.secrets/openVpnPass.txt
-
-
-                             # Set up automated scripts if not already set up. Abort if no script folder present.
-                             if ! grep -q 'MEGAsync/work/programs'  /home/${vars.user}/.zshrc && [[ -d "/home/${vars.user}/MEGAsync/work/programs" ]] ;
-                             then
-                                echo 'chmod +x ~/MEGAsync/work/programs/*' >> /home/caldetas/.zshrc
-                                echo 'export PATH=$PATH:/home/caldetas/MEGAsync/work/programs' >> /home/caldetas/.zshrc
-                                echo "set up scripts in zshrc";
-                             else
-                                echo "not settings up scripts in zshrc";
-                             fi
                            '';
-
                          };
 }
