@@ -32,16 +32,17 @@
                       import ../../modules/theming );
 
 #   Bootloader.
-   boot.loader.systemd-boot.enable = true;
-   boot.loader.efi.canTouchEfiVariables = true;
-   boot.loader.grub.useOSProber = true;
-/*
+   #boot.loader.systemd-boot.enable = true;
+   #boot.loader.efi.canTouchEfiVariables = true;
+   #boot.loader.grub.useOSProber = true;
+
 
 #  boot.kernelParams = [ "psmouse.synaptics_intertouch=0" ];
   boot.loader = {
     grub = {
       enable = true;
       efiSupport = true;
+      enableCryptodisk = true;
       device = "nodev";
       useOSProber = true;
       configurationLimit = 20;
@@ -52,7 +53,7 @@
       efiSysMountPoint = "/boot";
     };
   };
-*/
+
 
   networking.hostName = host.hostName; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
