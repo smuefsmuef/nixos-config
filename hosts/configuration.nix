@@ -184,12 +184,12 @@
     gradle
     jetbrains.datagrip
     jetbrains.jdk
-    jetbrains.pycharm-professional
+    #jetbrains.pycharm-professional
     jre17_minimal
     python3
 
     # Apps
-   # authy
+    #authy
     brave
     discord
     docker-compose
@@ -211,7 +211,7 @@
     steam
     stremio
     strongswan
-    teams-for-linux
+    #teams-for-linux
     telegram-desktop
     megasync
     ] ++

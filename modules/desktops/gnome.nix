@@ -81,12 +81,12 @@ with lib;
       dconf.settings = {
         "org/gnome/shell" = {
           favorite-apps = [
+            "google-chrome.desktop"
             "brave-browser.desktop"
+            "discord.desktop"
             "kitty.desktop"
             "org-gnome-nautilus.desktop"
-            "steam.desktop"
             "idea-ultimate.desktop"
-            "vlc.desktop"
           ];
           disable-user-extensions = false;
           enabled-extensions = [
