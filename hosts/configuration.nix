@@ -160,7 +160,8 @@
       # Apps
       appimage-run      # Runs AppImages on NixOS
       google-chrome     # Browser
-      libreoffice       # OpenOffice
+      #libreoffice       # OpenOffice
+      vivaldi
 
 
       # File Management

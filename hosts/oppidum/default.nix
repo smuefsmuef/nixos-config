@@ -31,14 +31,14 @@
                       import ../../modules/shell ++
                       import ../../modules/theming );
 
-#   Bootloader.
-   #boot.loader.systemd-boot.enable = true;
-   #boot.loader.efi.canTouchEfiVariables = true;
-   #boot.loader.grub.useOSProber = true;
+#   Bootloader. setup for new bios
+   boot.loader.systemd-boot.enable = true;
+   boot.loader.efi.canTouchEfiVariables = true;
+   boot.loader.grub.useOSProber = true;
 
 
 #  boot.kernelParams = [ "psmouse.synaptics_intertouch=0" ];
-  boot.loader = {
+ /* boot.loader = {
     grub = {
       enable = true;
       efiSupport = true;
@@ -52,7 +52,7 @@
       canTouchEfiVariables = true;
       efiSysMountPoint = "/boot";
     };
-  };
+  };*/
 
 
   networking.hostName = host.hostName; # Define your hostname.
