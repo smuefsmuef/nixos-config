@@ -173,6 +173,8 @@
       unzip             # Zip Files
       unrar             # Rar Files
       zip               # Zip
+      pdfarranger       # PDF Editor
+
 
       # Security
       sops              # Secrets Manager
@@ -187,6 +189,8 @@
     #jetbrains.pycharm-professional
     jre17_minimal
     python3
+
+    libGL
 
     # Apps
     #authy
@@ -219,6 +223,7 @@
     (with unstable; [
     #CV creation with Latex
 #    texlive.combined.scheme-full
+
     ]);
   };
 
@@ -232,7 +237,11 @@
             ];
   hardware.pulseaudio.enable = false;
   services = {
-    printing.enable = true;
+    printing = {
+        enable = true;
+        drivers = [ pkgs.epsonscan2 ];
+
+      };
     pipewire = {                            # Sound
       enable = true;
       alsa = {
