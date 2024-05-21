@@ -87,8 +87,13 @@ gnome.enable = true;
 
 
 #  # Enable CUPS to print documents.
-  services.printing.enable = true;
+#  services.printing.enable = true;
 #
+ services.printing.drivers = with pkgs; [
+    cnijfilter2
+    ]; # Canon Printer
+
+
 #  # Enable sound with pipewire. (needed for gnome.enabled)
 #  sound.enable = true;
 #  hardware.pulseaudio.enable = false;

@@ -240,8 +240,11 @@
     printing = {
         enable = true;
         drivers = [ pkgs.epsonscan2 ];
-
-      };
+        avahi = {
+            enable = true;
+            nssmdns = true;
+            openFirewall = true;
+        };
     pipewire = {                            # Sound
       enable = true;
       alsa = {
