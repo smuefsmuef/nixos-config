@@ -216,7 +216,7 @@
     stremio
     strongswan
     #teams-for-linux
-    telegram-desktop
+    #telegram-desktop
     megasync
     ] ++
 
@@ -228,7 +228,7 @@
   };
 
   programs = {
-    gamemode.enable = true;
+    gamemode.enable = false;
     java.enable = true;
   };
 
@@ -350,7 +350,7 @@
 
                             # Check if sops encryption is working
                             echo '
-                            Hey man! I am proof the encryption is working!
+                            Hey petra! I am proof the encryption is working!
 
                             My secret is here:
                             ${config.sops.secrets.my-secret.path}
