@@ -174,7 +174,7 @@
       unrar             # Rar Files
       zip               # Zip
       pdfarranger       # PDF Editor
-
+     # ksnip
 
       # Security
       sops              # Secrets Manager
@@ -186,6 +186,7 @@
     gradle
     jetbrains.datagrip
     jetbrains.jdk
+    jetbrains.webstorm
     #jetbrains.pycharm-professional
     jre17_minimal
     python3
