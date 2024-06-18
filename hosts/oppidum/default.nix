@@ -77,6 +77,10 @@ services.xserver.displayManager.sessionCommands = ''
     ${lib.getBin pkgs.xorg.xrandr}/bin/xrandr --setprovideroutputsource 2 0
 '';
 
+/*
+for displaylink hub run:
+nix-prefetch-url --name displaylink-580.zip https://www.synaptics.com/sites/default/files/exe_files/2023-08/DisplayLink%20USB%20Graphics%20Software%20for%20Ubuntu5.8-EXE.zip
+ mv $PWD/"DisplayLink USB Graphics Software for Ubuntu6.0-EXE.zip" $PWD/displaylink-580.zip > nix-prefetch-url file://$PWD/displaylink-580.zip*/
 
 
   # Enable the GNOME Desktop Environment.

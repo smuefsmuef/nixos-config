@@ -17,7 +17,7 @@
   };
 
   # Load nvidia driver for Xorg and Wayland
-  services.xserver.videoDrivers = ["nvidia" "displaylink" "modesetting" ];
+  services.xserver.videoDrivers = ["nvidia" "displaylink" "modesetting" ]; # for displaylink hub
 
   hardware.nvidia = {
 
