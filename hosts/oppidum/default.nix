@@ -73,6 +73,9 @@
   # Enable the X11 windowing system. (gnome?)
 #  services.xserver.enable = true;
 
+services.xserver.displayManager.sessionCommands = ''
+    ${lib.getBin pkgs.xorg.xrandr}/bin/xrandr --setprovideroutputsource 2 0
+'';
 
 
 
