@@ -184,6 +184,7 @@
     #Java
     (jetbrains.plugins.addPlugins jetbrains.idea-ultimate [ "github-copilot" ])
     gradle
+    jetbrains.idea-ultimate
     jetbrains.datagrip
     jetbrains.jdk
     jetbrains.webstorm

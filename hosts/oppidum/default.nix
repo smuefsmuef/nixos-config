@@ -70,7 +70,7 @@
   networking.networkmanager.enable = true;
 #  networking.networkmanager.enableStrongSwan = true;
 
-  # Enable the X11 windowing system. (gnome?)
+  # Enable the X11 windowing system. (gnome?)  // todo here
 #  services.xserver.enable = true;
 
 services.xserver.displayManager.sessionCommands = ''
