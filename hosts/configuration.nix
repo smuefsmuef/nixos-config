@@ -147,6 +147,11 @@
       wget              # Retriever
       xdg-utils         # Environment integration
 
+      # Password
+      pass
+      gnupg
+      pinentry
+
       # Video/Audio
       alsa-utils        # Audio Control
       audacity          # Audio Editor
@@ -184,14 +189,15 @@
     #Java
     (jetbrains.plugins.addPlugins jetbrains.idea-ultimate [ "github-copilot" ])
     gradle
-    jetbrains.idea-ultimate
+#    jetbrains.idea-ultimate
     jetbrains.datagrip
     jetbrains.jdk
     jetbrains.webstorm
     #jetbrains.pycharm-professional
     jre17_minimal
+    /*jdk17*/
     jdk22
-    javaPackages.openjfx22
+#    javaPackages.openjfx22
 
     python3
 

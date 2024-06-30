@@ -27,12 +27,12 @@ with lib;
     };
 
     services = {
+      libinput.enable = true;
       xserver = {
         enable = true;
 
         layout = "ch";
         xkbOptions = "eurosign:e";
-        libinput.enable = true;
         modules = [ pkgs.xf86_input_wacom ];
         wacom.enable = true;
 
