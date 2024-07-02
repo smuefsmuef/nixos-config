@@ -151,6 +151,7 @@
       pass
       gnupg
       pinentry
+      xclip
 
       # Video/Audio
       alsa-utils        # Audio Control
