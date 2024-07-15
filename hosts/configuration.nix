@@ -185,7 +185,7 @@
       # Security
       sops              # Secrets Manager
 
-
+    yarn
 
     #Java
     (jetbrains.plugins.addPlugins jetbrains.idea-ultimate [ "github-copilot" ])
