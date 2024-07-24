@@ -146,12 +146,12 @@
       usbutils          # Manage USB
       wget              # Retriever
       xdg-utils         # Environment integration
+      binutils          # GNU Binutils
 
       # Password
       pass
       gnupg
       pinentry
-      xclip
 
       # Video/Audio
       alsa-utils        # Audio Control
@@ -162,6 +162,7 @@
       pipewire          # Audio Server/Control
       pulseaudio        # Audio Server/Control
       vlc               # Media Player
+      openshot-qt      # Video Editor
 
       # Apps
       appimage-run      # Runs AppImages on NixOS
