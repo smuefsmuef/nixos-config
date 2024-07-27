@@ -220,6 +220,7 @@
     gnupg1orig
     gparted
     htop
+    lsof
     netbird
     netbird-ui
     nodejs_18
