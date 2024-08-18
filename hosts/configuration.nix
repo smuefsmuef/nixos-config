@@ -1,4 +1,6 @@
 #
+## ➜ sudo nixos-rebuild switch --flake .#oppidum --show-trace
+
 #  Main system configuration. More information available in configuration.nix(5) man page.
 #
 #  flake.nix
@@ -202,8 +204,8 @@
 #    javaPackages.openjfx22
 
     python3
-
     libGL
+    processing
 
     # displaylink
 
