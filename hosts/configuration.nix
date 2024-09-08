@@ -193,6 +193,7 @@
     #Java
     (jetbrains.plugins.addPlugins jetbrains.idea-ultimate [ "github-copilot" ])
     gradle
+    maven
 #    jetbrains.idea-ultimate
     jetbrains.datagrip
     jetbrains.jdk
@@ -202,12 +203,16 @@
     /*jdk17*/
     jdk22
 #    javaPackages.openjfx22
+    openjfx22
+    openjfx21
 
     python3
     libGL
-    processing
 
-    # displaylink
+    # processing stuff for 3d
+    processing
+    mesa     # OpenGL support
+    jogl     # Java OpenGL
 
     # Apps
     #authy
@@ -236,6 +241,7 @@
     #teams-for-linux
     #telegram-desktop
     megasync
+    openssl
     ] ++
 
     (with unstable; [
