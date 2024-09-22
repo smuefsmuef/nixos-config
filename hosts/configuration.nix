@@ -155,7 +155,7 @@
       gnupg
       pinentry
 
-      # Video/Audio
+      # Video/Audio/Design
       alsa-utils        # Audio Control
       audacity          # Audio Editor
       feh               # Image Viewer
@@ -165,13 +165,13 @@
       pulseaudio        # Audio Server/Control
       vlc               # Media Player
       openshot-qt      # Video Editor
+      figma-linux
 
       # Apps
       appimage-run      # Runs AppImages on NixOS
       google-chrome     # Browser
       libreoffice       # OpenOffice
       vivaldi
-
 
       # File Management
       gnome.file-roller # Archive Manager
@@ -215,7 +215,6 @@
     jogl     # Java OpenGL
 
     # Apps
-    #authy
     brave
     discord
     docker-compose
@@ -226,6 +225,7 @@
     gnome.gnome-remote-desktop
     gnupg1orig
     gparted
+    quickemu
     htop
     lsof
     netbird
@@ -238,8 +238,6 @@
     steam
     stremio
     strongswan
-    #teams-for-linux
-    #telegram-desktop
     megasync
     openssl
     ] ++
