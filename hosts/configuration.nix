@@ -208,6 +208,8 @@
 
     python3
     libGL
+    php
+    php82Packages.composer
 
     # processing stuff for 3d
     processing
@@ -357,6 +359,14 @@
             "video/mp4" = "vlc.desktop";
             "video/x-matroska" = "vlc.desktop";
   };
+
+  # Allow Xdebug to use port 9003.
+    networking.firewall.allowedTCPPorts = [ 9003 ];
+
+    # Make it possible for ddev to modify the /etc/hosts file.
+    # Otherwise you'll have to manually change the
+    # hosts configuration after creating a new ddev project.
+    environment.etc.hosts.mode = "0644";
 
   environment.interactiveShellInit = ''
     alias buildVm='echo cd ${vars.location} \&\& git pull \&\& sudo nixos-rebuild build-vm --flake ${vars.location}#vm --show-trace --update-input nixpkgs && cd ${vars.location} && git pull && sudo nixos-rebuild build-vm --flake ${vars.location}#vm --show-trace --update-input nixpkgs'
