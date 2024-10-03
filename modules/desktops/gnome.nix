@@ -84,6 +84,7 @@ with lib;
             "google-chrome.desktop"
             "brave-browser.desktop"
             "discord.desktop"
+            "slack.desktop"
             "kitty.desktop"
             "org-gnome-nautilus.desktop"
             "idea-ultimate.desktop"

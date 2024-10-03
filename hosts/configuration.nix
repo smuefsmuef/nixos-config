@@ -189,6 +189,7 @@
       sops              # Secrets Manager
 
     yarn
+    slack
 
     #Java
     (jetbrains.plugins.addPlugins jetbrains.idea-ultimate [ "github-copilot" ])
