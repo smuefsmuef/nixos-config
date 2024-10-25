@@ -83,9 +83,12 @@ with lib;
           favorite-apps = [
             "google-chrome.desktop"
             "brave-browser.desktop"
+            "firefox.desktop"
+            "vivaldi.desktop"
             "discord.desktop"
             "slack.desktop"
             "kitty.desktop"
+            "console.desktop"
             "org-gnome-nautilus.desktop"
             "idea-ultimate.desktop"
           ];
