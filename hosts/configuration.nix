@@ -313,12 +313,12 @@
   nixpkgs.config.allowUnfree = true;        # Allow Proprietary Software.
 
   system = {                                # NixOS Settings
-    stateVersion = "24.05";
+    stateVersion = "24.11";
   };
 
   home-manager.users.${vars.user} = {       # Home-Manager Settings
     home = {
-      stateVersion = "24.05";
+      stateVersion = "24.11";
     };
     programs = {
       home-manager.enable = true;
