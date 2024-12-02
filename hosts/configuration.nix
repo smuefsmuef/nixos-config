@@ -243,6 +243,7 @@
     strongswan
     megasync
     openssl
+    clockify
     ] ++
 
     (with unstable; [
