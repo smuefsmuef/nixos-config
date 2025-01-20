@@ -244,6 +244,7 @@
     megasync
     openssl
     clockify
+    postman
     ] ++
 
     (with unstable; [
