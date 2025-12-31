@@ -106,7 +106,6 @@
     carlito                                 # NixOS
     vegur                                   # NixOS
     source-code-pro
-    jetbrains-mono
     font-awesome                            # Icons
     corefonts                               # MS
     ubuntu_font_family

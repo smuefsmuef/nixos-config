@@ -82,8 +82,7 @@ with lib;
               "kitty.desktop"
               "console.desktop"
               "org-gnome-nautilus.desktop"
-              "idea-ultimate.desktop"
-            ];
+              ];
             disable-user-extensions = false;
             enabled-extensions = [
               "trayiconsreloaded@selfmade.pl"

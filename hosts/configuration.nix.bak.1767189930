@@ -79,6 +79,7 @@ in
     carlito
     vegur
     source-code-pro
+    jetbrains-mono
     font-awesome
     corefonts
     ubuntu_font_family
@@ -125,7 +126,8 @@ in
       openvpn qbittorrent remmina spotify steam stremio strongswan megasync openssl clockify postman
 
       # dev extras
-      ] ++ (with unstable; [
+      (jetbrains.plugins.addPlugins jetbrains.idea-ultimate [ "github-copilot" ])
+    ] ++ (with unstable; [
       # optional unstable pkgs here
     ]);
   };
