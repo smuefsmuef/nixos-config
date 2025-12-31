@@ -179,7 +179,7 @@
 
       # File Management
       file-roller # Archive Manager
-      kdePackages.okular            # PDF Viewer
+      okular            # PDF Viewer
       pcmanfm           # File Browser
       p7zip             # Zip Encryption
       rsync             # Syncer - $ rsync -r dir1/ dir2/
