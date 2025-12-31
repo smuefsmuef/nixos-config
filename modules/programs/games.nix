@@ -3,7 +3,7 @@
 #  Do not forget to enable Steam play for all title in the settings menu
 #
 
-{ config, pkgs, nur, lib, vars, ... }:
+{ config, pkgs, lib, vars, ... }:
 
 let
   pcsx2 = pkgs.pcsx2.overrideAttrs (old: {      # PCSX2 Wrapper to run under X11
