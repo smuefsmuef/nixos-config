@@ -1,0 +1,68 @@
+{ inputs, nixpkgs, nixpkgs-unstable, home-manager, hyprland, plasma-manager, vars, ... }:
+
+let
+  system = "x86_64-linux";
+
+  pkgs = import nixpkgs {
+    inherit system;
+    config = { allowUnfree = true; };
+  };
+
+  unstable = import nixpkgs-unstable {
+    inherit system;
+    config = { allowUnfree = true; };
+  };
+
+  lib = pkgs.lib;
+in
+{
+  vm = nixpkgs.lib.nixosSystem {
+    inherit system;
+    specialArgs = {
+      inherit inputs system unstable hyprland vars;
+      host = {
+        hostName = "vm";
+        mainMonitor = "Virtual-1";
+        secondMonitor = "";
+      };
+    };
+    modules = [
+      ./vm
+      ./configuration.nix
+
+      # use the home-manager module provided by the flake input 'home-manager'
+      home-manager.nixosModules.home-manager {
+        home-manager.useGlobalPkgs = true;
+        home-manager.useUserPackages = true;
+      }
+    ];
+  };
+
+  oppidum = nixpkgs.lib.nixosSystem {
+    inherit system;
+    specialArgs = {
+      inherit inputs system unstable hyprland vars;
+      host = {
+        hostName = "oppidum";
+        mainMonitor = "eDP-1";
+        secondMonitor = "";
+        thirdMonitor = "";
+      };
+    };
+    modules = [
+      ./oppidum
+      ./configuration.nix
+
+      # Required external modules from flake inputs (refer to them via `inputs.`)
+      inputs.sops-nix.nixosModules.sops
+      # do NOT duplicate home-manager here if you already add it as above
+      home-manager.nixosModules.home-manager
+      # Additional configuration for home-manager users
+      home-manager.nixosModules.home-manager {
+        home-manager.useGlobalPkgs = true;
+        home-manager.useUserPackages = true;
+        home-manager.users.${vars.user}.imports = [ ];
+      }
+    ];
+  };
+}

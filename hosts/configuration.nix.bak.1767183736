@@ -110,7 +110,7 @@
     font-awesome                            # Icons
     corefonts                               # MS
     ubuntu_font_family
-    
+    pkgs.nerd-fonts.fira-code
   ];
 #  fonts.fontconfig.enable = true;
   fonts.fontconfig.enable = lib.mkForce true;

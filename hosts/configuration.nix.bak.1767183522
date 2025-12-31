@@ -110,7 +110,11 @@
     font-awesome                            # Icons
     corefonts                               # MS
     ubuntu_font_family
-    
+    (pkgs.nerd-fonts.override {                   # Nerdfont Icons override
+      fonts = [
+        "FiraCode"
+      ];
+    })
   ];
 #  fonts.fontconfig.enable = true;
   fonts.fontconfig.enable = lib.mkForce true;

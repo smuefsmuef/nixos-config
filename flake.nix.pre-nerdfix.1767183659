@@ -1,0 +1,87 @@
+#
+#  flake.nix *             
+#   ├─ ./hosts
+#   │   └─ default.nix
+#   └─ ./nix
+#       └─ default.nix
+#
+
+{
+  description = "Nix & NixOS System Flake Configuration";
+
+  inputs =                                                                  # References Used by Flake
+    {
+      nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";            # Stable Nix Packages 
+      nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";                  # Unstable Nix Packages (Default)
+      sops-nix.url = "github:Mic92/sops-nix";                        # Sops Nix Secure Secretes Manager
+      sops-nix.inputs.nixpkgs.follows = "nixpkgs";
+#      rust-overlay.url = "github:oxalica/rust-overlay";
+
+      home-manager = {                                                      # User Environment Manager
+        url = "github:nix-community/home-manager";
+        inputs.nixpkgs.follows = "nixpkgs";
+      };
+
+      nixgl = {                                                             # Fixes OpenGL With Other Distros.
+        url = "github:guibou/nixGL";
+        inputs.nixpkgs.follows = "nixpkgs";
+      };
+
+      hyprland = {                                                          # Official Hyprland Flake
+        url = "github:hyprwm/Hyprland";                                     # Requires "hyprland.nixosModules.default" to be added the host modules
+        inputs.nixpkgs.follows = "nixpkgs-unstable";
+      };
+
+      plasma-manager = {                                                    # KDE Plasma User Settings Generator
+        url = "github:pjones/plasma-manager";
+        inputs.nixpkgs.follows = "nixpkgs";
+        inputs.home-manager.follows = "nixpkgs";
+      };
+    };
+
+  outputs = inputs @ { self, nixpkgs, nixpkgs-unstable, home-manager, nixgl, hyprland, plasma-manager, sops-nix, ... }:   # Function telling flake which inputs to use
+    let
+      vars = {                                                              # Variables Used In Flake
+        user = "petra";
+        location = "/home/petra/Desktop/nixos-config";
+        terminal = "kitty";
+        editor = "nano";
+      };
+    in
+    {
+      nixosConfigurations = (
+        let
+          # lokales nixpkgs mit allowUnfree = true (wird früh wirksam)
+          nixpkgsForHosts = nixpkgs // {
+            config = (nixpkgs.config or {}) // { allowUnfree = true; };
+          };
+
+          # Zielarchitektur — falls du aarch64 o.ä. nutzt, hier anpassen
+          system = "x86_64-linux";
+
+          # Importiere pkgs aus dem angepassten nixpkgs für die Zielarchitektur
+          pkgsForHosts = import nixpkgsForHosts { inherit system; };
+        in
+        import ./hosts {
+          # die Module erwarten 'pkgs' und 'lib' — gib die angepassten weiter:
+          pkgs = pkgsForHosts;
+          lib  = pkgsForHosts.lib;
+
+          # vererbe alle anderen Inputs wie vorher
+          inherit inputs nixpkgs-unstable home-manager hyprland plasma-manager vars sops-nix;
+
+          # optional: falls hosts etwas mit 'nixpkgs' direkt erwartet:
+          nixpkgs = nixpkgsForHosts;
+        }
+      );
+
+
+
+      homeConfigurations = (                                                # Nix Configurations
+        import ./nix {
+          inherit (nixpkgs) lib;
+          inherit inputs nixpkgs nixpkgs-unstable home-manager nixgl vars sops-nix;
+        }
+      );
+    };
+}
