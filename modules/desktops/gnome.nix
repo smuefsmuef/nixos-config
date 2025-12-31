@@ -52,18 +52,7 @@ with lib;
     # in your nixpkgs version). If you want the package, add pkgs.gnome-remote-desktop to
     # environment.systemPackages or handle it separately.
 
-    ########################
-    # udev packages that GNOME expects
-    ########################
-    # --- Neu: udev-Pakete gehören unter `hardware.udev` ---
-    hardware = {
-      udev = {
-        packages = with pkgs; [
-          gnome-settings-daemon
-        ];
-      };
-    };
-
+   
     ########################
     # System packages for GNOME conveniences
     ########################
