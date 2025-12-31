@@ -1,6 +1,5 @@
 #
 ## ➜ sudo nixos-rebuild switch --flake .#oppidum --show-trace
-
 #  Main system configuration. More information available in configuration.nix(5) man page.
 #
 #  flake.nix
@@ -23,7 +22,6 @@
 #       └─ ./theming
 #           └─ default.nix
 #
-
 { config, lib, pkgs, unstable, inputs, vars, sops-nix, ... }:
 #let
 #     pkgsM = import (builtins.fetchGit {
@@ -38,20 +36,17 @@
 #in
 #let
 #strongswan = pkgs.strongswan.overrideAttrs (oldAttrs: {
-#    patches = oldAttrs.patches ++ [
-#      (pkgs.fetchpatch {
+#    patches = oldAttrs.patches ++ [#      (pkgs.fetchpatch {
 #        name = "fix-strongswan.patch";
 #        url = "https://github.com/caldetas/nixpkgs/commit/e2573b8534b39b627d318e685268acf6b20ffce4.patch";
 #        hash = "sha256-rClVIqSN8ZXKlakyyRK+p8uwiy3w9EvxDqwQlJyPX0c=";
 #     })
-#    ];
+#];
 #  });
 #in
 {
   imports =
-    [
-      inputs.sops-nix.nixosModules.sops
-    ] ++ (
+    [inputs.sops-nix.nixosModules.sops] ++ (
               import ../modules/desktops ++
               import ../modules/editors ++
               import ../modules/hardware ++
@@ -60,21 +55,15 @@
               import ../modules/shell ++
               import ../modules/theming
               );
-
-
-
       sops.secrets.home-path = { };
       sops.secrets."my-secret" = {
         owner = "${vars.user}";
       };
      users.groups.secrets = { };
-
   users.users.${vars.user} = {              # System User
     isNormalUser = true;
-    extraGroups = [ "wheel" "video" "audio" "camera" "networkmanager" "lp" "scanner" "secrets" ];
+    extraGroups = ["wheel" "video" "audio" "camera" "networkmanager" "lp" "scanner" "secrets"];
   };
-
-
 #  time.timeZone = "America/Mexico_City";        # Time zone and Internationalisation
   time.timeZone = "Europe/Zurich";        # Time zone and Internationalisation
   i18n = {
@@ -84,24 +73,20 @@
       LC_MONETARY = "en_US.UTF-8";
     };
   };
-
   console = {
     font = "Lat2-Terminus16";
     keyMap = "sg";
   };
-
     swapDevices = [{
       device = "/swapfile";
       size = 16 * 1024; # 16GB
     }];
-
   security = {
     rtkit.enable = true;
     polkit.enable = true;
     sudo.wheelNeedsPassword = false;
   };
-
-  fonts.packages = with pkgs; [                # Fonts
+  fonts.packages = with pkgs; [# Fonts
     carlito                                 # NixOS
     vegur                                   # NixOS
     source-code-pro
@@ -110,26 +95,20 @@
     corefonts                               # MS
     ubuntu_font_family
     (nerdfonts.override {                   # Nerdfont Icons override
-      fonts = [
-        "FiraCode"
-      ];
-    })
-  ];
+      fonts = ["FiraCode"];
+    })];
 #  fonts.fontconfig.enable = true;
   fonts.fontconfig.enable = lib.mkForce true;
-
-#   networking.nameservers =  [ "192.168.80.1"]; # privacy respecting nameserver for dns queries (cloudflare & quad9)
-   networking.nameservers =  [ "1.1.1.1" "9.9.9.9"]; # privacy respecting nameserver for dns queries (cloudflare & quad9)
-#  networking.nameservers =  [ "162.252.172.57" "149.154.159.92"]; # Surfshark
-
+#   networking.nameservers =  ["192.168.80.1"]; # privacy respecting nameserver for dns queries (cloudflare & quad9)
+   networking.nameservers =  ["1.1.1.1" "9.9.9.9"]; # privacy respecting nameserver for dns queries (cloudflare & quad9)
+#  networking.nameservers =  ["162.252.172.57" "149.154.159.92"]; # Surfshark
   environment = {
     variables = {                           # Environment Variables
       TERMINAL = "${vars.terminal}";
       EDITOR = "${vars.editor}";
       VISUAL = "${vars.editor}";
     };
-
-    systemPackages = with pkgs; [           # System-Wide Packages
+    systemPackages = with pkgs; [# System-Wide Packages
       # Terminal
       btop              # Resource Manager
       coreutils         # GNU Utilities
@@ -151,12 +130,10 @@
       xdg-utils         # Environment integration
       binutils          # GNU Binutils
       vscode
-
       # Password
       pass
       gnupg
       pinentry
-
       # Video/Audio/Design
       alsa-utils        # Audio Control
       audacity          # Audio Editor
@@ -168,13 +145,11 @@
       vlc               # Media Player
       openshot-qt      # Video Editor
       figma-linux
-
       # Apps
       appimage-run      # Runs AppImages on NixOS
       google-chrome     # Browser
       libreoffice       # OpenOffice
       vivaldi
-
       # File Management
       pkgs.file-roller # Archive Manager
       pkgs.kdePackages.okular            # PDF Viewer
@@ -186,15 +161,12 @@
       zip               # Zip
       pdfarranger       # PDF Editor
      # ksnip
-
       # Security
       sops              # Secrets Manager
-
     yarn
     slack
-
     #Java
-    (jetbrains.plugins.addPlugins jetbrains.idea-ultimate [ "github-copilot" ])
+    (jetbrains.plugins.addPlugins jetbrains.idea-ultimate ["github-copilot"])
     gradle
     maven
 #    jetbrains.idea-ultimate
@@ -203,22 +175,18 @@
     jetbrains.webstorm
     #jetbrains.pycharm-professional
     jre17_minimal
-    /*jdk17*/
-    jdk22
+    /**/
 #    javaPackages.openjfx22
     openjfx22
     openjfx21
-
     python3
     libGL
     php
     php82Packages.composer
-
     # processing stuff for 3d
     processing
     mesa     # OpenGL support
     jogl     # Java OpenGL
-
     # Apps
     brave
     discord
@@ -248,36 +216,25 @@
     clockify
     postman
     # zen
-    # arc-browser
-    ] ++
-
-    (with unstable; [
-    #CV creation with Latex
-#    texlive.combined.scheme-full
-
-    ]);
+    # arc-browser] ++
+    (with unstable; [#CV creation with Latex
+#    texlive.combined.scheme-full]);
   };
-
   programs = {
     gamemode.enable = false;
     java.enable = true;
   };
-
-    nixpkgs.config.permittedInsecurePackages = [
-               "freeimage-unstable-2021-11-01"
-            ];
+    nixpkgs.config.permittedInsecurePackages = ["freeimage-unstable-2021-11-01"];
   hardware.pulseaudio.enable = false;
   services = {
     printing.
         enable = true;
-#        drivers = [ pkgs.epsonscan2 ];
+#        drivers = [pkgs.epsonscan2];
         avahi = {
             enable = true;
             nssmdns4 = true;
             openFirewall = true;
         };
-
-
     pipewire = {                            # Sound
       enable = true;
       alsa = {
@@ -295,7 +252,6 @@
       '';
     };
   };
-
   nix = {                                   # Nix Package Manager Settings
     settings ={
       auto-optimise-store = true;
@@ -312,15 +268,12 @@
       experimental-features = nix-command flakes
       keep-outputs          = true
       keep-derivations      = true
-
     '';
   };
   nixpkgs.config.allowUnfree = true;        # Allow Proprietary Software.
-
   system = {                                # NixOS Settings
     stateVersion = "24.11";
   };
-
   home-manager.users.${vars.user} = {       # Home-Manager Settings
     home = {
       stateVersion = "24.11";
@@ -331,18 +284,12 @@
   };
   flatpak.enable = true;
     flatpak = {                                   # Flatpak Packages (see module options)
-      extraPackages = [
-        "com.github.tchx84.Flatseal"
+      extraPackages = ["com.github.tchx84.Flatseal"
         "io.github.mimbrero.WhatsAppDesktop"
-        "org.signal.Signal"
-      ];
+        "org.signal.Signal"];
     };
-
   services.strongswan.enable = true;
   services.netbird.enable = true;
-
-
-
     #Default Applications
     xdg.mime.defaultApplications = {
             "image/jpeg" = ["image-roll.desktop" "feh.desktop"];
@@ -366,37 +313,28 @@
             "video/mp4" = "vlc.desktop";
             "video/x-matroska" = "vlc.desktop";
   };
-
   # Allow Xdebug to use port 9003.
-    networking.firewall.allowedTCPPorts = [ 9003 ];
-
+    networking.firewall.allowedTCPPorts = [9003];
     # Make it possible for ddev to modify the /etc/hosts file.
     # Otherwise you'll have to manually change the
     # hosts configuration after creating a new ddev project.
     environment.etc.hosts.mode = "0644";
-
   environment.interactiveShellInit = ''
     alias buildVm='echo cd ${vars.location} \&\& git pull \&\& sudo nixos-rebuild build-vm --flake ${vars.location}#vm --show-trace --update-input nixpkgs && cd ${vars.location} && git pull && sudo nixos-rebuild build-vm --flake ${vars.location}#vm --show-trace --update-input nixpkgs'
     '';
-
   # SOPS Configuration Secrets
   sops.defaultSopsFile = ./../secrets/secrets.yaml;
   sops.defaultSopsFormat = "yaml";
   sops.age.keyFile = "/home/${vars.user}/MEGAsync/encrypt/nixos/keys.txt";
-
   system.activationScripts = { text =
                            ''
-
                             # Check if sops encryption is working
                             echo '
                             Hey petra! I am proof the encryption is working!
-
                             My secret is here:
                             ${config.sops.secrets.my-secret.path}
-
                             My secret value is not readable, only in a shell environment:'  > /home/${vars.user}/secretProof.txt
                             echo $(cat ${config.sops.secrets.my-secret.path}) >> /home/${vars.user}/secretProof.txt
-
                             echo '
                             My home-path on this computer:' >> /home/${vars.user}/secretProof.txt
                             echo $(cat ${config.sops.secrets.home-path.path}) >> /home/${vars.user}/secretProof.txt

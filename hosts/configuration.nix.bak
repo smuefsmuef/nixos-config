@@ -177,7 +177,7 @@
 
       # File Management
       pkgs.file-roller # Archive Manager
-      okular            # PDF Viewer
+      pkgs.kdePackages.okular            # PDF Viewer
       pcmanfm           # File Browser
       p7zip             # Zip Encryption
       rsync             # Syncer - $ rsync -r dir1/ dir2/
