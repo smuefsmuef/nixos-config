@@ -3,7 +3,7 @@
 {
   imports = [
       inputs.sops-nix.nixosModules.sops
-      inputs.home-manager.nixosModules.home-manager
+      inputs.home-manager.nixosModules.home-managers.home-managers.home-manager
     ] ++ (
     import ../modules/desktops ++
     import ../modules/editors ++
@@ -214,13 +214,4 @@
       echo $(cat ${config.sops.secrets.home-path.path}) >> /home/${vars.user}/secretProof.txt
     '';
   };
-  home-manager.users.${vars.user} = {
-    home = {
-      stateVersion = "25.05";
-    };
-    programs = {
-      home-manager.enable = true;
-    };
-  };
-
 }
