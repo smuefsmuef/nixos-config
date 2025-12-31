@@ -55,9 +55,14 @@ with lib;
     ########################
     # udev packages that GNOME expects
     ########################
-    udev.packages = with pkgs; [
-      gnome-settings-daemon
-    ];
+    # --- Neu: udev-Pakete gehören unter `hardware.udev` ---
+    hardware = {
+      udev = {
+        packages = with pkgs; [
+          gnome-settings-daemon
+        ];
+      };
+    };
 
     ########################
     # System packages for GNOME conveniences
