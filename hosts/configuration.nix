@@ -51,7 +51,7 @@
   imports =
     [
       inputs.sops-nix.nixosModules.sops
-      inputs.home-manager.nixosModule
+      inputs.home-manager.nixosModules.home-manager
     ] ++ (
               import ../modules/desktops ++
               import ../modules/editors ++
