@@ -16,7 +16,7 @@ with lib;
     };
   };
 
-  config = mkIf (config.gnome.enable) {
+  config = mkIf (config.enable) {
     programs = {
       zsh.enable = true;
       kdeconnect = {                                    # GSConnect
