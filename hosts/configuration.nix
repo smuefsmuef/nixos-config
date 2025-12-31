@@ -229,8 +229,8 @@
     gedit
     git
     gimp
-    gnome.gnome-remote-desktop
-    gnupg1orig
+   # gnome.gnome-remote-desktop
+    gnupg
     gparted
     quickemu
     htop

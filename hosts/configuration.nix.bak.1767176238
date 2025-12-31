@@ -111,7 +111,7 @@
       processing mesa jogl
 
       # Other apps
-      brave discord docker-compose firefox gedit gimp gnome.gnome-remote-desktop gnupg1orig gparted quickemu htop lsof netbird netbird-ui nodejs_18 openvpn qbittorrent remmina spotify steam stremio strongswan megasync openssl clockify postman
+      brave discord docker-compose firefox gedit gimp gnome.gnome-remote-desktop gnupg gparted quickemu htop lsof netbird netbird-ui nodejs_18 openvpn qbittorrent remmina spotify steam stremio strongswan megasync openssl clockify postman
     ] ++ (with unstable; [
       # texlive.combined.scheme-full    # optional: uncomment if needed
     ]);
