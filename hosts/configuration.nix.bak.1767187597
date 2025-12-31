@@ -1,0 +1,344 @@
+{ config, lib, pkgs, unstable, inputs, vars, sops-nix, ... }:
+
+let
+  # import modules directories (each import returns a list)
+  desktopModules = import ../modules/desktops;
+  editorModules  = import ../modules/editors;
+  hardwareModules= import ../modules/hardware;
+  programModules = import ../modules/programs;
+  serviceModules = import ../modules/services;
+  shellModules   = import ../modules/shell;
+  themeModules   = import ../modules/theming;
+
+  allModuleFolders = lib.concatLists [
+    desktopModules
+    editorModules
+    hardwareModules
+    programModules
+    serviceModules
+    shellModules
+    themeModules
+  ];
+in
+{
+  # Combine single-module imports and module-folder lists without creating nested lists
+  imports = lib.concatLists [
+    [ inputs.sops-nix.nixosModules.sops inputs.home-manager.nixosModules.home-manager ]
+    allModuleFolders
+  ];
+
+  ################
+  # Secrets / SOPS
+  ################
+  sops.secrets.home-path = { };
+  sops.secrets."my-secret" = {
+    owner = "${vars.user}";
+  };
+  users.groups.secrets = { };
+
+  ################
+  # Basic users
+  ################
+  users.users.${vars.user} = {
+    isNormalUser = true;
+    extraGroups = [ "wheel" "video" "audio" "camera" "networkmanager" "lp" "scanner" "secrets" ];
+  };
+
+  ################
+  # Localisation / Console
+  ################
+  time.timeZone = "Europe/Zurich";
+  i18n = {
+    defaultLocale = "en_US.UTF-8";
+    extraLocaleSettings = {
+      LC_TIME = "en_US.UTF-8";
+      LC_MONETARY = "en_US.UTF-8";
+    };
+  };
+
+  console = {
+    font = "Lat2-Terminus16";
+    keyMap = "sg";
+  };
+
+  swapDevices = [{
+    device = "/swapfile";
+    size = 16 * 1024; # 16GB
+  }];
+
+  security = {
+    rtkit.enable = true;
+    polkit.enable = true;
+    sudo.wheelNeedsPassword = false;
+  };
+
+  ################
+  # Fonts
+  ################
+  fonts.packages = with pkgs; [
+    carlito
+    vegur
+    source-code-pro
+    jetbrains-mono
+    font-awesome
+    corefonts
+    ubuntu_font_family
+  ];
+  fonts.fontconfig.enable = lib.mkForce true;
+
+  ################
+  # Networking
+  ################
+  networking.nameservers = [ "1.1.1.1" "9.9.9.9" ];
+
+  ################
+  # Environment / systemPackages
+  ################
+  environment = {
+    variables = {
+      TERMINAL = "${vars.terminal}";
+      EDITOR = "${vars.editor}";
+      VISUAL = "${vars.editor}";
+    };
+
+    systemPackages = with pkgs; [
+      # Core tools
+      btop
+      coreutils
+      git
+      glxinfo
+      hwinfo
+      killall
+      lshw
+      nano
+      nix-tree
+      nixpkgs-fmt
+      pciutils
+      psmisc
+      ranger
+      screen
+      tldr
+      usbutils
+      wget
+      xdg-utils
+      binutils
+      vscode
+
+      # Password tools
+      pass
+      gnupg
+      pinentry
+
+      # Media / design
+      alsa-utils
+      audacity
+      feh
+      mpv
+      pavucontrol
+      pipewire
+      pulseaudio
+      vlc
+      openshot-qt
+      figma-linux
+
+      # Apps and browsers
+      appimage-run
+      google-chrome
+      libreoffice
+      vivaldi
+
+      # File management
+      file-roller
+      kdePackages.okular
+      pcmanfm
+      p7zip
+      rsync
+      unzip
+      unrar
+      zip
+      pdfarranger
+
+      # Security / tooling
+      sops
+      yarn
+      slack
+
+      # Java / build
+      (jetbrains.plugins.addPlugins jetbrains.idea-ultimate [ "github-copilot" ])
+      gradle
+      maven
+
+      python3
+      libGL
+      php
+      php82Packages.composer
+
+      processing
+      mesa
+      jogl
+
+      brave
+      discord
+      docker-compose
+      firefox
+      gedit
+      git
+      gimp
+      gparted
+      quickemu
+      htop
+      lsof
+      netbird
+      netbird-ui
+      openvpn
+      qbittorrent
+      remmina
+      spotify
+      steam
+      stremio
+      strongswan
+      megasync
+      openssl
+      clockify
+      postman
+    ] ++ (with unstable; [
+      # add unstable packages here if needed
+    ]);
+  };
+
+  programs = {
+    gamemode.enable = false;
+    java.enable = true;
+  };
+
+  nixpkgs.config.permittedInsecurePackages = [
+    "freeimage-unstable-2021-11-01"
+  ];
+
+  hardware.pulseaudio.enable = false;
+
+  services = {
+    printing.enable = true;
+
+    avahi = {
+      enable = true;
+      nssmdns4 = true;
+      openFirewall = true;
+    };
+
+    pipewire = {
+      enable = true;
+      alsa = {
+        enable = true;
+        support32Bit = true;
+      };
+      pulse = {
+        enable = true;
+      };
+      jack = {
+        enable = true;
+      };
+    };
+
+    openssh = {
+      enable = true;
+      allowSFTP = true;
+      extraConfig = ''
+        HostKeyAlgorithms +ssh-rsa
+      '';
+    };
+
+    strongswan.enable = true;
+    netbird.enable = true;
+  };
+
+  ################
+  # Nix settings
+  ################
+  nix = {
+    settings = {
+      auto-optimise-store = true;
+      experimental-features = "nix-command flakes";
+    };
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 7d";
+    };
+    package = pkgs.nixVersions.latest;
+    registry.nixpkgs.flake = inputs.nixpkgs;
+    extraOptions = ''
+      experimental-features = nix-command flakes
+      keep-outputs          = true
+      keep-derivations      = true
+    '';
+  };
+
+  nixpkgs.config.allowUnfree = true;
+
+  ################
+  # System versions
+  ################
+  system.stateVersion = "25.05";
+
+  home-manager.users.${vars.user} = {
+    home.stateVersion = "25.05";
+  };
+
+  ################
+  # Flatpak
+  ################
+  flatpak.enable = true;
+  flatpak = {
+    extraPackages = [
+      "com.github.tchx84.Flatseal"
+      "io.github.mimbrero.WhatsAppDesktop"
+      "org.signal.Signal"
+    ];
+  };
+
+  ################
+  # Defaults / xdg
+  ################
+  xdg.mime.defaultApplications = {
+    "image/jpeg" = [ "image-roll.desktop" "feh.desktop" ];
+    "image/png"  = [ "image-roll.desktop" "feh.desktop" ];
+    "text/plain" = "org.gnome.gedit.desktop";
+    "text/html"  = "brave-browser.desktop";
+    "text/csv"   = "org.gnome.gedit.desktop";
+    "application/pdf" = "brave-browser.desktop";
+    "application/zip" = "org.gnome.FileRoller.desktop";
+    "application/x-tar" = "org.gnome.FileRoller.desktop";
+    "application/x-bzip2" = "org.gnome.FileRoller.desktop";
+    "application/x-gzip" = "org.gnome.FileRoller.desktop";
+    "x-scheme-handler/http"  = [ "brave-browser.desktop" "firefox.desktop" ];
+    "x-scheme-handler/https" = [ "brave-browser.desktop" "firefox.desktop" ];
+    "x-scheme-handler/mailto" = [ "brave-browser.desktop" ];
+    "audio/mp3" = "vlc.desktop";
+    "video/mp4" = "vlc.desktop";
+    "video/x-matroska" = "vlc.desktop";
+  };
+
+  networking.firewall.allowedTCPPorts = [ 9003 ];
+
+  environment.etc.hosts.mode = "0644";
+
+  environment.interactiveShellInit = ''
+    alias buildVm='echo cd ${vars.location} \&\& git pull \&\& sudo nixos-rebuild build-vm --flake ${vars.location}#vm --show-trace --update-input nixpkgs && cd ${vars.location} && git pull && sudo nixos-rebuild build-vm --flake ${vars.location}#vm --show-trace --update-input nixpkgs'
+  '';
+
+  # SOPS config
+  sops.defaultSopsFile = ./../secrets/secrets.yaml;
+  sops.defaultSopsFormat = "yaml";
+  sops.age.keyFile = "/home/${vars.user}/MEGAsync/encrypt/nixos/keys.txt";
+
+  system.activationScripts = {
+    text = ''
+      echo 'Hey petra! I am proof the encryption is working!' > /home/${vars.user}/secretProof.txt
+      echo $(cat ${config.sops.secrets.my-secret.path}) >> /home/${vars.user}/secretProof.txt
+
+      echo 'My home-path on this computer:' >> /home/${vars.user}/secretProof.txt
+      echo $(cat ${config.sops.secrets.home-path.path}) >> /home/${vars.user}/secretProof.txt
+    '';
+  };
+}

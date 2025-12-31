@@ -1,83 +1,58 @@
-#
-## ➜ sudo nixos-rebuild switch --flake .#oppidum --show-trace
-
-#  Main system configuration. More information available in configuration.nix(5) man page.
-#
-#  flake.nix
-#   ├─ ./hosts
-#   │   ├─ default.nix
-#   │   └─ configuration.nix *
-#   └─ ./modules
-#       ├─ ./desktops
-#       │   └─ default.nix
-#       ├─ ./editors
-#       │   └─ default.nix
-#       ├─ ./hardware
-#       │   └─ default.nix
-#       ├─ ./programs
-#       │   └─ default.nix
-#       ├─ ./services
-#       │   └─ default.nix
-#       ├─ ./shell
-#       │   └─ default.nix
-#       └─ ./theming
-#           └─ default.nix
-#
+# hosts/configuration.nix
+# Haupt-Systemkonfiguration (Flake-style).
+# Passe vars / inputs in deinem Flake an (dieses File ist als modulare Host-Konfig gedacht).
 
 { config, lib, pkgs, unstable, inputs, vars, sops-nix, ... }:
-#let
-#     pkgsM = import (builtins.fetchGit {
-#         # Descriptive name to make the store path easier to identify
-#         name = "my-old-nodeJs";
-#         url = "https://github.com/NixOS/nixpkgs/";
-#         ref = "refs/heads/nixpkgs-stable";
-#         rev = "9957cd48326fe8dbd52fdc50dd2502307f188b0d";
-#     }) {};
-#
-#     nodeV16 = pkgsM.nodejs_16;
-#in
-#let
-#strongswan = pkgs.strongswan.overrideAttrs (oldAttrs: {
-#    patches = oldAttrs.patches ++ [
-#      (pkgs.fetchpatch {
-#        name = "fix-strongswan.patch";
-#        url = "https://github.com/caldetas/nixpkgs/commit/e2573b8534b39b627d318e685268acf6b20ffce4.patch";
-#        hash = "sha256-rClVIqSN8ZXKlakyyRK+p8uwiy3w9EvxDqwQlJyPX0c=";
-#     })
-#    ];
-#  });
-#in
+
+let
+  # Module-Ordner (dein repo-layout: modules/{desktops,editors,...})
+  desktopModules = import ../modules/desktops;
+  editorModules  = import ../modules/editors;
+  hardwareModules = import ../modules/hardware;
+  programModules = import ../modules/programs;
+  serviceModules = import ../modules/services;
+  shellModules = import ../modules/shell;
+  themeModules = import ../modules/theming;
+
+  # alle Module zusammenfassen (vermeidet verschachtelte Listen-Probleme)
+  allModuleFolders = lib.concatLists [
+    desktopModules
+    editorModules
+    hardwareModules
+    programModules
+    serviceModules
+    shellModules
+    themeModules
+  ];
+in
 {
-  imports =
-    [
-      inputs.sops-nix.nixosModules.sops
-      inputs.home-manager.nixosModules.home-manager
-    ] ++ (
-              import ../modules/desktops ++
-              import ../modules/editors ++
-              import ../modules/hardware ++
-              import ../modules/programs ++
-              import ../modules/services ++
-              import ../modules/shell ++
-              import ../modules/theming
-              );
+  ####################################################################
+  ## Imports: home-manager + sops + deine modul-ordner
+  ####################################################################
+  imports = lib.concatLists [
+    [ inputs.sops-nix.nixosModules.sops inputs.home-manager.nixosModules.home-manager ]
+    allModuleFolders
+  ];
 
+  ####################################################################
+  ## SOPS (secrets)
+  ####################################################################
+  sops.secrets."home-path" = { };
+  sops.secrets."my-secret" = {
+    owner = "${vars.user}";
+  };
 
+  users.groups.secrets = { };
 
-      sops.secrets.home-path = { };
-      sops.secrets."my-secret" = {
-        owner = "${vars.user}";
-      };
-     users.groups.secrets = { };
-
-  users.users.${vars.user} = {              # System User
+  users.users."${vars.user}" = {
     isNormalUser = true;
     extraGroups = [ "wheel" "video" "audio" "camera" "networkmanager" "lp" "scanner" "secrets" ];
   };
 
-
-#  time.timeZone = "America/Mexico_City";        # Time zone and Internationalisation
-  time.timeZone = "Europe/Zurich";        # Time zone and Internationalisation
+  ####################################################################
+  ## Lokalisation / Zeit
+  ####################################################################
+  time.timeZone = "Europe/Zurich";
   i18n = {
     defaultLocale = "en_US.UTF-8";
     extraLocaleSettings = {
@@ -91,315 +66,199 @@
     keyMap = "sg";
   };
 
-    swapDevices = [{
+  swapDevices = [
+    {
       device = "/swapfile";
       size = 16 * 1024; # 16GB
-    }];
+    }
+  ];
 
+  ####################################################################
+  ## Sicherheit
+  ####################################################################
   security = {
     rtkit.enable = true;
     polkit.enable = true;
     sudo.wheelNeedsPassword = false;
   };
 
-  fonts.packages = with pkgs; [                # Fonts
-    carlito                                 # NixOS
-    vegur                                   # NixOS
+  ####################################################################
+  ## Fonts — nerdfonts entfernt (verursachte Fehler)
+  ####################################################################
+  fonts.packages = with pkgs; [
+    carlito
+    vegur
     source-code-pro
     jetbrains-mono
-    font-awesome                            # Icons
-    corefonts                               # MS
+    font-awesome
+    corefonts
     ubuntu_font_family
-    
   ];
-#  fonts.fontconfig.enable = true;
+
+  # Enforce Fontconfig (wie vorher)
   fonts.fontconfig.enable = lib.mkForce true;
 
-#  networking.nameservers =  [ "192.168.80.1"]; # privacy respecting nameserver for dns queries (cloudflare & quad9)
-   networking.nameservers =  [ "1.1.1.1" "9.9.9.9"]; # privacy respecting nameserver for dns queries (cloudflare & quad9)
-#  networking.nameservers =  [ "162.252.172.57" "149.154.159.92"]; # Surfshark
+  ####################################################################
+  ## Network / Nameserver
+  ####################################################################
+  networking.nameservers = [ "1.1.1.1" "9.9.9.9" ];
 
+  ####################################################################
+  ## Environment / systemPackages
+  ####################################################################
   environment = {
-    variables = {                           # Environment Variables
+    variables = {
       TERMINAL = "${vars.terminal}";
-      EDITOR = "${vars.editor}";
-      VISUAL = "${vars.editor}";
+      EDITOR   = "${vars.editor}";
+      VISUAL   = "${vars.editor}";
     };
 
-    systemPackages = with pkgs; [           # System-Wide Packages
-      # Terminal
-      btop              # Resource Manager
-      coreutils         # GNU Utilities
-      git               # Version Control
-      glxinfo           # OpenGL
-      hwinfo            # Hardware Info
-      killall           # Process Killer
-      lshw              # Hardware Info
-      nano              # Text Editor
-      nix-tree          # Browse Nix Store
-      nixpkgs-fmt       # Formatter for nix files
-      pciutils          # Manage PCI
-      psmisc            # A set of small useful utilities that use the proc filesystem (such as fuser, killall and pstree)
-      ranger            # File Manager
-      screen            # Deatach
-      tldr              # Helper
-      usbutils          # Manage USB
-      wget              # Retriever
-      xdg-utils         # Environment integration
-      binutils          # GNU Binutils
-      vscode
+    systemPackages = with pkgs; [
+      # Basics
+      btop coreutils git glxinfo hwinfo killall lshw nano nix-tree nixpkgs-fmt pciutils psmisc
+      ranger screen tldr usbutils wget xdg-utils binutils vscode
 
+      # Passwords / crypto
+      pass gnupg pinentry
 
-      # Password
-      pass
-      gnupg
-      pinentry
-
-      # Video/Audio/Design
-      alsa-utils        # Audio Control
-      audacity          # Audio Editor
-      feh               # Image Viewer
-      mpv               # Media Player
-      pavucontrol       # Audio Control
-      pipewire          # Audio Server/Control
-      pulseaudio        # Audio Server/Control
-      vlc               # Media Player
-      openshot-qt      # Video Editor
-      figma-linux
+      # Audio / Video / Design
+      alsa-utils audacity feh mpv pavucontrol pipewire pulseaudio vlc openshot-qt figma-linux
 
       # Apps
-      appimage-run      # Runs AppImages on NixOS
-      google-chrome     # Browser
-      libreoffice       # OpenOffice
-      vivaldi
+      appimage-run google-chrome libreoffice vivaldi
 
-      # File Management
-      file-roller # Archive Manager
-      kdePackages.okular            # PDF Viewer
-      pcmanfm           # File Browser
-      p7zip             # Zip Encryption
-      rsync             # Syncer - $ rsync -r dir1/ dir2/
-      unzip             # Zip Files
-      unrar             # Rar Files
-      zip               # Zip
-      pdfarranger       # PDF Editor
-     # ksnip
+      # File-management
+      file-roller pcmanfm p7zip rsync unzip unrar zip pdfarranger
 
-      # Security
-      sops              # Secrets Manager
+      # Security / tooling
+      sops yarn slack
 
-    yarn
-    slack
+      # Java / build
+      gradle maven python3 libGL php php82Packages.composer
 
-    #Java
-    (jetbrains.plugins.addPlugins jetbrains.idea-ultimate [ "github-copilot" ])
-    gradle
-    maven
-#    jetbrains.idea-ultimate
- #   jetbrains.datagrip
- #   jetbrains.jdk
-  #  jetbrains.webstorm
- #   #jetbrains.pycharm-professional
-  #  jre17_minimal
-  /*jdk17*/
- #   jdk22
-#    javaPackages.openjfx22
-   # openjfx22
-    # openjfx21
+      # 3d / processing
+      processing mesa jogl
 
-    python3
-    libGL
-    php
-    php82Packages.composer
-
-    # processing stuff for 3d
-    processing
-    mesa     # OpenGL support
-    jogl     # Java OpenGL
-
-    # Apps
-    brave
-    discord
-    docker-compose
-    firefox
-    gedit
-    git
-    gimp
-   # gnome.gnome-remote-desktop
-    gnupg
-    gparted
-    quickemu
-    htop
-    lsof
-    netbird
-    netbird-ui
-   # nodejs_18
-    openvpn
-    qbittorrent
-    remmina
-    spotify
-    steam
-    stremio
-    strongswan
-    megasync
-    openssl
-    clockify
-    postman
-    # zen
-    # arc-browser
-    ] ++
-
-    (with unstable; [
-    #CV creation with Latex
-#    texlive.combined.scheme-full
-
+      # Other apps
+      brave discord docker-compose firefox gedit git gimp gparted quickemu htop lsof
+      netbird netbird-ui openvpn qbittorrent remmina spotify steam stremio strongswan
+      megasync openssl clockify postman
+    ] ++ (with unstable; [
+      # Optional unstable pkgs can be appended here
     ]);
   };
 
+  ####################################################################
+  ## Programs
+  ####################################################################
   programs = {
     gamemode.enable = false;
     java.enable = true;
   };
 
-    nixpkgs.config.permittedInsecurePackages = [
-               "freeimage-unstable-2021-11-01"
-            ];
-  hardware.pulseaudio.enable = false;
-  services = {
-  printing = {
-    enable = true;
-    # drivers = [ pkgs.epsonscan2 ];
-  };
-
-  avahi = {
-    enable = true;
-    nssmdns4 = true;
-    openFirewall = true;
-  };
-
-  pipewire = {
-    enable = true;
-    alsa = {
-      enable = true;
-      support32Bit = true;
-    };
-    pulse = {
-      enable = true;
-    };
-    jack = {
-      enable = true;
-    };
-  };
-
-  openssh = {
-    enable = true;
-    allowSFTP = true;
-    extraConfig = ''
-      HostKeyAlgorithms +ssh-rsa
-    '';
-  };
-};
-
-
-  nix = {                                   # Nix Package Manager Settings
-    settings ={
+  ####################################################################
+  ## Nix / flake / GC config
+  ####################################################################
+  nix = {
+    settings = {
       auto-optimise-store = true;
       experimental-features = "nix-command flakes";
     };
-    gc = {                                  # Garbage Collection
+    gc = {
       automatic = true;
       dates = "weekly";
       options = "--delete-older-than 7d";
     };
-    package = pkgs.nixVersions.latest;    # Enable Flakes
+    package = pkgs.nixVersions.latest;
     registry.nixpkgs.flake = inputs.nixpkgs;
     extraOptions = ''
       experimental-features = nix-command flakes
-      keep-outputs          = true
-      keep-derivations      = true
-
+      keep-outputs = true
+      keep-derivations = true
     '';
   };
-  nixpkgs.config.allowUnfree = true;        # Allow Proprietary Software.
 
-  system = {                                # NixOS Settings
-    stateVersion = "25.05";
+  nixpkgs.config = {
+    allowUnfree = true;
+    permittedInsecurePackages = [ "freeimage-unstable-2021-11-01" ];
   };
 
-  home-manager.users.${vars.user} = {       # Home-Manager Settings
-    home.stateVersion = "25.05";
-  };
-  flatpak.enable = true;
-    flatpak = {                                   # Flatpak Packages (see module options)
-      extraPackages = [
-        "com.github.tchx84.Flatseal"
-        "io.github.mimbrero.WhatsAppDesktop"
-        "org.signal.Signal"
-      ];
+  ####################################################################
+  ## Hardware / Services
+  ####################################################################
+  hardware.pulseaudio.enable = false;
+
+  services = {
+    printing.enable = true;
+
+    avahi = {
+      enable = true;
+      nssmdns4 = true;
+      openFirewall = true;
     };
 
-  services.strongswan.enable = true;
-  services.netbird.enable = true;
+    pipewire = {
+      enable = true;
+      alsa = {
+        enable = true;
+        support32Bit = true;
+      };
+      pulse = { enable = true; };
+      jack  = { enable = true; };
+    };
 
+    openssh = {
+      enable = true;
+      allowSFTP = true;
+      extraConfig = ''
+        HostKeyAlgorithms +ssh-rsa
+      '';
+    };
 
-
-    #Default Applications
-    xdg.mime.defaultApplications = {
-            "image/jpeg" = ["image-roll.desktop" "feh.desktop"];
-            "image/png" = ["image-roll.desktop" "feh.desktop"];
-            "text/plain" = "org.gnome.gedit.desktop";
-            "text/html" = "brave-browser.desktop";
-            "text/csv" = "org.gnome.gedit.desktop";
-            "application/pdf" =  "brave-browser.desktop";
-            "application/zip" = "org.gnome.FileRoller.desktop";
-            "application/x-tar" = "org.gnome.FileRoller.desktop";
-            "application/x-bzip2" = "org.gnome.FileRoller.desktop";
-            "application/x-gzip" = "org.gnome.FileRoller.desktop";
-            "x-scheme-handler/http" = ["brave-browser.desktop" "firefox.desktop"];
-            "x-scheme-handler/https" = ["brave-browser.desktop" "firefox.desktop"];
-            "x-scheme-handler/about" = ["brave-browser.desktop" "firefox.desktop"];
-            "x-scheme-handler/unknown" = ["brave-browser.desktop" "firefox.desktop"];
-            "x-scheme-handler/mailto" = ["brave-browser.desktop"];
-            "audio/mp3" = "vlc.desktop";
-            "audio/x-matroska" = "vlc.desktop";
-            "video/webm" = "vlc.desktop";
-            "video/mp4" = "vlc.desktop";
-            "video/x-matroska" = "vlc.desktop";
+    strongswan.enable = true;
+    netbird.enable = true;
   };
 
-  # Allow Xdebug to use port 9003.
-    networking.firewall.allowedTCPPorts = [ 9003 ];
+  ####################################################################
+  ## System / activation script / stateVersion
+  ####################################################################
+  system.activationScripts = {
+    text = ''
+      # Check if sops encryption is working
+      echo "Hey ${vars.user}! This proves sops is working." > /home/${vars.user}/secretProof.txt
+      echo $(cat ${config.sops.secrets.my-secret.path}) >> /home/${vars.user}/secretProof.txt || true
+      echo "My home-path on this computer:" >> /home/${vars.user}/secretProof.txt
+      echo $(cat ${config.sops.secrets.home-path.path}) >> /home/${vars.user}/secretProof.txt || true
+    '';
+  };
 
-    # Make it possible for ddev to modify the /etc/hosts file.
-    # Otherwise you'll have to manually change the
-    # hosts configuration after creating a new ddev project.
-    environment.etc.hosts.mode = "0644";
+  system.stateVersion = "25.05";
+
+  ####################################################################
+  ## Home-manager (minimal, damit home-manager module funktionieren)
+  ####################################################################
+  home-manager.users."${vars.user}" = {
+    home.stateVersion = "25.05";
+  };
+
+  ####################################################################
+  ## XDG defaults, firewall ports etc.
+  ####################################################################
+  xdg.mime.defaultApplications = {
+    "image/jpeg" = [ "image-roll.desktop" "feh.desktop" ];
+    "image/png"  = [ "image-roll.desktop" "feh.desktop" ];
+    "text/plain" = "org.gnome.gedit.desktop";
+    "text/html"  = "brave-browser.desktop";
+    "text/csv"   = "org.gnome.gedit.desktop";
+    "application/pdf" = "brave-browser.desktop";
+    "application/zip" = "org.gnome.FileRoller.desktop";
+    "application/x-tar" = "org.gnome.FileRoller.desktop";
+  };
+
+  networking.firewall.allowedTCPPorts = [ 9003 ];
+  environment.etc.hosts.mode = "0644";
 
   environment.interactiveShellInit = ''
-    alias buildVm='echo cd ${vars.location} \&\& git pull \&\& sudo nixos-rebuild build-vm --flake ${vars.location}#vm --show-trace --update-input nixpkgs && cd ${vars.location} && git pull && sudo nixos-rebuild build-vm --flake ${vars.location}#vm --show-trace --update-input nixpkgs'
-    '';
-
-  # SOPS Configuration Secrets
-  sops.defaultSopsFile = ./../secrets/secrets.yaml;
-  sops.defaultSopsFormat = "yaml";
-  sops.age.keyFile = "/home/${vars.user}/MEGAsync/encrypt/nixos/keys.txt";
-
-  system.activationScripts = { text =
-                           ''
-
-                            # Check if sops encryption is working
-                            echo '
-                            Hey petra! I am proof the encryption is working!
-
-                            My secret is here:
-                            ${config.sops.secrets.my-secret.path}
-
-                            My secret value is not readable, only in a shell environment:'  > /home/${vars.user}/secretProof.txt
-                            echo $(cat ${config.sops.secrets.my-secret.path}) >> /home/${vars.user}/secretProof.txt
-
-                            echo '
-                            My home-path on this computer:' >> /home/${vars.user}/secretProof.txt
-                            echo $(cat ${config.sops.secrets.home-path.path}) >> /home/${vars.user}/secretProof.txt
-                           '';
-                         };
+    alias buildVm='echo cd ${vars.location} && git pull && sudo nixos-rebuild build-vm --flake ${vars.location}#vm --show-trace --update-input nixpkgs'
+  '';
 }

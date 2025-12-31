@@ -1,0 +1,131 @@
+# modules/desktops/gnome.nix
+#
+# Gnome Configuration module
+# Enable with `gnome.enable = true;` from your host configuration
+#
+
+{ config, lib, pkgs, vars, ... }:
+
+with lib;
+
+{
+  options = {
+    gnome = {
+      enable = mkOption {
+        type = lib.types.bool;
+        default = false;
+        description = "Enable GNOME-specific settings";
+      };
+    };
+  };
+
+  config = mkIf (config.gnome.enable) {
+    # basic programs / packages for GNOME
+    programs = {
+      zsh.enable = true;
+      kdeconnect = {
+        enable = true;
+        package = pkgs.gnomeExtensions.gsconnect;
+      };
+    };
+
+    # X / display manager / desktop manager settings
+    services.xserver = {
+      enable = true;
+
+      xkb = {
+        layout = "ch";
+      };
+
+      libinput.enable = true;
+
+      displayManager.gdm.enable = true;
+      # enable the GNOME desktop manager explicitly:
+      desktopManager.gnome.enable = true;
+    };
+
+    # XRDP (if you still want to use it)
+    services.xrdp = {
+      enable = true;
+      defaultWindowManager = "/run/current-system/sw/bin/gnome-session";
+      openFirewall = true;
+    };
+
+    # NOTE: Do NOT set `services.gnome-remote-desktop.enable` here
+    # The remote desktop component is a package now. If you want the package,
+    # add `pkgs.gnome-remote-desktop` to systemPackages (done below).
+
+    # packages to install system-wide when GNOME is enabled
+    environment.systemPackages = with pkgs; [
+      adwaita-icon-theme
+      dconf-editor
+      gnome-themes-extra
+      gnome-tweaks
+      gnome-remote-desktop    # <-- package (not a service). remove if you don't want it.
+    ];
+
+    # If you formerly used "environment.excludePackages" — remove it.
+    # To exclude a package, just don't add it to systemPackages, or filter it out explicitly.
+
+    # udev packages
+    hardware.quirks = {}
+    # if you need specific udev packages you can still add them via udev.packages:
+    # udev.packages = [ pkgs.gnome-settings-daemon ];
+
+    # user dconf/home-manager settings for GNOME
+    home-manager.users.${vars.user} = {
+      dconf.settings = {
+        "org/gnome/shell" = {
+          favorite-apps = [
+            "google-chrome.desktop"
+            "brave-browser.desktop"
+            "firefox.desktop"
+            "vivaldi.desktop"
+            "discord.desktop"
+            "slack.desktop"
+            "kitty.desktop"
+            "console.desktop"
+            "org-gnome-nautilus.desktop"
+            "idea-ultimate.desktop"
+          ];
+          disable-user-extensions = false;
+          enabled-extensions = [
+            "trayiconsreloaded@selfmade.pl"
+            "blur-my-shell@aunetx"
+            "drive-menu@gnome-shell-extensions.gcampax.github.com"
+            "user-theme@gnome-shell-extensions.gcampax.github.com"
+            "dash-to-panel@jderose9.github.com"
+            "just-perfection-desktop@just-perfection"
+            "caffeine@patapon.info"
+            "clipboard-indicator@tudmotu.com"
+            "horizontal-workspace-indicator@tty2.io"
+            "bluetooth-quick-connect@bjarosze.gmail.com"
+            "battery-indicator@jgotti.org"
+            "gsconnect@andyholmes.github.io"
+            "forge@jmmaranan.com"
+          ];
+        };
+
+        # weitere dconf keys...
+      };
+
+      # GNOME extensions install via home-packages (if desired)
+      home.packages = with pkgs.gnomeExtensions; [
+        tray-icons-reloaded
+        blur-my-shell
+        removable-drive-menu
+        just-perfection
+        caffeine
+        clipboard-indicator
+        bluetooth-quick-connect
+        gsconnect
+        pip-on-top
+        pop-shell
+        forge
+        fullscreen-avoider
+        dash-to-dock
+        native-window-placement
+      ];
+    };
+  };
+}
