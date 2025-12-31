@@ -298,6 +298,7 @@ with lib;
         just-perfection
         caffeine
         clipboard-indicator
+        workspace-indicator-2
         bluetooth-quick-connect
         gsconnect
         pip-on-top
