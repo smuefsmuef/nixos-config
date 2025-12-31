@@ -55,7 +55,7 @@ with lib;
 
 
     environment = {
-      systemPackages = with pkgs.gnome; [                     # System-Wide Packages
+      systemPackages = with pkgs; [                     # System-Wide Packages
         adwaita-icon-theme
         dconf-editor
         gnome-themes-extra
@@ -63,8 +63,8 @@ with lib;
       ];
       gnome.excludePackages = (with pkgs; [             # Ignored Packages
         gnome-tour
-      ]) ++ (with pkgs.gnome; [
-        atomix
+      ]) ++ (with pkgs; [
+        pkgs.atomix
         epiphany
         geary
         gnome-characters
@@ -289,7 +289,7 @@ with lib;
              };
       };
 
-      home.packages = with pkgs.gnomeExtensions; [
+      home.packages = with pkgsExtensions; [
         tray-icons-reloaded
         blur-my-shell
         removable-drive-menu
