@@ -51,30 +51,27 @@
     {
       nixosConfigurations = (
         let
-          # lokales nixpkgs mit allowUnfree = true (wird früh wirksam)
+          # lokales nixpkgs mit allowUnfree = true
           nixpkgsForHosts = nixpkgs // {
             config = (nixpkgs.config or {}) // { allowUnfree = true; };
           };
 
-          # Zielarchitektur — falls du aarch64 o.ä. nutzt, hier anpassen
+          # Importiere pkgs für das Zielsystem (ersetze falls nötig)
           system = "x86_64-linux";
-
-          # Importiere pkgs aus dem angepassten nixpkgs für die Zielarchitektur
           pkgsForHosts = import nixpkgsForHosts { inherit system; };
         in
         import ./hosts {
-          # die Module erwarten 'pkgs' und 'lib' — gib die angepassten weiter:
+          # übergebe die erwarteten Bindings an hosts/default.nix / configuration.nix
           pkgs = pkgsForHosts;
           lib  = pkgsForHosts.lib;
 
-          # vererbe alle anderen Inputs wie vorher
+          # weiterhin die übrigen Inputs wie vorher
           inherit inputs nixpkgs-unstable home-manager hyprland plasma-manager vars sops-nix;
 
-          # optional: falls hosts etwas mit 'nixpkgs' direkt erwartet:
+          # falls hosts etwas mit 'nixpkgs' braucht kannst du es auch explizit übergeben:
           nixpkgs = nixpkgsForHosts;
         }
       );
-
 
 
       homeConfigurations = (                                                # Nix Configurations

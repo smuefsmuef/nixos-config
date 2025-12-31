@@ -16,7 +16,7 @@ let
   lib = pkgs.lib;
 in
 {
-  vm = nixpkgs.lib.nixosSystem {
+  vm = pkgs.lib.nixosSystem {
     inherit system;
     specialArgs = {
       inherit inputs system unstable hyprland vars;
@@ -38,7 +38,7 @@ in
     ];
   };
 
-  oppidum = nixpkgs.lib.nixosSystem {
+  oppidum = pkgs.lib.nixosSystem {
     inherit system;
     specialArgs = {
       inherit inputs system unstable hyprland vars;
