@@ -178,7 +178,7 @@
       vivaldi
 
       # File Management
-      gnome.file-roller # Archive Manager
+      file-roller # Archive Manager
       okular            # PDF Viewer
       pcmanfm           # File Browser
       p7zip             # Zip Encryption

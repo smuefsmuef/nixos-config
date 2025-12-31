@@ -289,7 +289,7 @@ with lib;
              };
       };
 
-      home.packages = with pkgs.gnomeExtensions; [
+      home.packages = with pkgsExtensions; [
         tray-icons-reloaded
         blur-my-shell
         removable-drive-menu
@@ -298,7 +298,7 @@ with lib;
         just-perfection
         caffeine
         clipboard-indicator
-      #   workspace-indicator-2
+        workspace-indicator-2
         bluetooth-quick-connect
         gsconnect
         pip-on-top
