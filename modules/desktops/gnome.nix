@@ -55,7 +55,7 @@ with lib;
 
 
     environment = {
-      systemPackages = with pkgs.gnome; [                     # System-Wide Packages
+      systemPackages = with pkgs; [                     # System-Wide Packages
         adwaita-icon-theme
         dconf-editor
         gnome-themes-extra
@@ -63,7 +63,7 @@ with lib;
       ];
       gnome.excludePackages = (with pkgs; [             # Ignored Packages
         gnome-tour
-      ]) ++ (with pkgs.gnome; [
+      ]) ++ (with pkgs; [
         atomix
         epiphany
         geary
