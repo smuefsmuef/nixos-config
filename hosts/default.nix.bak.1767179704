@@ -57,6 +57,8 @@ in
       inputs.sops-nix.nixosModules.sops
       # do NOT duplicate home-manager here if you already add it as above
       home-manager.nixosModules.home-manager
+      inputs.plasma-manager.nixosModules.plasma-manager
+
       # Additional configuration for home-manager users
       home-manager.nixosModules.home-manager {
         home-manager.useGlobalPkgs = true;
