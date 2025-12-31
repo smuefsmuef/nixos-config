@@ -3,24 +3,18 @@
 #  Enable with "enable = true;"
 #
 
--{ config, lib, pkgs, vars, ... }:
-+{ config, lib, pkgs, vars, ... }:
+{ config, lib, pkgs, vars, ... }:
 
- with lib;
- {
-   options = {
-     gnome = {
--      enable = mkOption {
--        type = types.bool;
--        default = false;
--      };
-+      enable = mkOption {
-+        type = lib.types.bool;
-+        default = false;
-+      };
-     };
-   };
-
+with lib;
+{
+  options = {
+    gnome = {
+      enable = mkOption {
+        type = types.bool;
+        default = false;
+      };
+    };
+  };
 
   config = mkIf (config.gnome.enable) {
     programs = {
@@ -43,7 +37,7 @@
         libinput.enable = true;
 
         displayManager.gdm.enable = true;               # Display Manager
-        desktopManager.gnome.enable = true;      # Desktop Environment
+        desktopManager.enable = true;             # Desktop Environment
 
       };
 
@@ -59,14 +53,29 @@
       ];
     };
 
-environment = {
-   systemPackages = with pkgs; [
-     adwaita-icon-theme
-     dconf-editor
-     gnome-themes-extra
-     gnome-tweaks
-   ];
-};
+
+    environment = {
+      systemPackages = with pkgs; [                     # System-Wide Packages
+        adwaita-icon-theme
+        dconf-editor
+        gnome-themes-extra
+        gnome-tweaks
+      ];
+      excludePackages = (with pkgs; [             # Ignored Packages
+        gnome-tour
+      ]) ++ (with pkgs; [
+        pkgs.atomix
+        epiphany
+        geary
+        gnome-characters
+        gnome-contacts
+        gnome-initial-setup
+        hitori
+        iagno
+        tali
+        yelp
+      ]);
+    };
 
     home-manager.users.${vars.user} = {
       dconf.settings = {
