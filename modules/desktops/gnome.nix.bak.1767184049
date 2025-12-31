@@ -1,6 +1,6 @@
 #
 #  Gnome Configuration
-#  Enable with "enable = true;"
+#  Enable with "gnome.enable = true;"
 #
 
 { config, lib, pkgs, vars, ... }:
@@ -16,7 +16,7 @@ with lib;
     };
   };
 
-  config = mkIf (config.enable) {
+  config = mkIf (config.gnome.enable) {
     programs = {
       zsh.enable = true;
       kdeconnect = {                                    # GSConnect
@@ -37,7 +37,7 @@ with lib;
         libinput.enable = true;
 
         displayManager.gdm.enable = true;               # Display Manager
-        desktopManager.enable = true;             # Desktop Environment
+        desktopManager.gnome.enable = true;             # Desktop Environment
 
       };
 
@@ -46,10 +46,10 @@ with lib;
 #        xrdp.defaultWindowManager =  "gnome-remote-desktop";
         xrdp.defaultWindowManager =  "/run/current-system/sw/bin/gnome-session";
         xrdp.openFirewall = true;
-        services.gnome-remote-desktop.enable = true;
+        gnome.gnome-remote-desktop.enable = true;
 
       udev.packages = with pkgs; [
-        gnome-settings-daemon
+        gnome.gnome-settings-daemon
       ];
     };
 
@@ -61,7 +61,7 @@ with lib;
         gnome-themes-extra
         gnome-tweaks
       ];
-      excludePackages = (with pkgs; [             # Ignored Packages
+      gnome.excludePackages = (with pkgs; [             # Ignored Packages
         gnome-tour
       ]) ++ (with pkgs; [
         pkgs.atomix
