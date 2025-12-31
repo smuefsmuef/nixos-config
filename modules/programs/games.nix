@@ -23,7 +23,6 @@ in
 #  #hardware.new-lg4ff.enable = true;            # Force Feedback
 #
 #  environment.systemPackages = [
-#    #config.nur.repos.c0deaddict.oversteer      # Steering Wheel Configuration
 #    #pkgs.heroic        # Game Launcher
 #    #pkgs.lutris        # Game Launcher
 #    #pkgs.prismlauncher # MC Launcher
